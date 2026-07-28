@@ -162,7 +162,7 @@
         <a href="custom-order.html" class="nav-link" style="color: var(--rose-gold);">Custom Order</a>
       </div>
       <div class="nav-actions">
-        <a href="mailto:jolkona2007@gmail.com" class="nav-action-btn" aria-label="Email">
+        <a href="/cdn-cgi/l/email-protection#39535655525657580b09090e795e54585055175a5654" class="nav-action-btn" aria-label="Email">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
         <div class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu" role="button" tabindex="0">
@@ -339,6 +339,21 @@
       </div>
     </form>
 
+    <!-- Copy + DM Action Buttons -->
+    <div id="orderActions" style="display: none; flex-direction: column; align-items: center; gap: var(--space-md); padding: var(--space-2xl) 0; text-align: center;">
+      <p style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--charcoal); margin-bottom: var(--space-sm);">Your order is ready!</p>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: var(--space-lg);">Step 1: Copy your order details<br>Step 2: Open Instagram & paste in chat</p>
+      <div style="display: flex; gap: var(--space-md); flex-wrap: wrap; justify-content: center;">
+        <button id="copyBtn" style="padding: 14px 28px; border-radius: var(--radius-full); background: var(--charcoal); color: white; font-size: 0.9rem; font-weight: 600; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+          📋 Copy Order Details
+        </button>
+        <a id="dmBtn" href="https://www.instagram.com/direct/new/?recipient=jol_kona_" target="_blank" rel="noopener" style="padding: 14px 28px; border-radius: var(--radius-full); background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; font-size: 0.9rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+          💬 Open Instagram DM
+        </a>
+      </div>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: var(--space-md);">Then simply paste your order in the chat and send!</p>
+    </div>
+
     <!-- Success Message -->
     <div class="form-success" id="formSuccess">
       <div class="form-success-icon">💧✨</div>
@@ -358,12 +373,12 @@
     <div class="container">
       <div class="footer-bottom" style="border: none; padding: 0;">
         <p>© 2026 জলকণা (Jol Kona). Crafted with 💧 from Bengal.</p>
-        <p><a href="mailto:jolkona2007@gmail.com" style="color: var(--rose-gold);">jolkona2007@gmail.com</a></p>
+        <p><a href="/cdn-cgi/l/email-protection#573d383b3c3839366567676017303a363e3b7934383a" style="color: var(--rose-gold);"><span class="__cf_email__" data-cfemail="1f7570737470717e2d2f2f285f78727e7673317c7072">[email&#160;protected]</span></a></p>
       </div>
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Occasion/Product selection
     document.querySelectorAll('.occasion-option').forEach(option => {
       option.addEventListener('click', () => {
@@ -424,47 +439,93 @@
       `;
     }
 
+    // Store order data globally
+    window._orderData = '';
+    
     // Form submission
     document.getElementById('customOrderForm').addEventListener('submit', (e) => {
       e.preventDefault();
       
       // Gather form data
-      const occasion = document.querySelector('.occasion-option.selected')?.dataset.value || 'Not specified';
-      const productType = document.querySelectorAll('.occasion-grid')[1]?.querySelector('.occasion-option.selected')?.dataset.value || 'Not specified';
-      const colors = Array.from(document.querySelectorAll('.color-option.selected')).map(el => el.dataset.color).join(', ') || 'Not specified';
+      const occasion = document.querySelector('.occasion-option.selected')?.textContent?.trim() || 'Not specified';
+      const productType = document.querySelectorAll('.occasion-grid')[1]?.querySelector('.occasion-option.selected')?.textContent?.trim() || 'Not specified';
+      const colors = Array.from(document.querySelectorAll('.color-option.selected')).map(el => el.title || el.dataset.color).join(', ') || 'Not specified';
       const budget = document.getElementById('budgetValue')?.textContent || 'Not specified';
       const name = document.getElementById('orderName')?.value || 'Not provided';
       const phone = document.getElementById('orderPhone')?.value || 'Not provided';
-      const email = document.getElementById('orderEmail')?.value || 'Not provided';
-      const recipient = document.getElementById('recipientName')?.value || 'Not specified';
-      const message = document.getElementById('personalMessage')?.value || 'No message';
-      const instructions = document.getElementById('specialInstructions')?.value || 'None';
-      const deliveryDate = document.getElementById('deliveryDate')?.value || 'Not specified';
+      const email = document.getElementById('orderEmail')?.value || '';
+      const recipient = document.getElementById('recipientName')?.value || '';
+      const message = document.getElementById('personalMessage')?.value || '';
+      const instructions = document.getElementById('specialInstructions')?.value || '';
+      const deliveryDate = document.getElementById('deliveryDate')?.value || '';
       
-      // Build Instagram DM message
-      const dmMessage = `🎁 *CUSTOM ORDER REQUEST*%0A%0A` +
-        `👤 *Name:* ${encodeURIComponent(name)}%0A` +
-        ` *Phone:* ${encodeURIComponent(phone)}%0A` +
-        (email ? `📧 *Email:* ${encodeURIComponent(email)}%0A` : '') +
-        `%0A🎉 *Occasion:* ${encodeURIComponent(occasion)}%0A` +
-        `🛍️ *Product Type:* ${encodeURIComponent(productType)}%0A` +
-        ` *Colors:* ${encodeURIComponent(colors)}%0A` +
-        `💰 *Budget:* ₹${encodeURIComponent(budget)}%0A` +
-        (recipient ? `💝 *Recipient:* ${encodeURIComponent(recipient)}%0A` : '') +
-        (message !== 'No message' ? `%0A💌 *Message:* ${encodeURIComponent(message)}%0A` : '') +
-        (instructions !== 'None' ? `%0A📝 *Instructions:* ${encodeURIComponent(instructions)}%0A` : '') +
-        (deliveryDate !== 'Not specified' ? `%0A📅 *Delivery Date:* ${encodeURIComponent(deliveryDate)}%0A` : '');
+      // Build clean formatted text
+      let orderText = `🎁 CUSTOM ORDER REQUEST - জলকণা\n`;
+      orderText += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+      orderText += `👤 CUSTOMER DETAILS\n`;
+      orderText += `Name: ${name}\n`;
+      orderText += `Phone: ${phone}\n`;
+      if (email) orderText += `Email: ${email}\n`;
+      orderText += `\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+      orderText += `🛍️ ORDER DETAILS\n`;
+      orderText += `Occasion: ${occasion}\n`;
+      orderText += `Product: ${productType}\n`;
+      orderText += `Colors: ${colors}\n`;
+      orderText += `Budget: Rs.${budget}\n`;
+      if (recipient) orderText += `Recipient: ${recipient}\n`;
+      if (deliveryDate) orderText += `Delivery Date: ${deliveryDate}\n`;
+      orderText += `\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+      if (message) {
+        orderText += `💌 PERSONAL MESSAGE\n`;
+        orderText += `${message}\n\n`;
+        orderText += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+      }
+      if (instructions) {
+        orderText += `📝 SPECIAL INSTRUCTIONS\n`;
+        orderText += `${instructions}\n\n`;
+        orderText += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+      }
+      orderText += `Sent from jolkona.onrender.com`;
       
-      // Open Instagram DM with pre-filled message
-      const instagramUrl = `https://www.instagram.com/direct/new/?recipient=jol_kona_&text=${dmMessage}`;
-      window.open(instagramUrl, '_blank');
+      // Store for copy button
+      window._orderData = orderText;
       
-      // Show success message
-      document.getElementById('customOrderForm').style.display = 'none';
-      document.getElementById('formSuccess').classList.add('show');
-      window.scrollTo({ top: 200, behavior: 'smooth' });
+      // Show the copy + DM buttons
+      document.getElementById('orderActions').style.display = 'flex';
+      
+      // Scroll to buttons
+      document.getElementById('orderActions').scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
-
+    
+    // Copy button
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(window._orderData).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.innerHTML = '✅ Copied!';
+        btn.style.background = '#4CAF50';
+        setTimeout(() => {
+          btn.innerHTML = '📋 Copy Order Details';
+          btn.style.background = '';
+        }, 2500);
+      }).catch(() => {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = window._orderData;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        const btn = document.getElementById('copyBtn');
+        btn.innerHTML = '✅ Copied!';
+        btn.style.background = '#4CAF50';
+        setTimeout(() => {
+          btn.innerHTML = ' Copy Order Details';
+          btn.style.background = '';
+        }, 2500);
+      });
+    });
+    
+    // DM button handled by href link
     // Mobile toggle
     const mobileToggle = document.getElementById('mobileToggle');
     if (mobileToggle) {
@@ -485,5 +546,5 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
   </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2237b90ee837b08',t:'MTc4NTIzNzUwMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
