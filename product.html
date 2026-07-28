@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rose Garden Dream — Premium handmade bouquet by জলকণা (Jol Kona). Crafted with love from Bengal.">
+  <title>Rose Garden Dream — জলকণা (Jol Kona)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  
+  <style>
+    .product-page { padding-top: 100px; }
+    
+    .product-detail {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-3xl);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg);
+    }
+    
+    .product-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    
+    .gallery-main {
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: linear-gradient(135deg, #F8E8E0, #E8C4B8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      position: relative;
+      cursor: zoom-in;
+      box-shadow: var(--shadow-large);
+    }
+    
+    .gallery-main::after {
+      content: '🔍 Click to zoom';
+      position: absolute;
+      bottom: var(--space-md);
+      right: var(--space-md);
+      background: var(--glass-bg);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+    
+    .gallery-thumbs {
+      display: flex;
+      gap: var(--space-sm);
+    }
+    
+    .gallery-thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all var(--duration-fast) var(--ease-smooth);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .gallery-thumb:hover, .gallery-thumb.active {
+      border-color: var(--rose-gold);
+    }
+    
+    .product-info {
+      padding-top: var(--space-lg);
+    }
+    
+    .product-breadcrumb {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .product-breadcrumb a {
+      color: var(--rose-gold);
+    }
+    
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .product-subtitle {
+      font-family: var(--font-bengali);
+      color: var(--rose-gold);
+      font-size: 1.1rem;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .product-rating-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-lg);
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .product-price {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .product-price .current-price {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      color: var(--charcoal);
+    }
+    
+    .product-price .old-price {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+    
+    .product-price .discount {
+      background: #E8F5E9;
+      color: #2E7D32;
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .product-description {
+      margin-bottom: var(--space-xl);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    
+    .product-meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      padding: var(--space-lg);
+      background: var(--cream-dark);
+      border-radius: var(--radius-lg);
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.9rem;
+    }
+    
+    .meta-item-icon {
+      width: 24px;
+      text-align: center;
+    }
+    
+    .meta-item-label {
+      color: var(--text-muted);
+      min-width: 100px;
+    }
+    
+    .meta-item-value {
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+    
+    .product-actions {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+    
+    .qty-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      transition: all var(--duration-fast) var(--ease-smooth);
+    }
+    
+    .qty-btn:hover { background: var(--cream-dark); }
+    
+    .qty-display {
+      width: 40px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    
+    .product-sharing {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border-light);
+    }
+    
+    .share-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .share-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--duration-fast) var(--ease-smooth);
+      font-size: 0.85rem;
+    }
+    
+    .share-btn:hover {
+      background: var(--rose-gold);
+      color: white;
+      border-color: var(--rose-gold);
+    }
+    
+    /* Related Products */
+    .related-section {
+      padding: var(--space-3xl) 0;
+      background: var(--warm-beige);
+    }
+    
+    @media (max-width: 768px) {
+      .product-detail { grid-template-columns: 1fr; gap: var(--space-xl); }
+      .product-actions { flex-direction: column; }
+      .product-actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav scrolled" role="navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <img src="img/logo.png" alt="জলকণা — Jol Kona Handmade Crafts" class="nav-brand-logo" width="180" height="48">
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#shop" class="nav-link">Shop</a>
+        <a href="custom-order.html" class="nav-link">Custom Order</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+      </div>
+      <div class="nav-actions">
+        <a href="mailto:jolkona2007@gmail.com" class="nav-action-btn" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <button class="nav-action-btn" aria-label="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Product Detail -->
+  <section class="product-page">
+    <div class="product-detail">
+      <!-- Gallery -->
+      <div class="product-gallery reveal-left">
+        <div class="gallery-main" id="mainGallery">💐</div>
+        <div class="gallery-thumbs">
+          <div class="gallery-thumb active" style="background: linear-gradient(135deg, #F8E8E0, #E8C4B8);">💐</div>
+          <div class="gallery-thumb" style="background: linear-gradient(135deg, #E8C4B8, #D4A882);">🌹</div>
+          <div class="gallery-thumb" style="background: linear-gradient(135deg, #C8956C, #D4A882);">🎀</div>
+          <div class="gallery-thumb" style="background: linear-gradient(135deg, #F5EDE8, #F8E8E0);">📦</div>
+        </div>
+      </div>
+      
+      <!-- Info -->
+      <div class="product-info reveal-right">
+        <div class="product-breadcrumb">
+          <a href="index.html">Home</a> / <a href="index.html#shop">Shop</a> / Bouquets
+        </div>
+        
+        <h1 class="product-title">Rose Garden Dream</h1>
+        <p class="product-subtitle bengali-text">গোলাপ বাগানের স্বপ্ন</p>
+        
+        <div class="product-rating-row">
+          <span class="stars" style="color: var(--gold); font-size: 0.9rem;">★★★★★</span>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">48 Reviews</span>
+          <span style="font-size: 0.85rem; color: #4CAF50;">✓ 120+ Sold</span>
+        </div>
+        
+        <div class="product-price">
+          <span class="current-price">₹899</span>
+          <span class="old-price">₹1,199</span>
+          <span class="discount">25% OFF</span>
+        </div>
+        
+        <p class="product-description">
+          A stunning handmade bouquet crafted with premium silk roses, delicate baby's breath, 
+          and fresh eucalyptus accents. Each bloom is carefully arranged by our artisans to create 
+          a composition that speaks of love, elegance, and timeless beauty. Wrapped in premium 
+          kraft paper with a satin ribbon — ready to make someone's day extraordinary.
+        </p>
+        
+        <div class="product-meta">
+          <div class="meta-item">
+            <span class="meta-item-icon">🌹</span>
+            <span class="meta-item-label">Materials</span>
+            <span class="meta-item-value">Premium silk roses, baby's breath, eucalyptus</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-item-icon">📏</span>
+            <span class="meta-item-label">Size</span>
+            <span class="meta-item-value">Medium (30cm × 25cm)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-item-icon">🎨</span>
+            <span class="meta-item-label">Colors</span>
+            <span class="meta-item-value">Blush Pink, Ivory, Dusty Rose</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-item-icon">🎉</span>
+            <span class="meta-item-label">Perfect For</span>
+            <span class="meta-item-value">Birthday, Anniversary, Valentine's, Proposal</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-item-icon">📦</span>
+            <span class="meta-item-label">Delivery</span>
+            <span class="meta-item-value">3-5 business days</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-item-icon">✏️</span>
+            <span class="meta-item-label">Customization</span>
+            <span class="meta-item-value">Color & message customizable</span>
+          </div>
+        </div>
+        
+        <div class="product-actions">
+          <div class="quantity-selector">
+            <button class="qty-btn" id="qtyMinus">−</button>
+            <span class="qty-display" id="qtyDisplay">1</span>
+            <button class="qty-btn" id="qtyPlus">+</button>
+          </div>
+          <button class="btn btn-primary" style="flex: 1;">Add to Cart — ₹899</button>
+          <button class="btn btn-secondary" style="width: 48px; padding: 0;" aria-label="Wishlist">♡</button>
+        </div>
+        
+        <a href="custom-order.html" class="btn btn-gold" style="width: 100%; margin-bottom: var(--space-lg);">
+          ✨ Customize This Product
+        </a>
+        
+        <div class="product-sharing">
+          <span class="share-label">Share:</span>
+          <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="share-btn" aria-label="Instagram">📷</a>
+          <a href="#" class="share-btn" aria-label="Facebook">📘</a>
+          <a href="#" class="share-btn" aria-label="Copy Link">🔗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="related-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-overline">You May Also Love</p>
+        <h2>Related Creations</h2>
+      </div>
+      <div class="products-grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+        <div class="product-card reveal" style="transition-delay: 0.05s;">
+          <div class="product-card-image">
+            <div class="product-card-image-placeholder" style="background: linear-gradient(135deg, #E8C4B8, #F8E8E0);">🌸</div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Pipe Cleaner</span>
+            <h4 class="product-card-name">Cherry Blossom Fantasy</h4>
+            <div class="product-card-price"><span class="current">₹599</span></div>
+          </div>
+        </div>
+        <div class="product-card reveal" style="transition-delay: 0.1s;">
+          <div class="product-card-image">
+            <div class="product-card-image-placeholder" style="background: linear-gradient(135deg, #C8956C, #D4A882);">🎁</div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Gift Box</span>
+            <h4 class="product-card-name">Premium Love Box</h4>
+            <div class="product-card-price"><span class="current">₹1,499</span></div>
+          </div>
+        </div>
+        <div class="product-card reveal" style="transition-delay: 0.15s;">
+          <div class="product-card-image">
+            <div class="product-card-image-placeholder" style="background: linear-gradient(135deg, #F5EDE8, #E8C4B8);">💐</div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Bouquet</span>
+            <h4 class="product-card-name">Lavender Serenity</h4>
+            <div class="product-card-price"><span class="current">₹799</span></div>
+          </div>
+        </div>
+        <div class="product-card reveal" style="transition-delay: 0.2s;">
+          <div class="product-card-image">
+            <div class="product-card-image-placeholder" style="background: linear-gradient(135deg, #D4A882, #F5EDE8);">🌺</div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Bouquet</span>
+            <h4 class="product-card-name">Sunset Bloom</h4>
+            <div class="product-card-price"><span class="current">₹999</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding: 0;">
+        <p>© 2026 জলকণা (Jol Kona). Crafted with 💧 from Bengal.</p>
+        <p><a href="mailto:jolkona2007@gmail.com" style="color: var(--rose-gold);">jolkona2007@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Quantity selector
+    let qty = 1;
+    const qtyDisplay = document.getElementById('qtyDisplay');
+    document.getElementById('qtyMinus').addEventListener('click', () => {
+      if (qty > 1) { qty--; qtyDisplay.textContent = qty; }
+    });
+    document.getElementById('qtyPlus').addEventListener('click', () => {
+      qty++; qtyDisplay.textContent = qty;
+    });
+
+    // Gallery thumb switching
+    document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        document.getElementById('mainGallery').textContent = thumb.textContent;
+        document.getElementById('mainGallery').style.background = thumb.style.background;
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

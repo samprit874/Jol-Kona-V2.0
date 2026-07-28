@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="water" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C8956C;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#E8C4B8;stop-opacity:0.6"/>
+    </linearGradient>
+  </defs>
+  <text x="32" y="28" text-anchor="middle" font-family="serif" font-size="16" fill="#2D2926">জলকণা</text>
+  <path d="M22,42 Q26,36 32,42 Q38,48 44,42" stroke="#7FB5B0" stroke-width="2" fill="none"/>
+  <circle cx="18" cy="36" r="2.5" fill="#7FB5B0" opacity="0.8"/>
+  <path d="M40,44 L48,38 L54,42 L48,48 Z" fill="#E8C4B8" stroke="#C8956C" stroke-width="0.8"/>
+</svg>

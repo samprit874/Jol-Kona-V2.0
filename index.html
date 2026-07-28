@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="জলকণা (Jol Kona) — Handcrafted with love from Bengal. Premium handmade bouquets, jewellery, crochet, personalized gifts & more. Every product carries emotions.">
+  <meta name="keywords" content="handmade, bengali craft, jol kona, jolkona, handmade bouquets, crochet, jewellery, personalized gifts, raiganj, west bengal">
+  <meta name="author" content="জলকণা (Jol Kona)">
+  <meta name="theme-color" content="#FFF9F6">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="জলকণা (Jol Kona) — Handcrafted with Love from Bengal">
+  <meta property="og:description" content="Every handmade product carries emotions. Premium handmade bouquets, jewellery, crochet & personalized gifts.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
+  
+  <title>জলকণা (Jol Kona) — Handcrafted with Love from Bengal</title>
+  
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+<body>
+
+  <!-- ═══════ Loading Screen ═══════ -->
+  <div class="loader" id="loader" role="status" aria-label="Loading">
+    <div class="loader-content">
+      <div class="loader-droplet"></div>
+      <div class="loader-brand">জলকণা</div>
+      <div class="loader-tagline">Crafted with Love</div>
+    </div>
+  </div>
+
+  <!-- ═══════ Mouse Glow ═══════ -->
+  <div class="mouse-glow" id="mouseGlow" aria-hidden="true"></div>
+
+  <!-- ═══════ Floating Particles ═══════ -->
+  <div class="particles-container" id="particles" aria-hidden="true"></div>
+
+  <!-- ═══════ Navigation ═══════ -->
+  <nav class="nav" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand" aria-label="Jol Kona Home">
+        <img src="img/logo.png" alt="জলকণা — Jol Kona Handmade Crafts" class="nav-brand-logo" width="180" height="48">
+      </a>
+      
+      <div class="nav-links" role="menubar">
+        <a href="#home" class="nav-link" role="menuitem">Home</a>
+        <a href="#collections" class="nav-link" role="menuitem">Collections</a>
+        <a href="#shop" class="nav-link" role="menuitem">Shop</a>
+        <a href="#story" class="nav-link" role="menuitem">Our Story</a>
+        <a href="#occasions" class="nav-link" role="menuitem">Occasions</a>
+        <a href="custom-order.html" class="nav-link" role="menuitem">Custom Order</a>
+      </div>
+      
+      <div class="nav-actions">
+        <button class="nav-action-btn" aria-label="Search" id="searchToggle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="nav-action-btn" aria-label="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="badge">3</span>
+        </button>
+        <button class="nav-action-btn" aria-label="Cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="badge">2</span>
+        </button>
+        <div class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu" role="button" tabindex="0">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════ Mobile Navigation ═══════ -->
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Mobile navigation">
+    <a href="#home" class="mobile-nav-link">Home</a>
+    <a href="#collections" class="mobile-nav-link">Collections</a>
+    <a href="#shop" class="mobile-nav-link">Shop</a>
+    <a href="#story" class="mobile-nav-link">Our Story</a>
+    <a href="#occasions" class="mobile-nav-link">Occasions</a>
+    <a href="custom-order.html" class="mobile-nav-link">Custom Order</a>
+    <a href="about.html" class="mobile-nav-link">About</a>
+  </div>
+
+  <!-- ═══════ Hero Section ═══════ -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-gradient"></div>
+      <div class="hero-water-ripple">
+        <svg viewBox="0 0 2400 120" preserveAspectRatio="none" style="height:100%">
+          <path d="M0,60 C400,120 800,0 1200,60 C1600,120 2000,0 2400,60 L2400,120 L0,120 Z" fill="rgba(200,149,108,0.04)"/>
+          <path d="M0,80 C300,120 600,40 1200,80 C1800,120 2100,40 2400,80 L2400,120 L0,120 Z" fill="rgba(200,149,108,0.03)"/>
+        </svg>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-overline reveal">From Our Hands to Your Heart</div>
+          <h1 class="hero-title reveal">
+            Where <span class="highlight">Emotions</span><br>
+            Become Art
+          </h1>
+          <p class="hero-bengali-title reveal bengali-text">
+            হাতে তৈরি প্রতিটি উপহারে থাকুক অনুভূতির ছোঁয়া
+          </p>
+          <p class="hero-description reveal">
+            Every creation from জলকণা is a whisper of love, shaped by hand, 
+            woven with tradition, and made to carry your most precious emotions.
+          </p>
+          <div class="hero-cta-group reveal">
+            <a href="#shop" class="btn btn-primary">Explore Collection</a>
+            <a href="custom-order.html" class="btn btn-secondary">Create Your Own</a>
+          </div>
+        </div>
+        
+        <div class="hero-visual reveal-right">
+          <div class="hero-image-wrapper" style="background: linear-gradient(135deg, #FFF9F6, #FEF0E8); display: flex; align-items: center; justify-content: center; padding: var(--space-xl);">
+            <img src="img/logo.png" alt="জলকণা Handmade Crafts" style="width: 100%; height: auto; max-height: 400px; object-fit: contain; filter: drop-shadow(0 8px 32px rgba(45,41,38,0.12));">
+          </div>
+          <div class="hero-floating-card card-1">
+            <div class="floating-card-icon">🎁</div>
+            <div class="floating-card-text">500+ Gifts Delivered</div>
+            <div class="floating-card-sub">with love from Bengal</div>
+          </div>
+          <div class="hero-floating-card card-2">
+            <div class="floating-card-icon">⭐</div>
+            <div class="floating-card-text">4.9 Rating</div>
+            <div class="floating-card-sub">from happy customers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Kantha Divider ═══════ -->
+  <div class="kantha-divider" aria-hidden="true">
+    <svg viewBox="0 0 600 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="10" x2="600" y2="10" stroke="#C8956C" stroke-width="0.5" stroke-dasharray="4 8"/>
+      <circle cx="150" cy="10" r="3" fill="none" stroke="#C8956C" stroke-width="0.5"/>
+      <circle cx="300" cy="10" r="4" fill="none" stroke="#C8956C" stroke-width="0.5"/>
+      <circle cx="450" cy="10" r="3" fill="none" stroke="#C8956C" stroke-width="0.5"/>
+      <path d="M285,10 Q300,0 315,10 Q300,20 285,10" fill="none" stroke="#C8956C" stroke-width="0.5"/>
+    </svg>
+  </div>
+
+  <!-- ═══════ Collections Section ═══════ -->
+  <section class="section-padding" id="collections">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-overline">Curated for You</p>
+        <h2 class="section-title">Our Collections</h2>
+        <p class="section-subtitle">Each collection tells a unique story of craftsmanship, tradition, and heartfelt emotion</p>
+      </div>
+      
+      <div class="collections-grid">
+        <a href="#shop" class="collection-card reveal" style="transition-delay: 0.1s" onclick="filterProducts('gift-hampers')">
+          <div class="collection-card-bg" style="background: url('img/products/gift-hamper-bouquet-1.webp') center/cover no-repeat;"></div>
+          <div class="collection-card-overlay"></div>
+          <div class="collection-card-content">
+            <h3 class="collection-card-title">Gift Hamper Bouquets</h3>
+            <span class="collection-card-count">Photo + Chocolate Bouquets</span>
+          </div>
+          <div class="collection-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </div>
+        </a>
+        
+        <a href="#shop" class="collection-card reveal" style="transition-delay: 0.2s" onclick="filterProducts('clay-jewellery')">
+          <div class="collection-card-bg" style="background: url('img/products/clay-name-necklace.webp') center/cover no-repeat;"></div>
+          <div class="collection-card-overlay"></div>
+          <div class="collection-card-content">
+            <h3 class="collection-card-title">Clay Jewellery</h3>
+            <span class="collection-card-count">Necklaces & Hair Accessories</span>
+          </div>
+          <div class="collection-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </div>
+        </a>
+        
+        <a href="#shop" class="collection-card reveal" style="transition-delay: 0.3s" onclick="filterProducts('pipe-cleaner')">
+          <div class="collection-card-bg" style="background: url('img/products/pipe-cleaner-collection.webp') center/cover no-repeat;"></div>
+          <div class="collection-card-overlay"></div>
+          <div class="collection-card-content">
+            <h3 class="collection-card-title">Pipe Cleaner & Keychains</h3>
+            <span class="collection-card-count">Flowers, Bears & More</span>
+          </div>
+          <div class="collection-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Featured Products ═══════ -->
+  <section class="section-padding" id="shop" style="background: var(--warm-beige);">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-overline">Made with Love</p>
+        <h2 class="section-title">Featured Creations</h2>
+        <p class="section-subtitle">Handpicked treasures from our atelier, each one a testament to the beauty of handmade</p>
+      </div>
+      
+      <!-- Shop Filters -->
+      <div class="shop-filters reveal">
+        <div class="filter-categories">
+          <button class="filter-btn active" data-filter="all">All </button>
+          <button class="filter-btn" data-filter="gift-hampers">🎁 Gift Hampers</button>
+          <button class="filter-btn" data-filter="custom-chocolates">🍫 Chocolates</button>
+          <button class="filter-btn" data-filter="clay-jewellery">💍 Clay Jewellery</button>
+          <button class="filter-btn" data-filter="pipe-cleaner">🌸 Pipe Cleaner</button>
+          <button class="filter-btn" data-filter="keychains">🔑 Keychains</button>
+        </div>
+        <div class="filter-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search creations..." aria-label="Search products">
+        </div>
+      </div>
+      
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        
+        <!-- ═══════ GIFT HAMPER BOUQUETS ═══════ -->
+        <div class="product-card reveal" data-category="gift-hampers" style="transition-delay: 0.05s">
+          <div class="product-card-image">
+            <img src="img/products/gift-hamper-bouquet-1.webp" alt="Personalized Photo & Chocolate Bouquet" loading="lazy">
+            <span class="product-card-badge">Bestseller</span>
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Gift Hamper Bouquet</span>
+            <h4 class="product-card-name">Photo & Chocolate Memory Bouquet</h4>
+            <p class="product-card-desc">A personalized bouquet with photos, chocolates, butterflies & a beautiful bow — a gift they can smile at, eat, and keep forever.</p>
+            <div class="product-card-buttons">
+              <a href="https://www.instagram.com/direct/new/?recipient=jol_kona_&text=Hi! I'm interested in the Photo %26 Chocolate Memory Bouquet 💐" target="_blank" rel="noopener" class="dm-order-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                DM to Order
+              </a>
+              <button class="product-customize-toggle" onclick="this.closest('.product-card').classList.toggle('customize-open')">✏️ Customize</button>
+            </div>
+            <div class="product-customize-form">
+              <textarea class="customize-textarea" placeholder="Describe how you'd like this customized — colors, photos, chocolates, message..."></textarea>
+              <a href="#" class="customize-send" onclick="sendCustomize(this, 'Photo & Chocolate Memory Bouquet')">Send via Instagram →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal" data-category="gift-hampers" style="transition-delay: 0.1s">
+          <div class="product-card-image">
+            <img src="img/products/gift-hamper-bouquet-2.webp" alt="Personalized Gift Hamper Bouquet with KitKat" loading="lazy">
+            <span class="product-card-badge">Popular</span>
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Gift Hamper Bouquet</span>
+            <h4 class="product-card-name">Bundle of Smiles Hamper</h4>
+            <p class="product-card-desc">Not just a gift — a bundle of smiles! KitKat, nail polish, scrunchie, photos & butterflies wrapped in a stunning black bouquet.</p>
+            <div class="product-card-buttons">
+              <a href="https://www.instagram.com/direct/new/?recipient=jol_kona_&text=Hi! I'm interested in the Bundle of Smiles Hamper 🎁" target="_blank" rel="noopener" class="dm-order-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                DM to Order
+              </a>
+              <button class="product-customize-toggle" onclick="this.closest('.product-card').classList.toggle('customize-open')">✏️ Customize</button>
+            </div>
+            <div class="product-customize-form">
+              <textarea class="customize-textarea" placeholder="Describe your ideal hamper — items, colors, photos, message..."></textarea>
+              <a href="#" class="customize-send" onclick="sendCustomize(this, 'Bundle of Smiles Hamper')">Send via Instagram →</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ══════ CUSTOM CHOCOLATES ═══════ -->
+        <div class="product-card reveal" data-category="custom-chocolates" style="transition-delay: 0.05s">
+          <div class="product-card-image">
+            <img src="img/products/custom-chocolate-wrapper.webp" alt="Handpainted Custom Chocolate Wrapper" loading="lazy">
+            <span class="product-card-badge">Handpainted</span>
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Custom Chocolate</span>
+            <h4 class="product-card-name">Handpainted Chocolate Wrapper</h4>
+            <p class="product-card-desc">Beautifully hand-painted chocolate wrapper with Bengali folk art — a sweet gift wrapped in tradition and love.</p>
+            <div class="product-card-buttons">
+              <a href="https://www.instagram.com/direct/new/?recipient=jol_kona_&text=Hi! I'd like to order a Handpainted Chocolate Wrapper 🍫" target="_blank" rel="noopener" class="dm-order-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                DM to Order
+              </a>
+              <button class="product-customize-toggle" onclick="this.closest('.product-card').classList.toggle('customize-open')">✏️ Customize</button>
+            </div>
+            <div class="product-customize-form">
+              <textarea class="customize-textarea" placeholder="Tell us what to paint — names, couple portrait, occasion, colors..."></textarea>
+              <a href="#" class="customize-send" onclick="sendCustomize(this, 'Handpainted Chocolate Wrapper')">Send via Instagram →</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ═══════ CLAY JEWELLERY ═══════ -->
+        <div class="product-card reveal" data-category="clay-jewellery" style="transition-delay: 0.05s">
+          <div class="product-card-image">
+            <img src="img/products/clay-name-necklace.webp" alt="Custom Clay Name Necklace - Bengali" loading="lazy">
+            <span class="product-card-badge">Personalized</span>
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Clay Jewellery</span>
+            <h4 class="product-card-name">Bengali Name Necklace</h4>
+            <p class="product-card-desc">Handcrafted clay pendant with your name in beautiful Bengali calligraphy — a wearable piece of art, made just for you.</p>
+            <div class="product-card-buttons">
+              <a href="https://www.instagram.com/direct/new/?recipient=jol_kona_&text=Hi! I'd like to order a Bengali Name Necklace 💍" target="_blank" rel="noopener" class="dm-order-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                DM to Order
+              </a>
+              <button class="product-customize-toggle" onclick="this.closest('.product-card').classList.toggle('customize-open')">✏️ Customize</button>
+            </div>
+            <div class="product-customize-form">
+              <textarea class="customize-textarea" placeholder="Write the name (Bengali/English), preferred colors, chain length..."></textarea>
+              <a href="#" class="customize-send" onclick="sendCustomize(this, 'Bengali Name Necklace')">Send via Instagram →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal" data-category="clay-jewellery" style="transition-delay: 0.1s">
+          <div class="product-card-image">
+            <img src="img/products/clay-hair-pin.webp" alt="Clay Flower Hair Pin with Shell Beads" loading="lazy">
+            <span class="product-card-badge">চুলের গহনা</span>
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Hair Accessory</span>
+            <h4 class="product-card-name">Clay Flower Hair Pin</h4>
+            <p class="product-card-desc">Traditional Bengali hair pin with hand-sculpted flower, cowrie shells & colorful beads — elegance for your everyday look.</p>
+            <div class="product-card-buttons">
+              <a href="https://www.instagram.com/direct/new/?recipient=jol_kona_&text=Hi! I'd like to order a Clay Flower Hair Pin 💗" target="_blank" rel="noopener" class="dm-order-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                DM to Order
+              </a>
+              <button class="product-customize-toggle" onclick="this.closest('.product-card').classList.toggle('customize-open')">✏️ Customize</button>
+            </div>
+            <div class="product-customize-form">
+              <textarea class="customize-textarea" placeholder="Preferred flower color, bead colors, pin length..."></textarea>
+              <a href="#" class="customize-send" onclick="sendCustomize(this, 'Clay Flower Hair Pin')">Send via Instagram →</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ═══════ PIPE CLEANER ═══════ -->
+        <div class="product-card reveal" data-category="pipe-cleaner" style="transition-delay: 0.05s">
+          <div class="product-card-image">
+            <img src="img/products/pipe-cleaner-bouquet.webp" alt="Pipe Cleaner Flower Bouquet Pink" loading="lazy">
+            <span class="product-card-badge">For You </span>
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Pipe Cleaner</span>
+            <h4 class="product-card-name">Pink Flower Bouquet</h4>
+            <p class="product-card-desc">A never-wilting bouquet made entirely from pipe cleaners — soft, fluffy, and forever. Wrapped in black paper with a ribbon tag.</p>
+            <div class="product-card-buttons">
+              <a href="https://www.instagram.com/direct/new/?recipient=jol_kona_&text=Hi! I'd like to order a Pink Pipe Cleaner Flower Bouquet 🌸" target="_blank" rel="noopener" class="dm-order-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                DM to Order
+              </a>
+              <button class="product-customize-toggle" onclick="this.closest('.product-card').classList.toggle('customize-open')">✏️ Customize</button>
+            </div>
+            <div class="product-customize-form">
+              <textarea class="customize-textarea" placeholder="Preferred flower color, number of blooms, wrapper color, tag message..."></textarea>
+              <a href="#" class="customize-send" onclick="sendCustomize(this, 'Pink Pipe Cleaner Flower Bouquet')">Send via Instagram →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal" data-category="pipe-cleaner" style="transition-delay: 0.1s">
+          <div class="product-card-image">
+            <img src="img/products/pipe-cleaner-collection.webp" alt="Pipe Cleaner Handmade Collection" loading="lazy">
+            <span class="product-card-badge">Collection</span>
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Pipe Cleaner</span>
+            <h4 class="product-card-name">Handmade Pipe Cleaner Collection</h4>
+            <p class="product-card-desc">Flowers, keychains, bouquets, teddy bears — little things made with love. Choose your favorite or let us design something unique.</p>
+            <div class="product-card-buttons">
+              <a href="https://www.instagram.com/direct/new/?recipient=jol_kona_&text=Hi! I'm interested in the Pipe Cleaner Collection " target="_blank" rel="noopener" class="dm-order-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                DM to Order
+              </a>
+              <button class="product-customize-toggle" onclick="this.closest('.product-card').classList.toggle('customize-open')">✏️ Customize</button>
+            </div>
+            <div class="product-customize-form">
+              <textarea class="customize-textarea" placeholder="Which item from the collection? Any specific colors, characters, or custom design?"></textarea>
+              <a href="#" class="customize-send" onclick="sendCustomize(this, 'Pipe Cleaner Collection')">Send via Instagram →</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ═══════ KEYCHAINS ═══════ -->
+        <div class="product-card reveal" data-category="keychains" style="transition-delay: 0.05s">
+          <div class="product-card-image">
+            <img src="img/products/spiderman-couple-keychain.webp" alt="Spiderman Couple Heart Keychain" loading="lazy">
+            <span class="product-card-badge">Couple Gift</span>
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Keychain</span>
+            <h4 class="product-card-name">Couple Heart Keychain</h4>
+            <p class="product-card-desc">Two halves of one heart — hand-painted couple keychain. A little keychain with a lot of love, perfect for you and your person.</p>
+            <div class="product-card-buttons">
+              <a href="https://www.instagram.com/direct/new/?recipient=jol_kona_&text=Hi! I'd like to order a Couple Heart Keychain ❤️" target="_blank" rel="noopener" class="dm-order-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                DM to Order
+              </a>
+              <button class="product-customize-toggle" onclick="this.closest('.product-card').classList.toggle('customize-open')">✏️ Customize</button>
+            </div>
+            <div class="product-customize-form">
+              <textarea class="customize-textarea" placeholder="Preferred theme (Spiderman, custom, names), cord color, any text to add..."></textarea>
+              <a href="#" class="customize-send" onclick="sendCustomize(this, 'Couple Heart Keychain')">Send via Instagram →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal" data-category="keychains" style="transition-delay: 0.1s">
+          <div class="product-card-image">
+            <img src="img/products/hello-kitty-keychain.webp" alt="Hello Kitty Pipe Cleaner Keychain" loading="lazy">
+            <span class="product-card-badge">Cute 🎀</span>
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" aria-label="Add to wishlist">♡</button>
+            </div>
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-category">Keychain</span>
+            <h4 class="product-card-name">Hello Kitty Keychain</h4>
+            <p class="product-card-desc">Adorable handcrafted Hello Kitty pipe cleaner keychain — fluffy, cute, and perfect for your bag or keys.</p>
+            <div class="product-card-buttons">
+              <a href="https://www.instagram.com/direct/new/?recipient=jol_kona_&text=Hi! I'd like to order a Hello Kitty Keychain " target="_blank" rel="noopener" class="dm-order-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                DM to Order
+              </a>
+              <button class="product-customize-toggle" onclick="this.closest('.product-card').classList.toggle('customize-open')">✏️ Customize</button>
+            </div>
+            <div class="product-customize-form">
+              <textarea class="customize-textarea" placeholder="Preferred character (Hello Kitty, others), colors, bow color..."></textarea>
+              <a href="#" class="customize-send" onclick="sendCustomize(this, 'Hello Kitty Keychain')">Send via Instagram →</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div style="text-align: center; margin-top: var(--space-2xl);" class="reveal">
+        <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="btn btn-secondary">
+          View More on Instagram →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Our Story Section ═══════ -->
+  <section class="section-padding story-section" id="story">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-visual reveal-left">
+          <div class="story-image-main">
+            <img src="img/products/gift-hamper-bouquet-2.webp" alt="Handmade with love" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="story-image-accent">
+            <img src="img/products/clay-hair-pin.webp" alt="Clay craftsmanship" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+        
+        <div class="story-text reveal-right">
+          <p class="section-overline">Our Journey</p>
+          <h2>The Story Behind<br>Every Stitch & Petal</h2>
+          <p>
+            জলকণা was born from a simple belief — that handmade carries something 
+            machines never can: emotion. From the quiet lanes of Raiganj, West Bengal, 
+            we create pieces that hold your love, your memories, your celebrations.
+          </p>
+          <p class="bengali-text" style="color: var(--rose-gold); font-size: 1.1rem;">
+            "প্রতিটি সুতায় ভালোবাসা, প্রতিটি রঙে অনুভূতি"
+          </p>
+          <p>
+            Every thread woven, every petal shaped, every gift wrapped — it all 
+            begins with care and ends with a smile on your loved one's face. 
+            We are not just artisans. We are storytellers of emotion.
+          </p>
+          
+          <div class="story-stats">
+            <div class="stat-item">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">1200+</div>
+              <div class="stat-label">Creations Made</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Handmade</div>
+            </div>
+          </div>
+          
+          <a href="about.html" class="btn btn-secondary" style="margin-top: var(--space-xl);">Read Our Full Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Kantha Divider ═══════ -->
+  <div class="kantha-divider" aria-hidden="true">
+    <svg viewBox="0 0 600 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="10" x2="600" y2="10" stroke="#C8956C" stroke-width="0.5" stroke-dasharray="2 6"/>
+      <path d="M290,5 L300,15 L310,5" fill="none" stroke="#C8956C" stroke-width="0.5"/>
+      <circle cx="300" cy="10" r="2" fill="#C8956C" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- ═══════ Why Choose Us ═══════ -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-overline">Why জলকণা</p>
+        <h2 class="section-title">Crafted Different</h2>
+        <p class="section-subtitle">What makes every creation from our atelier truly special</p>
+      </div>
+      
+      <div class="why-grid">
+        <div class="why-card reveal" style="transition-delay: 0.05s">
+          <div class="why-card-icon"><span>🤲</span></div>
+          <h4>100% Handmade</h4>
+          <p>Every piece is crafted entirely by hand — no machines, no shortcuts, pure artistry</p>
+        </div>
+        <div class="why-card reveal" style="transition-delay: 0.1s">
+          <div class="why-card-icon"><span>💝</span></div>
+          <h4>Made with Emotion</h4>
+          <p>We pour love and care into every creation, making each piece truly meaningful</p>
+        </div>
+        <div class="why-card reveal" style="transition-delay: 0.15s">
+          <div class="why-card-icon"><span>🎨</span></div>
+          <h4>Fully Customizable</h4>
+          <p>Your vision, our hands — create something uniquely yours with personal touches</p>
+        </div>
+        <div class="why-card reveal" style="transition-delay: 0.2s">
+          <div class="why-card-icon"><span>📦</span></div>
+          <h4>Premium Packaging</h4>
+          <p>Beautiful gift-ready packaging that makes the unboxing as special as the gift itself</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Handmade Process ═══════ -->
+  <section class="section-padding process-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-overline">Our Process</p>
+        <h2 class="section-title">From Idea to Your Hands</h2>
+        <p class="section-subtitle">Every creation goes through a journey of love and precision</p>
+      </div>
+      
+      <div class="process-timeline reveal">
+        <div class="process-step">
+          <div class="process-step-icon">💭</div>
+          <h4 class="process-step-title">Idea</h4>
+          <p class="process-step-desc">Your vision inspires us</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-icon">✏️</div>
+          <h4 class="process-step-title">Sketch</h4>
+          <p class="process-step-desc">Designing with care</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-icon">🤲</div>
+          <h4 class="process-step-title">Handmade</h4>
+          <p class="process-step-desc">Crafted by loving hands</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-icon">✓</div>
+          <h4 class="process-step-title">Quality Check</h4>
+          <p class="process-step-desc">Perfection guaranteed</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-icon">🎁</div>
+          <h4 class="process-step-title">Gift Pack</h4>
+          <p class="process-step-desc">Wrapped with love</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-icon">💌</div>
+          <h4 class="process-step-title">Delivered</h4>
+          <p class="process-step-desc">With love to your door</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Occasions Section ═══════ -->
+  <section class="section-padding" id="occasions">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-overline">Celebrate Everything</p>
+        <h2 class="section-title">Made for Every Occasion</h2>
+        <p class="section-subtitle">From birthdays to Durga Puja, we create gifts for every moment that matters</p>
+      </div>
+      
+      <div class="occasions-grid reveal">
+        <div class="occasion-card">
+          <span class="occasion-icon">🎂</span>
+          <span class="occasion-name">Birthday</span>
+          <span class="occasion-name-bengali">জন্মদিন</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">💍</span>
+          <span class="occasion-name">Anniversary</span>
+          <span class="occasion-name-bengali">বার্ষিকী</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">👰</span>
+          <span class="occasion-name">Wedding</span>
+          <span class="occasion-name-bengali">বিবাহ</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">💝</span>
+          <span class="occasion-name">Proposal</span>
+          <span class="occasion-name-bengali">প্রপোজ</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">👫</span>
+          <span class="occasion-name">Friendship Day</span>
+          <span class="occasion-name-bengali">বন্ধুত্ব দিবস</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">❤️</span>
+          <span class="occasion-name">Valentine</span>
+          <span class="occasion-name-bengali">ভ্যালেন্টাইন</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">👩‍👧</span>
+          <span class="occasion-name">Mother's Day</span>
+          <span class="occasion-name-bengali">মা দিবস</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">🪔</span>
+          <span class="occasion-name">Durga Puja</span>
+          <span class="occasion-name-bengali">দুর্গা পূজা</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">🌸</span>
+          <span class="occasion-name">Poila Boishakh</span>
+          <span class="occasion-name-bengali">পয়লা বৈশাখ</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">🧵</span>
+          <span class="occasion-name">Rakhi</span>
+          <span class="occasion-name-bengali">রাখি</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">🎄</span>
+          <span class="occasion-name">Christmas</span>
+          <span class="occasion-name-bengali">ক্রিসমাস</span>
+        </div>
+        <div class="occasion-card">
+          <span class="occasion-icon">🌙</span>
+          <span class="occasion-name">Eid</span>
+          <span class="occasion-name-bengali">ঈদ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Reviews Section ═══════ -->
+  <section class="section-padding reviews-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-overline">Love Letters</p>
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-subtitle">Real words from real people who trusted us with their emotions</p>
+      </div>
+      
+      <div class="reviews-slider">
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">S</div>
+            <div class="review-author-info">
+              <div class="review-author-name">Sneha Das</div>
+              <div class="review-author-location">Kolkata</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">The bouquet I ordered for my mother's birthday was beyond beautiful. She actually cried seeing it! The craftsmanship is incredible. জলকণা truly puts emotion into every piece.</p>
+        </div>
+        
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">R</div>
+            <div class="review-author-info">
+              <div class="review-author-name">Rahul Mondal</div>
+              <div class="review-author-location">Raiganj</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">Ordered a personalized gift box for our anniversary. The packaging, the quality, the attention to detail — everything was premium. My wife absolutely loved it!</p>
+        </div>
+        
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">P</div>
+            <div class="review-author-info">
+              <div class="review-author-name">Priya Saha</div>
+              <div class="review-author-location">Dhaka</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">The crochet teddy bear I received was the cutest thing ever! You can feel the love in every stitch. Already planning my next order. This is hands down the best handmade brand!</p>
+        </div>
+        
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">A</div>
+            <div class="review-author-info">
+              <div class="review-author-name">Ananya Roy</div>
+              <div class="review-author-location">Siliguri</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">I ordered handmade earrings for Durga Puja and they were stunning! Everyone asked where I got them. The Bengali touch makes them so special. ❤️</p>
+        </div>
+        
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">D</div>
+            <div class="review-author-info">
+              <div class="review-author-name">Debashish Ghosh</div>
+              <div class="review-author-location">Malda</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">Ordered pipe cleaner flowers for my girlfriend on Valentine's Day. She said it was the most thoughtful gift she ever received. Thank you জলকণা for making me look good!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Instagram Gallery ═══════ -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-overline">@jol_kona_</p>
+        <h2 class="section-title">Follow Our Journey</h2>
+        <p class="section-subtitle">Join our community of handmade lovers on Instagram</p>
+      </div>
+      
+      <div class="instagram-grid reveal">
+        <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="instagram-item">
+          <img src="img/products/gift-hamper-bouquet-1.webp" alt="" class="instagram-item-bg" loading="lazy">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="instagram-item">
+          <img src="img/products/clay-name-necklace.webp" alt="" class="instagram-item-bg" loading="lazy">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="instagram-item">
+          <img src="img/products/pipe-cleaner-bouquet.webp" alt="" class="instagram-item-bg" loading="lazy">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="instagram-item">
+          <img src="img/products/custom-chocolate-wrapper.webp" alt="" class="instagram-item-bg" loading="lazy">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="instagram-item">
+          <img src="img/products/spiderman-couple-keychain.webp" alt="" class="instagram-item-bg" loading="lazy">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="instagram-item">
+          <img src="img/products/hello-kitty-keychain.webp" alt="" class="instagram-item-bg" loading="lazy">
+          <div class="instagram-item-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </div>
+        </a>
+      </div>
+      
+      <div style="text-align: center; margin-top: var(--space-xl);" class="reveal">
+        <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="btn btn-secondary">
+          Follow @jol_kona_ on Instagram →
+        </a>
+      </div>
+
+      <!-- Auto-Sync Instagram Feed (powered by Elfsight) -->
+      <!-- To activate: 1) Go to elfsight.com 2) Create free Instagram Feed widget 
+           3) Connect @jol_kona_ account 4) Replace the data-widget-id below -->
+      <div style="margin-top: var(--space-2xl);" class="reveal">
+        <p style="text-align:center; font-family: var(--font-accent); font-style: italic; color: var(--text-muted); margin-bottom: var(--space-md);">
+          ✨ Live from our Instagram — auto-updates with every new post
+        </p>
+        <div class="elfsight-app-PLACEHOLDER" data-elfsight-app-lazy></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FAQ Section ═══════ -->
+  <section class="section-padding" style="background: var(--warm-beige);">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-overline">Questions?</p>
+        <h2 class="section-title">Frequently Asked</h2>
+      </div>
+      
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            <span>How long does it take to create a custom order?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Custom orders typically take 5-7 days depending on complexity. We never rush our creations — each piece gets the time and love it deserves. For urgent orders, please contact us directly.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            <span>Do you deliver outside West Bengal?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! We deliver across India with careful packaging to ensure your handmade gift arrives in perfect condition. International shipping is available for select items — please reach out to us for details.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            <span>Can I personalize my order with a message?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely! Every order can include a handwritten message card. You can add your personal message during checkout or in the custom order form. We also offer personalized name engraving on select items.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            <span>What payment methods do you accept?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We currently accept payments via UPI, bank transfer, and direct ordering through Instagram or email. We're working on integrating more payment options including cards and wallets for a seamless experience.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            <span>Are all products really handmade?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>100% handmade, guaranteed. Every product at জলকণা is crafted entirely by hand — from the first sketch to the final gift wrapping. We believe the beauty of imperfection is what makes handmade truly special.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            <span>How do I care for my handmade products?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Each product comes with a care guide. Generally, keep handmade items away from direct sunlight and moisture. Crochet items can be gently hand-washed. Jewellery should be stored in the provided pouch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Newsletter ═══════ -->
+  <section class="section-padding newsletter-section">
+    <div class="container">
+      <div class="newsletter-content reveal">
+        <p class="section-overline" style="color: var(--rose-gold-light);">Stay Connected</p>
+        <h2>Join the জলকণা Family</h2>
+        <p>Be the first to know about new collections, festive specials, and exclusive offers. Handcrafted updates, delivered with love.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" class="newsletter-input" placeholder="Your email address" required aria-label="Email address">
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Footer ═══════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="img/logo.png" alt="জলকণা Handmade Crafts" style="height: 56px; width: auto; margin-bottom: var(--space-md); filter: brightness(0.95);">
+          <div class="footer-brand-tagline" style="margin-top: -8px;">Handmade Crafts from Bengal</div>
+          <p>Every handmade product carries emotions. From the heart of Bengal, we create treasures that celebrate love, tradition, and the beauty of handmade.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+            </a>
+            <a href="mailto:jolkona2007@gmail.com" aria-label="Email">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="Pinterest">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.425 1.808-2.425.853 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.5 1.806 1.48 1.806 1.778 0 3.144-1.874 3.144-4.58 0-2.393-1.72-4.068-4.177-4.068-2.845 0-4.515 2.135-4.515 4.34 0 .859.331 1.781.745 2.282a.3.3 0 01.069.288l-.278 1.133c-.044.183-.145.222-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.965-.527-2.291-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="custom-order.html">Custom Order</a></li>
+            <li><a href="about.html">Our Story</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#shop" onclick="filterProducts('gift-hampers')">Gift Hampers</a></li>
+            <li><a href="#shop" onclick="filterProducts('custom-chocolates')">Custom Chocolates</a></li>
+            <li><a href="#shop" onclick="filterProducts('clay-jewellery')">Clay Jewellery</a></li>
+            <li><a href="#shop" onclick="filterProducts('pipe-cleaner')">Pipe Cleaner</a></li>
+            <li><a href="#shop" onclick="filterProducts('keychains')">Keychains</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:jolkona2007@gmail.com">jolkona2007@gmail.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Raiganj, West Bengal, India</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Instagram Order Available — @jol_kona_</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2026 জলকণা (Jol Kona). All rights reserved. Crafted with 💧 from Bengal.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Shipping Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════ Quick View Modal ═══════ -->
+  <div class="modal-overlay" id="quickViewModal">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <div class="modal-content">
+      <div class="modal-image" id="modalImage">💐</div>
+      <div class="modal-info">
+        <span class="product-card-category" id="modalCategory">Bouquet</span>
+        <h3 id="modalTitle" style="margin: var(--space-sm) 0 var(--space-md);">Rose Garden Dream</h3>
+        <div class="product-card-price" style="margin-bottom: var(--space-md);">
+          <span class="current" id="modalPrice">₹899</span>
+          <span class="original" id="modalOriginal">₹1,199</span>
+        </div>
+        <p id="modalDesc" style="margin-bottom: var(--space-lg);">A stunning handmade bouquet crafted with premium artificial roses, baby's breath, and eucalyptus leaves. Perfect for birthdays, anniversaries, or just because.</p>
+        <div style="display:flex; gap: var(--space-sm); flex-wrap: wrap; margin-bottom: var(--space-lg);">
+          <span style="padding: 4px 12px; background: var(--cream-dark); border-radius: var(--radius-full); font-size: 0.75rem; color: var(--text-secondary);">🌹 Roses</span>
+          <span style="padding: 4px 12px; background: var(--cream-dark); border-radius: var(--radius-full); font-size: 0.75rem; color: var(--text-secondary);">🎀 Gift Wrapped</span>
+          <span style="padding: 4px 12px; background: var(--cream-dark); border-radius: var(--radius-full); font-size: 0.75rem; color: var(--text-secondary);">📦 3-5 Days</span>
+        </div>
+        <div style="display: flex; gap: var(--space-sm);">
+          <a href="#" class="btn btn-primary" style="flex:1;">Add to Cart</a>
+          <button class="btn btn-secondary" style="width: 48px; padding: 0;" aria-label="Wishlist">♡</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ Instagram Float Button ═══════ -->
+  <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" 
+     target="_blank" rel="noopener" 
+     style="position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(225,48,108,0.4); z-index: 900; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+     aria-label="Follow on Instagram"
+     onmouseover="this.style.transform='scale(1.1) translateY(-4px)'; this.style.boxShadow='0 8px 32px rgba(225,48,108,0.5)';"
+     onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(225,48,108,0.4)';">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+  </a>
+
+  <!-- Instagram Auto-Feed Widget Script (Elfsight) -->
+  <script src="https://static.elfsight.com/platform/platform.js" defer></script>
+  
+  <!-- ═══════ Scripts ═══════ -->
+  <script src="js/main.js"></script>
+</body>
+</html>

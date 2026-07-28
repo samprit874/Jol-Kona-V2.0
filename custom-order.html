@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your own custom handmade gift with জলকণা (Jol Kona). Personalized bouquets, gift boxes, jewellery & more from Bengal.">
+  <title>Custom Order — জলকণা (Jol Kona)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  
+  <style>
+    .custom-order-page { padding-top: 80px; }
+    
+    .custom-hero {
+      padding: var(--space-2xl) 0 var(--space-xl);
+      text-align: center;
+      background: linear-gradient(180deg, var(--cream-dark), var(--cream));
+      position: relative;
+    }
+    
+    .custom-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+    }
+    
+    .form-section-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--charcoal);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    
+    .form-section-title .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--rose-gold);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+    
+    .color-options {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    
+    .color-option {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-smooth);
+      position: relative;
+    }
+    
+    .color-option:hover, .color-option.selected {
+      border-color: var(--charcoal);
+      transform: scale(1.15);
+    }
+    
+    .color-option.selected::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .budget-display {
+      text-align: center;
+      margin-top: var(--space-md);
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--rose-gold);
+    }
+    
+    .submit-section {
+      text-align: center;
+      padding: var(--space-2xl) 0;
+      border-top: 1px solid var(--border-light);
+      margin-top: var(--space-xl);
+    }
+    
+    .submit-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: var(--space-md);
+      font-style: italic;
+    }
+    
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: var(--space-3xl) var(--space-lg);
+    }
+    
+    .form-success.show {
+      display: block;
+    }
+    
+    .form-success-icon {
+      font-size: 4rem;
+      margin-bottom: var(--space-lg);
+      animation: bounceIn 0.6s var(--ease-bounce);
+    }
+    
+    @keyframes bounceIn {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    @media (max-width: 580px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ═══════ Navigation (same as home) ═══════ -->
+  <nav class="nav scrolled" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand" aria-label="Jol Kona Home">
+        <img src="img/logo.png" alt="জলকণা — Jol Kona Handmade Crafts" class="nav-brand-logo" width="180" height="48">
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#collections" class="nav-link">Collections</a>
+        <a href="index.html#shop" class="nav-link">Shop</a>
+        <a href="index.html#story" class="nav-link">Our Story</a>
+        <a href="custom-order.html" class="nav-link" style="color: var(--rose-gold);">Custom Order</a>
+      </div>
+      <div class="nav-actions">
+        <a href="mailto:jolkona2007@gmail.com" class="nav-action-btn" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <div class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu" role="button" tabindex="0">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════ Custom Order Hero ═══════ -->
+  <section class="custom-hero">
+    <div class="container">
+      <img src="img/logo.png" alt="জলকণা Handmade Crafts" style="max-width: 400px; width: 100%; height: auto; margin: 0 auto var(--space-lg); display: block;">
+      <p class="section-overline">Create Something Special</p>
+      <h1>Design Your Own Gift</h1>
+      <p class="bengali-text" style="font-size: 1.2rem; color: var(--rose-gold); margin-top: var(--space-sm);">
+        আপনার স্বপ্নের উপহার, আমাদের হাতে তৈরি
+      </p>
+      <p style="max-width: 500px; margin: var(--space-md) auto 0; color: var(--text-secondary);">
+        Tell us your vision — we'll bring it to life with love, care, and the finest craftsmanship from Bengal.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════ Order Form ═══════ -->
+  <section class="order-form-section">
+    <form id="customOrderForm">
+      
+      <!-- Step 1: Occasion -->
+      <div class="form-group reveal">
+        <h3 class="form-section-title">
+          <span class="step-number">1</span>
+          Choose Your Occasion
+        </h3>
+        <div class="occasion-grid">
+          <div class="occasion-option" data-value="birthday">🎂 Birthday</div>
+          <div class="occasion-option" data-value="anniversary">💍 Anniversary</div>
+          <div class="occasion-option" data-value="wedding">👰 Wedding</div>
+          <div class="occasion-option" data-value="proposal">💝 Proposal</div>
+          <div class="occasion-option" data-value="valentine">❤️ Valentine</div>
+          <div class="occasion-option" data-value="mothers-day">👩‍👧 Mother's Day</div>
+          <div class="occasion-option" data-value="durga-puja">🪔 Durga Puja</div>
+          <div class="occasion-option" data-value="poila-boishakh">🌸 Poila Boishakh</div>
+          <div class="occasion-option" data-value="rakhi">🧵 Rakhi</div>
+          <div class="occasion-option" data-value="christmas">🎄 Christmas</div>
+          <div class="occasion-option" data-value="eid">🌙 Eid</div>
+          <div class="occasion-option" data-value="just-because">✨ Just Because</div>
+        </div>
+      </div>
+
+      <!-- Step 2: Product Type -->
+      <div class="form-group reveal">
+        <h3 class="form-section-title">
+          <span class="step-number">2</span>
+          What Would You Like?
+        </h3>
+        <div class="occasion-grid">
+          <div class="occasion-option" data-value="bouquet">💐 Bouquet</div>
+          <div class="occasion-option" data-value="gift-box">🎁 Gift Box</div>
+          <div class="occasion-option" data-value="jewellery">💍 Jewellery</div>
+          <div class="occasion-option" data-value="crochet">🧶 Crochet</div>
+          <div class="occasion-option" data-value="pipe-cleaner">🌸 Pipe Cleaner Flowers</div>
+          <div class="occasion-option" data-value="hair-accessory">🎀 Hair Accessory</div>
+          <div class="occasion-option" data-value="keychain">🔑 Keychain</div>
+          <div class="occasion-option" data-value="decoration">🏵️ Decoration</div>
+        </div>
+      </div>
+
+      <!-- Step 3: Colors -->
+      <div class="form-group reveal">
+        <h3 class="form-section-title">
+          <span class="step-number">3</span>
+          Choose Colors
+        </h3>
+        <div class="color-options">
+          <div class="color-option" style="background: #E8C4B8;" data-color="Blush Pink" title="Blush Pink"></div>
+          <div class="color-option" style="background: #C8956C;" data-color="Rose Gold" title="Rose Gold"></div>
+          <div class="color-option" style="background: #FFFFFF; border: 1px solid #ddd;" data-color="White" title="White"></div>
+          <div class="color-option" style="background: #FFB6C1;" data-color="Baby Pink" title="Baby Pink"></div>
+          <div class="color-option" style="background: #FF6B6B;" data-color="Red" title="Red"></div>
+          <div class="color-option" style="background: #DDA0DD;" data-color="Plum" title="Plum"></div>
+          <div class="color-option" style="background: #98D8C8;" data-color="Mint" title="Mint"></div>
+          <div class="color-option" style="background: #87CEEB;" data-color="Sky Blue" title="Sky Blue"></div>
+          <div class="color-option" style="background: #FFD700;" data-color="Gold" title="Gold"></div>
+          <div class="color-option" style="background: #2D2926;" data-color="Black" title="Black"></div>
+          <div class="color-option" style="background: linear-gradient(135deg, #E8C4B8, #C8956C, #FFB6C1);" data-color="Mix" title="Mix Colors"></div>
+        </div>
+      </div>
+
+      <!-- Step 4: Budget -->
+      <div class="form-group reveal">
+        <h3 class="form-section-title">
+          <span class="step-number">4</span>
+          Your Budget
+        </h3>
+        <input type="range" class="budget-slider" id="budgetSlider" min="199" max="5000" value="999" step="100">
+        <div class="budget-display">₹<span id="budgetValue">999</span></div>
+      </div>
+
+      <!-- Step 5: Personal Details -->
+      <div class="form-group reveal">
+        <h3 class="form-section-title">
+          <span class="step-number">5</span>
+          Your Details
+        </h3>
+        <div class="form-row">
+          <div>
+            <label class="form-label" for="orderName">Your Name *</label>
+            <input type="text" id="orderName" class="form-input" placeholder="Enter your name" required>
+          </div>
+          <div>
+            <label class="form-label" for="orderPhone">Phone Number *</label>
+            <input type="tel" id="orderPhone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+        </div>
+        <div style="margin-top: var(--space-lg);">
+          <label class="form-label" for="orderEmail">Email</label>
+          <input type="email" id="orderEmail" class="form-input" placeholder="your@email.com">
+        </div>
+      </div>
+
+      <!-- Step 6: Personalization -->
+      <div class="form-group reveal">
+        <h3 class="form-section-title">
+          <span class="step-number">6</span>
+          Make It Personal
+        </h3>
+        <div>
+          <label class="form-label" for="recipientName">Recipient's Name</label>
+          <input type="text" id="recipientName" class="form-input" placeholder="Who is this gift for?">
+        </div>
+        <div style="margin-top: var(--space-lg);">
+          <label class="form-label" for="personalMessage">Your Message</label>
+          <textarea id="personalMessage" class="form-textarea" placeholder="Write a heartfelt message to include with your gift..."></textarea>
+        </div>
+      </div>
+
+      <!-- Step 7: Additional Details -->
+      <div class="form-group reveal">
+        <h3 class="form-section-title">
+          <span class="step-number">7</span>
+          Additional Details
+        </h3>
+        <div>
+          <label class="form-label" for="specialInstructions">Special Instructions</label>
+          <textarea id="specialInstructions" class="form-textarea" placeholder="Any specific flowers, materials, design preferences, or special requests..."></textarea>
+        </div>
+        <div style="margin-top: var(--space-lg);">
+          <label class="form-label">Reference Image (Optional)</label>
+          <div class="form-upload-area" id="uploadArea">
+            <div class="form-upload-icon">📸</div>
+            <p class="form-upload-text">Click to upload or drag & drop</p>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">PNG, JPG up to 5MB</p>
+            <input type="file" accept="image/*" style="display: none;" id="fileInput">
+          </div>
+        </div>
+        <div style="margin-top: var(--space-lg);">
+          <label class="form-label" for="deliveryDate">Preferred Delivery Date</label>
+          <input type="date" id="deliveryDate" class="form-input">
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="submit-section reveal">
+        <button type="submit" class="btn btn-gold" style="padding: 16px 48px; font-size: 1rem;">
+          Submit Your Request 💧
+        </button>
+        <p class="submit-note">
+          We'll get back to you within 24 hours via Instagram DM or email to discuss your creation.
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-sm);">
+          Or DM us on Instagram: <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" style="color: var(--rose-gold);">@jol_kona_</a>
+        </p>
+      </div>
+    </form>
+
+    <!-- Success Message -->
+    <div class="form-success" id="formSuccess">
+      <div class="form-success-icon">💧✨</div>
+      <h2>Thank You!</h2>
+      <p class="bengali-text" style="color: var(--rose-gold); font-size: 1.1rem; margin: var(--space-md) 0;">
+        আপনার অনুরোধ পেয়েছি আমরা
+      </p>
+      <p style="max-width: 400px; margin: 0 auto;">
+        We've received your custom order request. Our team will reach out to you within 24 hours to bring your vision to life.
+      </p>
+      <a href="index.html" class="btn btn-secondary" style="margin-top: var(--space-xl);">Back to Home</a>
+    </div>
+  </section>
+
+  <!-- ═══════ Footer (simplified) ═══════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding: 0;">
+        <p>© 2026 জলকণা (Jol Kona). Crafted with 💧 from Bengal.</p>
+        <p><a href="mailto:jolkona2007@gmail.com" style="color: var(--rose-gold);">jolkona2007@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Occasion/Product selection
+    document.querySelectorAll('.occasion-option').forEach(option => {
+      option.addEventListener('click', () => {
+        const group = option.parentElement;
+        group.querySelectorAll('.occasion-option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+      });
+    });
+
+    // Color selection
+    document.querySelectorAll('.color-option').forEach(option => {
+      option.addEventListener('click', () => {
+        option.classList.toggle('selected');
+      });
+    });
+
+    // Budget slider
+    const slider = document.getElementById('budgetSlider');
+    const budgetValue = document.getElementById('budgetValue');
+    slider.addEventListener('input', () => {
+      budgetValue.textContent = parseInt(slider.value).toLocaleString('en-IN');
+    });
+
+    // File upload
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    
+    uploadArea.addEventListener('click', () => fileInput.click());
+    
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.style.borderColor = 'var(--rose-gold)';
+      uploadArea.style.background = 'var(--cream-dark)';
+    });
+    
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.style.borderColor = '';
+      uploadArea.style.background = '';
+    });
+    
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.style.borderColor = '';
+      uploadArea.style.background = '';
+      const file = e.dataTransfer.files[0];
+      if (file) handleFile(file);
+    });
+    
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files[0]) handleFile(fileInput.files[0]);
+    });
+    
+    function handleFile(file) {
+      uploadArea.innerHTML = `
+        <div class="form-upload-icon">✅</div>
+        <p class="form-upload-text">${file.name}</p>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">${(file.size / 1024 / 1024).toFixed(2)} MB</p>
+      `;
+    }
+
+    // Form submission
+    document.getElementById('customOrderForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Gather form data
+      const occasion = document.querySelector('.occasion-option.selected')?.dataset.value || 'Not specified';
+      const productType = document.querySelectorAll('.occasion-grid')[1]?.querySelector('.occasion-option.selected')?.dataset.value || 'Not specified';
+      const colors = Array.from(document.querySelectorAll('.color-option.selected')).map(el => el.dataset.color).join(', ') || 'Not specified';
+      const budget = document.getElementById('budgetValue')?.textContent || 'Not specified';
+      const name = document.getElementById('orderName')?.value || 'Not provided';
+      const phone = document.getElementById('orderPhone')?.value || 'Not provided';
+      const email = document.getElementById('orderEmail')?.value || 'Not provided';
+      const recipient = document.getElementById('recipientName')?.value || 'Not specified';
+      const message = document.getElementById('personalMessage')?.value || 'No message';
+      const instructions = document.getElementById('specialInstructions')?.value || 'None';
+      const deliveryDate = document.getElementById('deliveryDate')?.value || 'Not specified';
+      
+      // Build Instagram DM message
+      const dmMessage = `🎁 *CUSTOM ORDER REQUEST*%0A%0A` +
+        `👤 *Name:* ${encodeURIComponent(name)}%0A` +
+        ` *Phone:* ${encodeURIComponent(phone)}%0A` +
+        (email ? `📧 *Email:* ${encodeURIComponent(email)}%0A` : '') +
+        `%0A🎉 *Occasion:* ${encodeURIComponent(occasion)}%0A` +
+        `🛍️ *Product Type:* ${encodeURIComponent(productType)}%0A` +
+        ` *Colors:* ${encodeURIComponent(colors)}%0A` +
+        `💰 *Budget:* ₹${encodeURIComponent(budget)}%0A` +
+        (recipient ? `💝 *Recipient:* ${encodeURIComponent(recipient)}%0A` : '') +
+        (message !== 'No message' ? `%0A💌 *Message:* ${encodeURIComponent(message)}%0A` : '') +
+        (instructions !== 'None' ? `%0A📝 *Instructions:* ${encodeURIComponent(instructions)}%0A` : '') +
+        (deliveryDate !== 'Not specified' ? `%0A📅 *Delivery Date:* ${encodeURIComponent(deliveryDate)}%0A` : '');
+      
+      // Open Instagram DM with pre-filled message
+      const instagramUrl = `https://www.instagram.com/direct/new/?recipient=jol_kona_&text=${dmMessage}`;
+      window.open(instagramUrl, '_blank');
+      
+      // Show success message
+      document.getElementById('customOrderForm').style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+      window.scrollTo({ top: 200, behavior: 'smooth' });
+    });
+
+    // Mobile toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    if (mobileToggle) {
+      mobileToggle.addEventListener('click', () => {
+        window.location.href = 'index.html';
+      });
+    }
+
+    // Reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The story of জলকণা (Jol Kona) — born from love, rooted in Bengal. Learn about our handmade journey, mission, and the hands behind every creation.">
+  <title>Our Story — জলকণা (Jol Kona)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  
+  <style>
+    .about-page { padding-top: 80px; }
+    
+    .about-hero-section {
+      padding: var(--space-3xl) 0 var(--space-2xl);
+      text-align: center;
+      background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
+      position: relative;
+    }
+    
+    .about-hero-section .brand-mark {
+      font-family: var(--font-bengali);
+      font-size: clamp(3rem, 8vw, 5rem);
+      color: var(--charcoal);
+      margin-bottom: var(--space-sm);
+      line-height: 1.2;
+    }
+    
+    .about-hero-section .brand-meaning {
+      font-family: var(--font-accent);
+      font-style: italic;
+      color: var(--rose-gold);
+      font-size: 1.3rem;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .about-hero-section .hero-story {
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--text-secondary);
+    }
+    
+    .about-full-story {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+    
+    .about-full-story p {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .about-full-story .bengali-quote {
+      font-family: var(--font-bengali);
+      font-size: 1.3rem;
+      color: var(--rose-gold);
+      text-align: center;
+      padding: var(--space-xl) 0;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      margin: var(--space-xl) 0;
+    }
+    
+    .mission-vision {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      padding: var(--space-2xl) var(--space-lg);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .mv-card {
+      text-align: center;
+      padding: var(--space-2xl);
+      background: white;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+    }
+    
+    .mv-card-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-md);
+    }
+    
+    .mv-card h3 {
+      margin-bottom: var(--space-md);
+    }
+    
+    .mv-card p {
+      font-size: 1rem;
+    }
+    
+    .workshop-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      max-width: 1000px;
+      margin: var(--space-2xl) auto;
+      padding: 0 var(--space-lg);
+    }
+    
+    .workshop-item {
+      aspect-ratio: 1;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .workshop-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      transition: transform var(--duration-slow) var(--ease-smooth);
+    }
+    
+    .workshop-item:hover .workshop-placeholder {
+      transform: scale(1.05);
+    }
+    
+    .workshop-label {
+      position: absolute;
+      bottom: var(--space-md);
+      left: var(--space-md);
+      background: var(--glass-bg);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    
+    .about-process {
+      background: var(--warm-beige);
+      padding: var(--space-3xl) 0;
+    }
+    
+    .about-process .process-detail {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+    
+    .process-detail-item {
+      display: flex;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      align-items: flex-start;
+    }
+    
+    .process-detail-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .process-detail-text h4 {
+      margin-bottom: var(--space-xs);
+    }
+    
+    .process-detail-text p {
+      font-size: 0.95rem;
+    }
+    
+    .values-section {
+      padding: var(--space-3xl) 0;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+    
+    .value-card {
+      text-align: center;
+      padding: var(--space-xl);
+    }
+    
+    .value-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-md);
+      font-size: 2rem;
+      transition: all var(--duration-normal) var(--ease-smooth);
+    }
+    
+    .value-card:hover .value-icon {
+      background: var(--rose-gold);
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    @media (max-width: 768px) {
+      .mission-vision { grid-template-columns: 1fr; }
+      .workshop-gallery { grid-template-columns: repeat(2, 1fr); }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ═══════ Navigation ═══════ -->
+  <nav class="nav scrolled" role="navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <img src="img/logo.png" alt="জলকণা — Jol Kona Handmade Crafts" class="nav-brand-logo" width="180" height="48">
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#shop" class="nav-link">Shop</a>
+        <a href="custom-order.html" class="nav-link">Custom Order</a>
+        <a href="about.html" class="nav-link" style="color: var(--rose-gold);">Our Story</a>
+      </div>
+      <div class="nav-actions">
+        <a href="mailto:jolkona2007@gmail.com" class="nav-action-btn" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════ About Hero ═══════ -->
+  <section class="about-hero-section">
+    <div class="container">
+      <img src="img/logo.png" alt="জলকণা Handmade Crafts" class="reveal" style="max-width: 600px; width: 100%; height: auto; margin: 0 auto var(--space-lg); display: block; filter: drop-shadow(0 8px 32px rgba(45,41,38,0.1));">
+      <div class="brand-meaning reveal">Water Droplet — Where Emotions Become Art</div>
+      <p class="hero-story reveal">
+        Like a water droplet that carries the reflection of the entire sky within it, 
+        every creation from our hands carries a universe of emotions, woven with love, 
+        shaped by tradition, and gifted from the heart.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════ Full Story ═══════ -->
+  <div class="about-full-story">
+    <div class="reveal">
+      <p>
+        In the quiet town of Raiganj, in the heartland of West Bengal, a dream was taking shape — 
+        not in a boardroom or a studio, but at a simple desk where hands worked with patience and heart.
+      </p>
+      <p>
+        জলকণa began with a simple observation: in a world of mass production, 
+        the handmade carries something irreplaceable — emotion. Every thread tied, 
+        every petal folded, every colour chosen — it all carries a feeling.
+      </p>
+    </div>
+    
+    <div class="bengali-quote reveal bengali-text">
+      "হাতে তৈরি প্রতিটি জিনিসের মধ্যে একটা আলাদা প্রাণ থাকে —<br>সেই প্রাণ হলো ভালোবাসা"
+    </div>
+    
+    <div class="reveal">
+      <p>
+        What started as a passion project has grown into a brand that people trust with 
+        their most precious moments — birthdays, anniversaries, proposals, festivals. 
+        When someone orders from জলকণa, they're not just buying a product. 
+        They're entrusting us with their emotions.
+      </p>
+      <p>
+        We take that responsibility seriously. Every product that leaves our hands is 
+        a promise — a promise of quality, of care, of love made tangible.
+      </p>
+      <p>
+        Today, জলকণা continues to grow, but our philosophy remains unchanged: 
+        <em>every handmade product carries emotions</em>. From our hands to your heart.
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════ Mission & Vision ═══════ -->
+  <div class="mission-vision">
+    <div class="mv-card reveal">
+      <div class="mv-card-icon">🎯</div>
+      <h3>Our Mission</h3>
+      <p>To preserve the art of handmade gifting in Bengal, creating meaningful connections through handcrafted treasures that celebrate love, tradition, and human emotion.</p>
+    </div>
+    <div class="mv-card reveal">
+      <div class="mv-card-icon">🌟</div>
+      <h3>Our Vision</h3>
+      <p>To become Bengal's most beloved handmade brand — known not just for beautiful products, but for the emotions they carry and the smiles they create across every doorstep.</p>
+    </div>
+  </div>
+
+  <!-- ═══════ Workshop Gallery ═══════ -->
+  <section style="padding: var(--space-2xl) 0;">
+    <div class="section-header reveal">
+      <p class="section-overline">Behind the Scenes</p>
+      <h2>Our Creative Space</h2>
+    </div>
+    <div class="workshop-gallery">
+      <div class="workshop-item reveal-scale">
+        <img src="img/products/gift-hamper-bouquet-1.webp" alt="Craft Table" style="width:100%;height:100%;object-fit:cover;">
+        <span class="workshop-label">The Craft Table</span>
+      </div>
+      <div class="workshop-item reveal-scale">
+        <img src="img/products/pipe-cleaner-bouquet.webp" alt="Flower Station" style="width:100%;height:100%;object-fit:cover;">
+        <span class="workshop-label">Flower Station</span>
+      </div>
+      <div class="workshop-item reveal-scale">
+        <img src="img/products/gift-hamper-bouquet-2.webp" alt="Gift Wrapping" style="width:100%;height:100%;object-fit:cover;">
+        <span class="workshop-label">Gift Wrapping</span>
+      </div>
+      <div class="workshop-item reveal-scale">
+        <img src="img/products/hello-kitty-keychain.webp" alt="Crochet Corner" style="width:100%;height:100%;object-fit:cover;">
+        <span class="workshop-label">Crochet Corner</span>
+      </div>
+      <div class="workshop-item reveal-scale">
+        <img src="img/products/clay-name-necklace.webp" alt="Jewellery Bench" style="width:100%;height:100%;object-fit:cover;">
+        <span class="workshop-label">Jewellery Bench</span>
+      </div>
+      <div class="workshop-item reveal-scale">
+        <img src="img/products/custom-chocolate-wrapper.webp" alt="Ready to Ship" style="width:100%;height:100%;object-fit:cover;">
+        <span class="workshop-label">Ready to Ship</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Detailed Process ═══════ -->
+  <section class="about-process">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-overline">The Making</p>
+        <h2>Our Handmade Process</h2>
+        <p class="section-subtitle">Every creation follows a journey of care and intention</p>
+      </div>
+    </div>
+    <div class="process-detail">
+      <div class="process-detail-item reveal">
+        <div class="process-detail-icon">💭</div>
+        <div class="process-detail-text">
+          <h4>Understanding Your Vision</h4>
+          <p>Every creation begins with listening. We understand your occasion, your emotions, and the story you want to tell through your gift.</p>
+        </div>
+      </div>
+      <div class="process-detail-item reveal">
+        <div class="process-detail-icon">✏️</div>
+        <div class="process-detail-text">
+          <h4>Designing with Heart</h4>
+          <p>Our artisans sketch and plan every detail — from colour combinations to material choices — ensuring each element speaks your language of love.</p>
+        </div>
+      </div>
+      <div class="process-detail-item reveal">
+        <div class="process-detail-icon">🤲</div>
+        <div class="process-detail-text">
+          <h4>Crafting by Hand</h4>
+          <p>This is where the magic happens. Every petal is shaped, every bead is placed, every stitch is sewn by hand with patience and devotion.</p>
+        </div>
+      </div>
+      <div class="process-detail-item reveal">
+        <div class="process-detail-icon">✓</div>
+        <div class="process-detail-text">
+          <h4>Quality Assurance</h4>
+          <p>Every creation undergoes careful quality checks. We ensure every detail is perfect — because your emotions deserve nothing less.</p>
+        </div>
+      </div>
+      <div class="process-detail-item reveal">
+        <div class="process-detail-icon">🎁</div>
+        <div class="process-detail-text">
+          <h4>Premium Gift Packaging</h4>
+          <p>We package each creation with the same love we crafted it with. Premium boxes, tissue paper, ribbons — because unboxing should feel like magic.</p>
+        </div>
+      </div>
+      <div class="process-detail-item reveal">
+        <div class="process-detail-icon">💌</div>
+        <div class="process-detail-text">
+          <h4>Delivered with Love</h4>
+          <p>Your creation begins its journey to you, carefully handled and protected, arriving at your doorstep ready to create a moment of pure joy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Values ═══════ -->
+  <section class="values-section">
+    <div class="section-header reveal">
+      <p class="section-overline">What We Stand For</p>
+      <h2>Our Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-icon">💧</div>
+        <h4>Authenticity</h4>
+        <p>100% handmade, always. No shortcuts, no imitations. What you receive is as genuine as the emotions it carries.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">🪷</div>
+        <h4>Tradition</h4>
+        <p>Rooted in Bengali culture and craftsmanship, we honour the artistic heritage of our land in every creation.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">❤️</div>
+        <h4>Emotion</h4>
+        <p>We don't just make products — we craft emotions. Every piece carries a story, a feeling, a memory waiting to be made.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CTA ═══════ -->
+  <section style="padding: var(--space-2xl) 0; text-align: center; background: var(--cream-dark);">
+    <div class="container reveal">
+      <p class="section-overline">Begin Your Story</p>
+      <h2 style="margin-bottom: var(--space-md);">Let's Create Something Beautiful Together</h2>
+      <p style="max-width: 500px; margin: 0 auto var(--space-xl); color: var(--text-secondary);">
+        Whether you have a clear vision or just a feeling — we're here to turn it into something you can hold.
+      </p>
+      <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+        <a href="custom-order.html" class="btn btn-primary">Create Custom Order</a>
+        <a href="mailto:jolkona2007@gmail.com" class="btn btn-secondary">Email Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Footer ═══════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding: 0;">
+        <p>© 2026 জলকণা (Jol Kona). Crafted with 💧 from Bengal.</p>
+        <p><a href="mailto:jolkona2007@gmail.com" style="color: var(--rose-gold);">jolkona2007@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal, .reveal-scale');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
