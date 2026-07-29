@@ -71,7 +71,6 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--cream);
   color: var(--text-primary);
   line-height: 1.7;
   overflow-x: hidden;
@@ -736,4 +735,39 @@ body { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; wi
   .quantity-selector { justify-content: center; }
   .meta-item { flex-wrap: wrap; }
   .meta-item-label { min-width: 80px; }
+}
+
+
+/* ── Live Wavy Grainy Background ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(125deg, 
+    #FFF9F6 0%, #FEF0E8 20%, #F8E8E0 35%, 
+    #F5EDE8 50%, #FEF0E8 65%, #FFF9F6 80%, #F8E8E0 100%
+  );
+  background-size: 400% 400%;
+  animation: waveGradient 18s ease infinite;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  pointer-events: none;
+}
+
+@keyframes waveGradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
 }
