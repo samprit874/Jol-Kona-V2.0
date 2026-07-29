@@ -22,13 +22,13 @@
   
   // Hide loader when page loads
   if (document.readyState === 'complete') {
-    setTimeout(hideLoader, 800);
+    setTimeout(hideLoader, 3500);
   } else {
     window.addEventListener('load', () => setTimeout(hideLoader, 800));
   }
   
   // Fallback: force hide after 3 seconds
-  setTimeout(hideLoader, 3000);
+  setTimeout(hideLoader, 4500);
   
   // Initially prevent scroll
   document.body.style.overflow = 'hidden';
