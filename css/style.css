@@ -767,9 +767,5 @@ body::after {
   100% { background-position: 0% 50%; }
 }
 
-/* Make content sit above the background */
-.nav, .hero, .section-padding, .footer, .loader, .mobile-nav, .modal-overlay, a[aria-label="Follow on Instagram"] {
-  position: relative;
-  z-index: 1;
-}
+
 
