@@ -364,7 +364,7 @@ p { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
 .occasion-name-bengali { font-family: var(--font-bengali); font-size: 0.7rem; color: var(--text-muted); }
 
 /* ─── Reviews Section ─── */
-.reviews-section { background: transparent; }
+.reviews-section { background: rgba(254, 240, 232, 0.6); }
 .reviews-slider { display: flex; gap: var(--space-lg); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; padding: var(--space-lg) 0; }
 .reviews-slider::-webkit-scrollbar { display: none; }
 .review-card { min-width: 350px; max-width: 400px; background: white; border-radius: var(--radius-lg); padding: var(--space-xl); box-shadow: var(--shadow-card); scroll-snap-align: start; flex-shrink: 0; transition: all var(--duration-normal) var(--ease-smooth); }
@@ -739,23 +739,37 @@ body { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; wi
 
 
 
-/* ─── Grainy Gradient Background ─── */
+/* ─── Live Grainy Gradient Background ─── */
 body {
   background: linear-gradient(112deg, 
     #FFF9F6 0%, #FEF0E8 25%, #F8E8E0 50%, 
     #F5EDE8 75%, #FFF9F6 100%
   );
-  background-size: 200% 200%;
+  background-size: 300% 300%;
+  animation: gradientFlow 20s ease infinite;
 }
 
-.grain-overlay {
+body::after {
+  content: '';
   position: fixed;
   inset: 0;
-  z-index: 9997;
-  opacity: 0.35;
+  z-index: 0;
+  opacity: 0.3;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  background-size: 250px 250px;
+  background-size: 200px 200px;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Make content sit above the background */
+.nav, .hero, .section-padding, .footer, .loader, .mobile-nav, .modal-overlay, a[aria-label="Follow on Instagram"] {
+  position: relative;
+  z-index: 1;
 }
 
