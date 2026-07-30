@@ -148,6 +148,13 @@ function addNavControl() {
   actions.querySelector('[data-auth-open]').addEventListener('click', () => openModal('login'));
 }
 
+function addMobileAccountControl() {
+  const mobileNav = document.querySelector('.mobile-nav');
+  if (!mobileNav || mobileNav.querySelector('.mobile-auth-link')) return;
+  mobileNav.insertAdjacentHTML('beforeend', `<button class="mobile-nav-link mobile-auth-link" type="button" data-auth-open="login" data-auth-guest>Login</button><a class="mobile-nav-link mobile-auth-link" href="${accountPage}" data-auth-user hidden>My Account</a>`);
+  mobileNav.querySelector('[data-auth-open]').addEventListener('click', () => openModal('login'));
+}
+
 function guardAccountPage(user) {
   if (document.body.dataset.authRequired === 'true' && !user) {
     sessionStorage.setItem('jolKonaAfterLogin', window.location.href);
@@ -157,6 +164,7 @@ function guardAccountPage(user) {
 
 mountUi();
 addNavControl();
+addMobileAccountControl();
 if (new URLSearchParams(location.search).get('login') === '1') window.addEventListener('load', () => openModal('login'));
 if (isFirebaseConfigured) {
   const app = initializeApp(firebaseConfig);
