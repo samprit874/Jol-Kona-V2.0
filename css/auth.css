@@ -30,12 +30,17 @@
 .signup-copy,.signup-only { display:none; }.auth-modal[data-mode="signup"] .signup-copy,.auth-modal[data-mode="signup"] .signup-only { display:inline; }.auth-modal[data-mode="signup"] .auth-field.signup-only { display:block; }.auth-modal[data-mode="signup"] .login-copy { display:none; }
 .auth-modal-open { overflow:hidden!important; }
 .account-page { min-height:100vh; padding:150px 24px 80px; background:var(--cream); }.account-card { max-width:640px; margin:auto; padding:44px; background:var(--ivory); border:1px solid var(--border-light); border-radius:var(--radius-lg); box-shadow:var(--shadow-medium); text-align:center; }.account-avatar { width:80px; height:80px; border-radius:50%; margin:0 auto 17px; display:grid; place-items:center; overflow:hidden; background:var(--rose-gold); color:#fff; font:600 1.3rem var(--font-modern); }.account-avatar img { width:100%; height:100%; object-fit:cover; }.account-email { margin:3px 0 22px; }.account-notice { margin:0 auto 20px; padding:10px 14px; max-width:470px; border-radius:var(--radius-sm); background:var(--cream-dark); font-size:.86rem; }.account-actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
-/* On small screens the header is intentionally reduced to logo + menu. Account,
-   search, wishlist and cart remain available through the full-screen menu. */
+/* Mobile utility drawer: branding keeps its own calm first row, while the
+   useful controls live on a deliberately spaced second row. */
 @media(max-width:1024px){
-  #navbar .nav-actions > .nav-action-btn, #navbar .auth-nav-control { display:none; }
-  #navbar .nav-actions { margin-left:auto; gap:0; }
-  #navbar .nav-mobile-toggle { width:32px; padding:7px 0; }
+  #navbar .nav-inner { flex-wrap:wrap; justify-content:center; padding:0 16px; }
+  #navbar .nav-brand { width:100%; justify-content:center; }
+  #navbar .nav-brand-logo { height:38px; }
+  #navbar .nav-actions { width:100%; justify-content:center; margin-top:5px; gap:12px; }
+  #navbar .auth-nav-control { display:flex; }
+  #navbar .nav-actions > .nav-action-btn { display:flex; width:34px; height:34px; }
+  #navbar .auth-avatar { width:34px; height:34px; }
+  #navbar .nav-mobile-toggle { width:30px; padding:7px 0; margin-left:4px; }
   .mobile-auth-link { background:transparent; color:var(--charcoal); }
 }
 @media(max-width:520px){.auth-modal{padding:14px}.auth-panel{padding:31px 23px;border-radius:18px}.account-page{padding:120px 16px 50px}.account-card{padding:32px 20px}}
