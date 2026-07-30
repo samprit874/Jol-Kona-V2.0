@@ -1459,3 +1459,124 @@ body {
 
 
 
+
+/* ─── Hero Cover Banner Redesign ─── */
+.hero-content.layout-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.hero-cover-banner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.hero-banner-img {
+  width: 100%;
+  aspect-ratio: 21/9;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-medium);
+  display: block;
+}
+
+.hero-atelier-badge {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 10px 32px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-script, 'Playfair Display', serif);
+  font-size: 1.4rem;
+  color: var(--rose-gold-dark);
+  border: 1px solid var(--border-light);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  z-index: 2;
+}
+
+.hero-centered-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--space-md);
+}
+
+.hero-centered-content .hero-text {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-centered-content .hero-overline {
+  justify-content: center;
+}
+.hero-centered-content .hero-overline::before,
+.hero-centered-content .hero-overline::after {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--rose-gold);
+}
+
+.hero-centered-content .hero-description {
+  margin: 0 auto var(--space-xl) auto;
+}
+
+.hero-centered-content .hero-cta-group {
+  justify-content: center;
+}
+
+.hero-stats-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-top: var(--space-2xl);
+}
+
+.hero-stat-pill {
+  background: white;
+  border: 1px solid var(--border-light);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-family: var(--font-modern, sans-serif);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-card);
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.hero-stat-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--rose-gold);
+  box-shadow: var(--shadow-card-hover);
+  color: var(--rose-gold-dark);
+}
+
+@media (max-width: 768px) {
+  .hero-banner-img {
+    aspect-ratio: 16/9;
+    border-radius: var(--radius-lg);
+  }
+  .hero-atelier-badge {
+    font-size: 1.1rem;
+    padding: 8px 24px;
+    bottom: -16px;
+  }
+}
