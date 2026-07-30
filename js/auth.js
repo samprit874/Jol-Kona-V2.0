@@ -151,7 +151,7 @@ function addNavControl() {
 function addMobileAccountControl() {
   const mobileNav = document.querySelector('.mobile-nav');
   if (!mobileNav || mobileNav.querySelector('.mobile-auth-link')) return;
-  mobileNav.insertAdjacentHTML('beforeend', `<button class="mobile-nav-link mobile-auth-link" type="button" data-auth-open="login" data-auth-guest>Login</button><a class="mobile-nav-link mobile-auth-link" href="${accountPage}" data-auth-user hidden>My Account</a>`);
+  mobileNav.insertAdjacentHTML('beforeend', `<a class="mobile-nav-link mobile-auth-link" href="index.html#shop">Search</a><button class="mobile-nav-link mobile-auth-link" type="button" data-auth-open="login" data-auth-guest>Login</button><a class="mobile-nav-link mobile-auth-link" href="${accountPage}" data-auth-user hidden>My Account</a>`);
   mobileNav.querySelector('[data-auth-open]').addEventListener('click', () => openModal('login'));
 }
 
