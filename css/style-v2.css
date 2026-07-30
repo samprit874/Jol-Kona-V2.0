@@ -25,6 +25,12 @@
   /* Typography */
   --font-heading: 'Cormorant Garamond', serif;
   --font-body: 'Inter', -apple-system, sans-serif;
+  --font-script: 'Island Moments', cursive;
+  --font-handwritten: 'Shantell Sans', cursive;
+  --font-sketch: 'Cabin Sketch', cursive;
+  --font-artistic: 'Playwrite NZ Guides', cursive;
+  --font-modern: 'Faculty Glyphic', sans-serif;
+  --font-notes: 'Caveat', cursive;
   
   /* Spacing */
   --space-xs: 4px;
@@ -128,10 +134,11 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 .nav-link {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-family: var(--font-modern);
+  font-size: 0.9rem;
+  font-weight: 400;
   color: var(--text);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   position: relative;
   padding: var(--space-xs) 0;
 }
@@ -204,14 +211,15 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 .hero-text { max-width: 600px; }
 
 .hero-overline {
-  font-family: var(--font-heading);
-  font-style: italic;
+  font-family: var(--font-script);
+  font-style: normal;
   color: var(--rose-gold);
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   margin-bottom: var(--space-md);
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  letter-spacing: 0.02em;
 }
 
 .hero-overline::before {
@@ -229,13 +237,31 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 .hero-title .highlight {
   color: var(--rose-gold);
   font-style: italic;
+  font-family: var(--font-script);
+  font-size: 1.1em;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+  border-radius: 2px;
 }
 
 .hero-description {
-  font-size: 1.125rem;
+  font-family: var(--font-handwritten);
+  font-size: 1.1rem;
   margin-bottom: var(--space-xl);
   max-width: 480px;
-  line-height: 1.7;
+  line-height: 1.8;
+  font-weight: 300;
+  color: var(--text-light);
 }
 
 .hero-cta-group {
@@ -252,9 +278,10 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   gap: var(--space-sm);
   padding: 14px 32px;
   border-radius: var(--radius-full);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-family: var(--font-modern);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   transition: all var(--duration-normal) var(--ease-smooth);
   position: relative;
   overflow: hidden;
@@ -320,10 +347,10 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 .section-overline {
-  font-family: var(--font-heading);
-  font-style: italic;
+  font-family: var(--font-artistic);
+  font-style: normal;
   color: var(--rose-gold);
-  font-size: 1rem;
+  font-size: 1.05rem;
   letter-spacing: 0.05em;
   margin-bottom: var(--space-sm);
 }
@@ -336,8 +363,11 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 .section-subtitle {
   max-width: 600px;
   margin: 0 auto;
-  font-size: 1.0625rem;
+  font-family: var(--font-handwritten);
+  font-size: 1.05rem;
   color: var(--text-light);
+  font-weight: 300;
+  line-height: 1.8;
 }
 
 /* ─── Product Cards (Premium) ─── */
@@ -387,10 +417,11 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   backdrop-filter: blur(8px);
   padding: 6px 14px;
   border-radius: var(--radius-full);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: var(--font-sketch);
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.03em;
   color: var(--rose-gold-dark);
 }
 
@@ -399,12 +430,13 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 .product-card-category {
-  font-size: 0.7rem;
+  font-family: var(--font-modern);
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--rose-gold);
   margin-bottom: var(--space-xs);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .product-card-name {
@@ -486,17 +518,19 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 .collection-card-title {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-family: var(--font-sketch);
+  font-size: 1.6rem;
   color: var(--white);
   margin-bottom: var(--space-xs);
+  letter-spacing: 0.02em;
 }
 
 .collection-card-count {
+  font-family: var(--font-modern);
   font-size: 0.8rem;
   color: rgba(255,255,255,0.8);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
 }
 
 /* ─── Reviews Section ─── */
@@ -547,9 +581,11 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 .review-author-name {
-  font-weight: 600;
-  font-size: 0.9375rem;
+  font-family: var(--font-modern);
+  font-weight: 400;
+  font-size: 0.95rem;
   color: var(--dark);
+  letter-spacing: 0.02em;
 }
 
 .review-author-location {
@@ -565,10 +601,12 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 .review-text {
-  font-size: 0.9375rem;
-  line-height: 1.7;
+  font-family: var(--font-handwritten);
+  font-size: 0.95rem;
+  line-height: 1.8;
   color: var(--text);
   font-style: italic;
+  font-weight: 400;
 }
 
 /* ─── Instagram Gallery ─── */
@@ -687,8 +725,11 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 .newsletter-content h2 {
+  font-family: var(--font-script);
   color: var(--white);
   margin-bottom: var(--space-md);
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  letter-spacing: 0.02em;
 }
 
 .newsletter-content p {
@@ -727,9 +768,10 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   border-radius: var(--radius-full);
   background: var(--rose-gold);
   color: var(--white);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-family: var(--font-modern);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   transition: all var(--duration-fast) var(--ease-smooth);
   white-space: nowrap;
 }
@@ -762,29 +804,37 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 .footer-brand p {
+  font-family: var(--font-handwritten);
   font-size: 0.9rem;
-  line-height: 1.7;
+  line-height: 1.8;
   color: rgba(255,255,255,0.6);
+  font-weight: 300;
 }
 
 .footer-heading {
-  font-family: var(--font-heading);
-  font-size: 1rem;
+  font-family: var(--font-script);
+  font-size: 1.4rem;
   color: var(--white);
   margin-bottom: var(--space-lg);
+  letter-spacing: 0.02em;
 }
 
 .footer-links li { margin-bottom: var(--space-sm); }
 
 .footer-links a {
-  font-size: 0.9rem;
+  font-family: var(--font-modern);
+  font-size: 0.88rem;
   color: rgba(255,255,255,0.6);
   transition: all var(--duration-fast) var(--ease-smooth);
+  letter-spacing: 0.01em;
 }
 
 .footer-links a:hover {
   color: var(--rose-gold);
   padding-left: 4px;
+  text-decoration: underline;
+  text-decoration-color: var(--rose-gold);
+  text-underline-offset: 3px;
 }
 
 .footer-social {
@@ -821,7 +871,8 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 .footer-bottom p {
-  font-size: 0.8rem;
+  font-family: var(--font-notes);
+  font-size: 0.9rem;
   color: rgba(255,255,255,0.4);
 }
 
