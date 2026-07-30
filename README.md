@@ -5,7 +5,7 @@
 The account experience is deployed as static files and works on GitHub Pages without a build step. Before enabling it in production:
 
 1. Create/select a Firebase project and register a **Web app**.
-2. Copy its web configuration into `js/firebase-config.js`. This is Firebase's public client configuration, not a server secret.
+2. Copy its web configuration into `firebase-config.js` in the project root (or `js/firebase-config.js`). This is Firebase's public client configuration, not a server secret.
 3. In **Firebase Authentication → Sign-in method**, enable **Email/Password** and **Google**.
 4. In **Authentication → Settings → Authorized domains**, add the production GitHub Pages host (for example, `samprit874.github.io`) and any custom domain used by the site. `localhost` is already available for local testing.
 5. Configure the email template/action URL in Firebase Authentication if you use a custom domain. Ensure the GitHub Pages URL is an authorized continue URL.

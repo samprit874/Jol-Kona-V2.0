@@ -185,7 +185,7 @@ if (isFirebaseConfigured) {
 } else {
   renderAccount(null);
   guardAccountPage(null);
-  console.warn('Jol Kona authentication: add your Firebase web configuration to js/firebase-config.js.');
+  console.warn('Jol Kona authentication: add your Firebase web configuration to firebase-config.js (or js/firebase-config.js).');
 }
 document.addEventListener('click', event => {
   if (event.target.closest('[data-auth-logout]')) { event.preventDefault(); if (auth) signOut(auth); }
