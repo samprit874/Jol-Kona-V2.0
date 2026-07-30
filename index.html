@@ -62,7 +62,9 @@
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Island+Moments&display=swap" rel="stylesheet">
+  <style>  
+  @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Faculty+Glyphic&family=Island+Moments&display=swap');  
+  </style>
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 
@@ -462,76 +464,109 @@
   </section>
 
   <!-- ═══════ Occasions Section ═══════ -->
-  <section class="section-padding" id="occasions">
+  <section class="section-padding celebrate-section" id="occasions">
     <div class="container">
-      <div class="section-header reveal">
-        <p class="section-overline">Celebrate Everything</p>
-        <h2 class="section-title">Made for Every Occasion</h2>
-        <p class="section-subtitle">From birthdays to Durga Puja, we create gifts for every moment that matters</p>
+      
+      <!-- Section Header with Unique Professional Typography -->
+      <div class="celebrate-header text-center reveal">
+        <div class="celebrate-badge island-moments-regular">
+          ✨ Celebrate Everything ✨
+        </div>
+
+        <h2 class="celebrate-title faculty-glyphic-regular">
+          Made for <span class="celebrate-highlight-spark">Every Occasion</span>, <br>
+          Woven for <span class="celebrate-sketch-box cabin-sketch-bold">Every Emotion</span>
+        </h2>
+
+        <p class="celebrate-subtext">
+          Life is a beautiful tapestry of moments — from grand milestone festivities to quiet, unexpected everyday surprises. At 
+          <span class="brand-word bengali-text">জলকণা</span>, we shape your pure feelings into 
+          <span class="celebrate-script-accent island-moments-regular">everlasting handmade art</span>.
+        </p>
       </div>
 
-      <div class="occasions-grid reveal">
-        <div class="occasion-card">
-          <span class="occasion-icon">🎂</span>
-          <span class="occasion-name">Birthday</span>
-          <span class="occasion-name-bengali">জন্মদিন</span>
+      <!-- Feature Showcase Grid (Replaces old emoji boxes) -->
+      <div class="celebrate-cards-grid reveal">
+        
+        <!-- Card 1: Milestones -->
+        <div class="celebrate-card">
+          <div class="celebrate-card-header">
+            <span class="celebrate-card-badge cabin-sketch-regular">Milestones & Memories</span>
+            <div class="celebrate-card-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="celebrate-card-title faculty-glyphic-regular">Personalized Love Stories</h3>
+          <p class="celebrate-card-bengali bengali-text">জন্মদিন • বার্ষিকী • বিবাহ • প্রপোজ</p>
+          <p class="celebrate-card-desc">
+            Custom photo memory hampers, clay name necklaces, and bespoke keepsake boxes designed to capture your unique journey and celebrate eternal togetherness.
+          </p>
+          <div class="celebrate-card-tags">
+            <span class="celebrate-tag-item">Photo Hampers</span>
+            <span class="celebrate-tag-item">Name Necklaces</span>
+            <span class="celebrate-tag-item">Scrapbooks</span>
+          </div>
         </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">💍</span>
-          <span class="occasion-name">Anniversary</span>
-          <span class="occasion-name-bengali">বার্ষিকী</span>
+
+        <!-- Card 2: Festivals & Culture -->
+        <div class="celebrate-card celebrate-card-featured">
+          <div class="celebrate-card-header">
+            <span class="celebrate-card-badge cabin-sketch-regular">Heritage & Festivals</span>
+            <div class="celebrate-card-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="celebrate-card-title faculty-glyphic-regular">Festive Grandeur</h3>
+          <p class="celebrate-card-bengali bengali-text">দুর্গা পূজা • পয়লা বৈশাখ • রাখি • ক্রিসমাস • ঈদ</p>
+          <p class="celebrate-card-desc">
+            Vibrant festive collections, terracotta & clay jewellery, and artisanal gift packages rooted in Bengal’s rich heritage to elevate every cultural celebration.
+          </p>
+          <div class="celebrate-card-tags">
+            <span class="celebrate-tag-item">Clay Jewellery</span>
+            <span class="celebrate-tag-item">Festive Boxes</span>
+            <span class="celebrate-tag-item">Custom Rakhi</span>
+          </div>
         </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">👰</span>
-          <span class="occasion-name">Wedding</span>
-          <span class="occasion-name-bengali">বিবাহ</span>
+
+        <!-- Card 3: Everyday Surprises -->
+        <div class="celebrate-card">
+          <div class="celebrate-card-header">
+            <span class="celebrate-card-badge cabin-sketch-regular">Everyday Gratitude</span>
+            <div class="celebrate-card-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="celebrate-card-title faculty-glyphic-regular">Thoughtful Surprises</h3>
+          <p class="celebrate-card-bengali bengali-text">ভ্যালেন্টাইন • মা দিবস • বন্ধুত্ব দিবস</p>
+          <p class="celebrate-card-desc">
+            Handcrafted everlasting pipe-cleaner flower bouquets, custom chocolate wrappers, and cute couple keychains that speak love when words fall short.
+          </p>
+          <div class="celebrate-card-tags">
+            <span class="celebrate-tag-item">Flower Bouquets</span>
+            <span class="celebrate-tag-item">Couple Keychains</span>
+            <span class="celebrate-tag-item">Choco Wrappers</span>
+          </div>
         </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">💝</span>
-          <span class="occasion-name">Proposal</span>
-          <span class="occasion-name-bengali">প্রপোজ</span>
-        </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">👫</span>
-          <span class="occasion-name">Friendship Day</span>
-          <span class="occasion-name-bengali">বন্ধুত্ব দিবস</span>
-        </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">❤️</span>
-          <span class="occasion-name">Valentine</span>
-          <span class="occasion-name-bengali">ভ্যালেন্টাইন</span>
-        </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">👩‍👧</span>
-          <span class="occasion-name">Mother's Day</span>
-          <span class="occasion-name-bengali">মা দিবস</span>
-        </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">🪔</span>
-          <span class="occasion-name">Durga Puja</span>
-          <span class="occasion-name-bengali">দুর্গা পূজা</span>
-        </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">🌸</span>
-          <span class="occasion-name">Poila Boishakh</span>
-          <span class="occasion-name-bengali">পয়লা বৈশাখ</span>
-        </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">🧵</span>
-          <span class="occasion-name">Rakhi</span>
-          <span class="occasion-name-bengali">রাখি</span>
-        </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">🎄</span>
-          <span class="occasion-name">Christmas</span>
-          <span class="occasion-name-bengali">ক্রিসমাস</span>
-        </div>
-        <div class="occasion-card">
-          <span class="occasion-icon">🌙</span>
-          <span class="occasion-name">Eid</span>
-          <span class="occasion-name-bengali">ঈদ</span>
-        </div>
+
       </div>
+
+      <!-- Bottom Interactive Callout -->
+      <div class="celebrate-cta-strip reveal">
+        <div class="celebrate-cta-text">
+          <span class="celebrate-cta-heading faculty-glyphic-regular">Have a custom dream gift in mind?</span>
+          <span class="celebrate-cta-sub island-moments-regular">If you can feel it, we can create it.</span>
+        </div>
+        <a href="custom-order.html" class="celebrate-cta-button cabin-sketch-bold">
+          Start Your Custom Order &rarr;
+        </a>
+      </div>
+
     </div>
   </section>
 
