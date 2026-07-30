@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="img/logo.png">
-  
+
   <style>
     .product-page { padding-top: 100px; }
-    
+
     .product-detail {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
@@ -23,13 +23,13 @@
       margin: 0 auto;
       padding: var(--space-xl) var(--space-lg);
     }
-    
+
     .product-gallery {
       display: flex;
       flex-direction: column;
       gap: var(--space-md);
     }
-    
+
     .gallery-main {
       aspect-ratio: 4/5;
       border-radius: var(--radius-xl);
@@ -43,7 +43,7 @@
       cursor: zoom-in;
       box-shadow: var(--shadow-large);
     }
-    
+
     .gallery-main::after {
       content: '🔍 Click to zoom';
       position: absolute;
@@ -56,12 +56,12 @@
       font-size: 0.7rem;
       color: var(--text-secondary);
     }
-    
+
     .gallery-thumbs {
       display: flex;
       gap: var(--space-sm);
     }
-    
+
     .gallery-thumb {
       width: 80px;
       height: 80px;
@@ -75,38 +75,38 @@
       justify-content: center;
       font-size: 1.5rem;
     }
-    
+
     .gallery-thumb:hover, .gallery-thumb.active {
       border-color: var(--rose-gold);
     }
-    
+
     .product-info {
       padding-top: var(--space-lg);
     }
-    
+
     .product-breadcrumb {
       font-size: 0.8rem;
       color: var(--text-muted);
       margin-bottom: var(--space-lg);
     }
-    
+
     .product-breadcrumb a {
       color: var(--rose-gold);
     }
-    
+
     .product-title {
       font-family: var(--font-heading);
       font-size: clamp(1.8rem, 3vw, 2.5rem);
       margin-bottom: var(--space-sm);
     }
-    
+
     .product-subtitle {
       font-family: var(--font-bengali);
       color: var(--rose-gold);
       font-size: 1.1rem;
       margin-bottom: var(--space-lg);
     }
-    
+
     .product-rating-row {
       display: flex;
       align-items: center;
@@ -115,26 +115,26 @@
       padding-bottom: var(--space-lg);
       border-bottom: 1px solid var(--border-light);
     }
-    
+
     .product-price {
       display: flex;
       align-items: baseline;
       gap: var(--space-md);
       margin-bottom: var(--space-xl);
     }
-    
+
     .product-price .current-price {
       font-family: var(--font-heading);
       font-size: 2rem;
       color: var(--charcoal);
     }
-    
+
     .product-price .old-price {
       font-size: 1.1rem;
       color: var(--text-muted);
       text-decoration: line-through;
     }
-    
+
     .product-price .discount {
       background: #E8F5E9;
       color: #2E7D32;
@@ -143,13 +143,13 @@
       font-size: 0.8rem;
       font-weight: 600;
     }
-    
+
     .product-description {
       margin-bottom: var(--space-xl);
       font-size: 1.05rem;
       line-height: 1.8;
     }
-    
+
     .product-meta {
       display: flex;
       flex-direction: column;
@@ -159,35 +159,35 @@
       background: var(--cream-dark);
       border-radius: var(--radius-lg);
     }
-    
+
     .meta-item {
       display: flex;
       align-items: center;
       gap: var(--space-sm);
       font-size: 0.9rem;
     }
-    
+
     .meta-item-icon {
       width: 24px;
       text-align: center;
     }
-    
+
     .meta-item-label {
       color: var(--text-muted);
       min-width: 100px;
     }
-    
+
     .meta-item-value {
       color: var(--charcoal);
       font-weight: 500;
     }
-    
+
     .product-actions {
       display: flex;
       gap: var(--space-md);
       margin-bottom: var(--space-xl);
     }
-    
+
     .quantity-selector {
       display: flex;
       align-items: center;
@@ -195,7 +195,7 @@
       border-radius: var(--radius-full);
       overflow: hidden;
     }
-    
+
     .qty-btn {
       width: 40px;
       height: 40px;
@@ -206,16 +206,16 @@
       color: var(--text-secondary);
       transition: all var(--duration-fast) var(--ease-smooth);
     }
-    
+
     .qty-btn:hover { background: var(--cream-dark); }
-    
+
     .qty-display {
       width: 40px;
       text-align: center;
       font-weight: 600;
       font-size: 0.95rem;
     }
-    
+
     .product-sharing {
       display: flex;
       align-items: center;
@@ -223,14 +223,14 @@
       padding-top: var(--space-lg);
       border-top: 1px solid var(--border-light);
     }
-    
+
     .share-label {
       font-size: 0.8rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
-    
+
     .share-btn {
       width: 36px;
       height: 36px;
@@ -242,19 +242,19 @@
       transition: all var(--duration-fast) var(--ease-smooth);
       font-size: 0.85rem;
     }
-    
+
     .share-btn:hover {
       background: var(--rose-gold);
       color: white;
       border-color: var(--rose-gold);
     }
-    
+
     /* Related Products */
     .related-section {
       padding: var(--space-3xl) 0;
       background: var(--warm-beige);
     }
-    
+
     @media (max-width: 768px) {
       .product-detail { grid-template-columns: 1fr; gap: var(--space-xl); }
       .product-actions { flex-direction: column; }
@@ -279,9 +279,9 @@
         <a href="mailto:jolkona2007@gmail.com" class="nav-action-btn" aria-label="Email">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
-        <button class="nav-action-btn" aria-label="Wishlist">
+        <a href="index.html#wishlist" class="nav-action-btn" aria-label="Open wishlist">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </button>
+        </a>
       </div>
     </div>
   </nav>
@@ -299,35 +299,35 @@
           <div class="gallery-thumb" style="background: linear-gradient(135deg, #F5EDE8, #F8E8E0);">📦</div>
         </div>
       </div>
-      
+
       <!-- Info -->
       <div class="product-info reveal-right">
         <div class="product-breadcrumb">
           <a href="index.html">Home</a> / <a href="index.html#shop">Shop</a> / Bouquets
         </div>
-        
+
         <h1 class="product-title">Rose Garden Dream</h1>
         <p class="product-subtitle bengali-text">গোলাপ বাগানের স্বপ্ন</p>
-        
+
         <div class="product-rating-row">
           <span class="stars" style="color: var(--gold); font-size: 0.9rem;">★★★★★</span>
           <span style="font-size: 0.85rem; color: var(--text-muted);">48 Reviews</span>
           <span style="font-size: 0.85rem; color: #4CAF50;">✓ 120+ Sold</span>
         </div>
-        
+
         <div class="product-price">
           <span class="current-price">₹899</span>
           <span class="old-price">₹1,199</span>
           <span class="discount">25% OFF</span>
         </div>
-        
+
         <p class="product-description">
-          A stunning handmade bouquet crafted with premium silk roses, delicate baby's breath, 
-          and fresh eucalyptus accents. Each bloom is carefully arranged by our artisans to create 
-          a composition that speaks of love, elegance, and timeless beauty. Wrapped in premium 
+          A stunning handmade bouquet crafted with premium silk roses, delicate baby's breath,
+          and fresh eucalyptus accents. Each bloom is carefully arranged by our artisans to create
+          a composition that speaks of love, elegance, and timeless beauty. Wrapped in premium
           kraft paper with a satin ribbon — ready to make someone's day extraordinary.
         </p>
-        
+
         <div class="product-meta">
           <div class="meta-item">
             <span class="meta-item-icon">🌹</span>
@@ -360,21 +360,21 @@
             <span class="meta-item-value">Color & message customizable</span>
           </div>
         </div>
-        
+
         <div class="product-actions">
           <div class="quantity-selector">
             <button class="qty-btn" id="qtyMinus">−</button>
             <span class="qty-display" id="qtyDisplay">1</span>
             <button class="qty-btn" id="qtyPlus">+</button>
           </div>
-          <button class="btn btn-primary" style="flex: 1;">Add to Cart — ₹899</button>
-          <button class="btn btn-secondary" style="width: 48px; padding: 0;" aria-label="Wishlist">♡</button>
+          <button class="btn btn-primary" id="productAddToCart" type="button" style="flex: 1;">Add to Cart — ₹899</button>
+          <button class="btn btn-secondary" id="productWishlistBtn" type="button" style="width: 48px; padding: 0;" aria-label="Add to wishlist" aria-pressed="false">♡</button>
         </div>
-        
+
         <a href="custom-order.html" class="btn btn-gold" style="width: 100%; margin-bottom: var(--space-lg);">
           ✨ Customize This Product
         </a>
-        
+
         <div class="product-sharing">
           <span class="share-label">Share:</span>
           <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="share-btn" aria-label="Instagram">📷</a>
@@ -456,6 +456,68 @@
     });
     document.getElementById('qtyPlus').addEventListener('click', () => {
       qty++; qtyDisplay.textContent = qty;
+    });
+
+    // Static product wishlist/add-to-cart (same storage used by homepage cart)
+    const productId = 'rose-garden-dream';
+    const product = {
+      id: productId,
+      name: 'Rose Garden Dream',
+      category: 'gift-hampers',
+      image: 'img/logo.png',
+      badge: 'Premium',
+      description: 'Premium handmade bouquet crafted with silk roses, baby\'s breath, and eucalyptus accents.',
+      dmText: 'Hi! I\'d like to order Rose Garden Dream 💐'
+    };
+
+    const productAddToCart = document.getElementById('productAddToCart');
+    productAddToCart?.addEventListener('click', () => {
+      let cart = {};
+      try {
+        cart = JSON.parse(localStorage.getItem('jolKonaCart') || '{}') || {};
+      } catch (error) {
+        cart = {};
+      }
+
+      const existingQty = cart[productId]?.quantity || 0;
+      cart[productId] = { id: productId, quantity: existingQty + qty, product };
+      localStorage.setItem('jolKonaCart', JSON.stringify(cart));
+
+      productAddToCart.textContent = `✓ Added ${qty} to Cart`;
+      productAddToCart.style.background = '#4CAF50';
+      setTimeout(() => {
+        productAddToCart.textContent = 'Add to Cart — ₹899';
+        productAddToCart.style.background = '';
+      }, 2000);
+    });
+
+    const productWishlistBtn = document.getElementById('productWishlistBtn');
+    const getWishlist = () => {
+      try { return JSON.parse(localStorage.getItem('jolKonaWishlist') || '[]') || []; }
+      catch (error) { return []; }
+    };
+    const getWishlistItemId = (item) => typeof item === 'string' ? item : item?.id || item?.product?.id;
+    const wishlistHasProduct = () => getWishlist().some(item => getWishlistItemId(item) === productId);
+    const syncWishlistBtn = () => {
+      const isSaved = wishlistHasProduct();
+      productWishlistBtn.textContent = isSaved ? '♥' : '♡';
+      productWishlistBtn.style.color = isSaved ? '#e74c3c' : '';
+      productWishlistBtn.setAttribute('aria-pressed', String(isSaved));
+      productWishlistBtn.setAttribute('aria-label', isSaved ? 'Remove from wishlist' : 'Add to wishlist');
+    };
+
+    syncWishlistBtn();
+    productWishlistBtn?.addEventListener('click', () => {
+      const wishlist = getWishlist();
+      const existingIndex = wishlist.findIndex(item => getWishlistItemId(item) === productId);
+      if (existingIndex >= 0) {
+        wishlist.splice(existingIndex, 1);
+      } else {
+        wishlist.push({ id: productId, product });
+      }
+
+      localStorage.setItem('jolKonaWishlist', JSON.stringify(wishlist));
+      syncWishlistBtn();
     });
 
     // Gallery thumb switching
