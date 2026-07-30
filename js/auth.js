@@ -144,7 +144,15 @@ async function sendVerification() {
 function addNavControl() {
   const actions = document.querySelector('.nav-actions');
   if (!actions || actions.querySelector('.auth-nav-control')) return;
-  actions.insertAdjacentHTML('afterbegin', `<div class="auth-nav-control"><button class="nav-action-btn auth-trigger" type="button" data-auth-open="login" data-auth-guest aria-label="Log in"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></button></div>`);
+  actions.insertAdjacentHTML('afterbegin', `
+    <div class="auth-nav-control">
+      <button class="nav-action-btn auth-trigger" type="button" data-auth-open="login" data-auth-guest aria-label="Log in">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <a class="nav-action-btn auth-user-btn" href="${accountPage}" data-auth-user hidden aria-label="View account">
+        <div class="auth-avatar" data-auth-avatar></div>
+      </a>
+    </div>`);
   actions.querySelector('[data-auth-open]').addEventListener('click', () => openModal('login'));
 }
 
