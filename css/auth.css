@@ -30,17 +30,20 @@
 .signup-copy,.signup-only { display:none; }.auth-modal[data-mode="signup"] .signup-copy,.auth-modal[data-mode="signup"] .signup-only { display:inline; }.auth-modal[data-mode="signup"] .auth-field.signup-only { display:block; }.auth-modal[data-mode="signup"] .login-copy { display:none; }
 .auth-modal-open { overflow:hidden!important; }
 .account-page { min-height:100vh; padding:150px 24px 80px; background:var(--cream); }.account-card { max-width:640px; margin:auto; padding:44px; background:var(--ivory); border:1px solid var(--border-light); border-radius:var(--radius-lg); box-shadow:var(--shadow-medium); text-align:center; }.account-avatar { width:80px; height:80px; border-radius:50%; margin:0 auto 17px; display:grid; place-items:center; overflow:hidden; background:var(--rose-gold); color:#fff; font:600 1.3rem var(--font-modern); }.account-avatar img { width:100%; height:100%; object-fit:cover; }.account-email { margin:3px 0 22px; }.account-notice { margin:0 auto 20px; padding:10px 14px; max-width:470px; border-radius:var(--radius-sm); background:var(--cream-dark); font-size:.86rem; }.account-actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
-/* Mobile: a quiet one-row header. All utility actions live in the menu rather
-   than competing with the brand. */
+/* Mobile: a compact menu opens as a small popover from the top-right toggle. */
 @media(max-width:1024px){
   #navbar .nav-inner { flex-wrap:nowrap; justify-content:space-between; padding:0 16px; }
   #navbar .nav-brand { width:auto; }
   #navbar .nav-brand-logo { height:38px; }
   #navbar .nav-actions { width:auto; margin:0; gap:0; }
   #navbar .nav-actions > .nav-action-btn, #navbar .auth-nav-control { display:none; }
-  #navbar .nav-mobile-toggle { width:auto; height:34px; padding:0 13px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border-medium); border-radius:var(--radius-full); color:var(--charcoal); }
-  #navbar .nav-mobile-toggle span { display:none; }
-  #navbar .nav-mobile-toggle::after { content:'Menu'; font-family:var(--font-modern, var(--font-body)); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
-  .mobile-auth-link { background:transparent; color:var(--charcoal); }
+  #navbar .nav-mobile-toggle { width:32px; height:32px; padding:4px 0; display:flex; align-items:center; justify-content:center; border:0; border-radius:0; color:var(--charcoal); }
+  #navbar .nav-mobile-toggle::after { content:none; }
+  #navbar .nav-mobile-toggle span { display:block; width:23px; }
+  .mobile-nav { inset:auto 16px auto auto; top:66px; z-index:1001; width:min(250px,calc(100vw - 32px)); padding:10px; display:flex; align-items:stretch; justify-content:flex-start; gap:0; background:rgba(255,254,249,.98); border:1px solid var(--border-light); border-radius:16px; box-shadow:0 15px 40px rgba(45,41,38,.16); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); opacity:0; visibility:hidden; pointer-events:none; transform:translateY(-10px) scale(.96); transform-origin:top right; transition:opacity .24s ease,visibility .24s ease,transform .3s cubic-bezier(.16,1,.3,1); }
+  .mobile-nav.active { opacity:1; visibility:visible; pointer-events:auto; transform:translateY(0) scale(1); }
+  .mobile-nav-link, .mobile-nav.active .mobile-nav-link { width:100%; padding:10px 12px; color:var(--charcoal); font-family:var(--font-modern,var(--font-body)); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; text-align:left; opacity:1; transform:none; transition:background .18s ease,color .18s ease; }
+  .mobile-nav-link:hover { background:var(--soft-pink); color:var(--rose-gold-dark); }
+  .mobile-nav .mobile-auth-link { margin-top:7px; padding-top:14px; border-top:1px solid var(--border-light); background:transparent; color:var(--rose-gold-dark); }
 }
 @media(max-width:520px){.auth-modal{padding:14px}.auth-panel{padding:31px 23px;border-radius:18px}.account-page{padding:120px 16px 50px}.account-card{padding:32px 20px}}
