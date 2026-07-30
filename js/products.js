@@ -146,3 +146,7 @@ const PRODUCTS = [
   // ═══════════════════════════════════════════
 
 ];
+
+// Expose to shop.js (js/shop.js reads window.PRODUCTS — a top-level `const`
+// does not create a window property, so assign it explicitly).
+window.PRODUCTS = PRODUCTS;

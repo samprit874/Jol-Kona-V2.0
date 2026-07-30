@@ -111,14 +111,14 @@
         <button class="nav-action-btn" aria-label="Search" id="searchToggle">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </button>
-        <button class="nav-action-btn" aria-label="Open wishlist" id="wishlistNavBtn" type="button">
+        <a class="nav-action-btn" aria-label="Open wishlist" id="wishlistNavBtn" href="wishlist-cart.html#wishlist">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           <span class="badge is-empty" id="wishlistCount" aria-label="Wishlist items">0</span>
-        </button>
-        <button class="nav-action-btn" aria-label="Open cart" id="cartNavBtn" type="button">
+        </a>
+        <a class="nav-action-btn" aria-label="Open cart" id="cartNavBtn" href="wishlist-cart.html#cart">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           <span class="badge is-empty" id="cartCount" aria-label="Cart items">0</span>
-        </button>
+        </a>
         <div class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu" role="button" tabindex="0">
           <span></span>
           <span></span>
@@ -133,8 +133,8 @@
     <a href="#home" class="mobile-nav-link">Home</a>
     <a href="#collections" class="mobile-nav-link">Collections</a>
     <a href="#shop" class="mobile-nav-link">Shop</a>
-    <a href="#wishlist" class="mobile-nav-link">Wishlist</a>
-    <a href="#cart" class="mobile-nav-link">Cart</a>
+    <a href="wishlist-cart.html#wishlist" class="mobile-nav-link">Wishlist</a>
+    <a href="wishlist-cart.html#cart" class="mobile-nav-link">Cart</a>
     <a href="#story" class="mobile-nav-link">Our Story</a>
     <a href="#occasions" class="mobile-nav-link">Occasions</a>
     <a href="custom-order.html" class="mobile-nav-link">Custom Order</a>
@@ -288,42 +288,6 @@
         <a href="https://www.instagram.com/jol_kona_/?__pwa=1#" target="_blank" rel="noopener" class="btn btn-secondary">
           View More on Instagram →
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ Wishlist & Cart Section ═══════ -->
-  <section class="section-padding saved-shop-section" id="wishlist">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-overline">Save, Collect, Order</p>
-        <h2 class="section-title">Wishlist & Cart</h2>
-        <p class="section-subtitle">Heart your favourites, add handmade creations to your cart, then send one easy Instagram order request.</p>
-      </div>
-
-      <div class="saved-shop-grid reveal">
-        <div class="saved-shop-panel" id="wishlistPanel">
-          <div class="saved-shop-panel-header">
-            <div>
-              <p class="section-overline">Loved Creations</p>
-              <h3 class="saved-shop-panel-title">Wishlist</h3>
-            </div>
-            <button type="button" class="saved-mini-btn" data-action="clear-wishlist">Clear all</button>
-          </div>
-          <div class="saved-list" id="wishlistItems" aria-live="polite"></div>
-        </div>
-
-        <div class="saved-shop-panel" id="cart">
-          <div class="saved-shop-panel-header">
-            <div>
-              <p class="section-overline">Ready to Request</p>
-              <h3 class="saved-shop-panel-title">Cart</h3>
-            </div>
-            <button type="button" class="saved-mini-btn" data-action="clear-cart">Clear cart</button>
-          </div>
-          <div class="saved-list" id="cartItems" aria-live="polite"></div>
-          <div class="cart-summary" id="cartSummary"></div>
-        </div>
       </div>
     </div>
   </section>
