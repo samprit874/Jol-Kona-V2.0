@@ -1459,3 +1459,158 @@ body {
 
 
 
+
+/* ─── Hero Cover Banner Redesign ─── */
+.hero-content.layout-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.hero-cover-banner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.hero-banner-img {
+  width: 100%;
+  aspect-ratio: 21/9;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-medium);
+  display: block;
+}
+
+.hero-atelier-badge {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 10px 32px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-script, 'Playfair Display', serif);
+  font-size: 1.4rem;
+  color: var(--rose-gold-dark);
+  border: 1px solid var(--border-light);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  z-index: 2;
+}
+
+.hero-centered-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--space-md);
+}
+
+.hero-centered-content .hero-text {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-centered-content .hero-overline {
+  justify-content: center;
+}
+.hero-centered-content .hero-overline::before,
+.hero-centered-content .hero-overline::after {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--rose-gold);
+}
+
+.hero-centered-content .hero-description {
+  margin: 0 auto var(--space-xl) auto;
+}
+
+.hero-centered-content .hero-cta-group {
+  justify-content: center;
+}
+
+
+.hero-content.layout-centered {
+  position: relative;
+}
+
+.hero-stats-pills {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hero-stat-pill {
+  position: absolute;
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-light);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-family: var(--font-modern, sans-serif);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-card);
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.hero-stat-pill:hover {
+  border-color: var(--rose-gold);
+  box-shadow: var(--shadow-card-hover);
+  color: var(--rose-gold-dark);
+}
+
+.hero-stat-pill:nth-child(1) { top: 30%; left: 5%; transform: rotate(-8deg); }
+.hero-stat-pill:nth-child(2) { top: 45%; right: 5%; transform: rotate(6deg); }
+.hero-stat-pill:nth-child(3) { top: 65%; left: 8%; transform: rotate(-5deg); }
+.hero-stat-pill:nth-child(4) { top: 80%; right: 8%; transform: rotate(7deg); }
+
+.hero-stat-pill:nth-child(1):hover { transform: translateY(-4px) rotate(-8deg) scale(1.05); }
+.hero-stat-pill:nth-child(2):hover { transform: translateY(-4px) rotate(6deg) scale(1.05); }
+.hero-stat-pill:nth-child(3):hover { transform: translateY(-4px) rotate(-5deg) scale(1.05); }
+.hero-stat-pill:nth-child(4):hover { transform: translateY(-4px) rotate(7deg) scale(1.05); }
+
+@media (max-width: 968px) {
+  .hero-stat-pill {
+    padding: 4px 10px;
+    font-size: 0.65rem;
+  }
+  .hero-stat-pill:nth-child(1) { top: 35%; left: 2%; transform: rotate(-6deg); }
+  .hero-stat-pill:nth-child(2) { top: 50%; right: 2%; transform: rotate(5deg); }
+  .hero-stat-pill:nth-child(3) { top: 70%; left: 4%; transform: rotate(-4deg); }
+  .hero-stat-pill:nth-child(4) { top: 85%; right: 4%; transform: rotate(6deg); }
+}
+
+@media (max-width: 580px) {
+  .hero-stats-pills { display: none; } /* Hide on very small screens if they overlap too much, or reposition */
+}
+
+@media (max-width: 768px) {
+  .hero-banner-img {
+    aspect-ratio: 16/9;
+    border-radius: var(--radius-lg);
+  }
+  .hero-atelier-badge {
+    font-size: 1.1rem;
+    padding: 8px 24px;
+    bottom: -16px;
+  }
+}
