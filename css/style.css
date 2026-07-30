@@ -1485,7 +1485,7 @@ body {
   display: block;
 }
 
-.hero-atelier-badge {
+.hero-badge {
   position: absolute;
   bottom: -20px;
   left: 50%;
@@ -1608,7 +1608,7 @@ body {
     aspect-ratio: 16/9;
     border-radius: var(--radius-lg);
   }
-  .hero-atelier-badge {
+  .hero-badge {
     font-size: 1.1rem;
     padding: 8px 24px;
     bottom: -16px;

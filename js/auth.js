@@ -74,7 +74,7 @@ function mountUi() {
     <div class="auth-modal" id="authModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="authTitle">
       <div class="auth-panel">
         <button class="auth-close" type="button" aria-label="Close account dialog">×</button>
-        <p class="auth-kicker">Jol Kona Atelier</p>
+        <p class="auth-kicker">Jol Kona</p>
         <h2 id="authTitle"><span class="login-copy">Welcome back</span><span class="signup-copy">Create your account</span></h2>
         <p class="auth-subtitle"><span class="login-copy">Sign in to keep your favourites close.</span><span class="signup-copy">Save your favourites and make every gift more personal.</span></p>
         <div class="auth-message" id="authMessage" aria-live="polite"></div>
