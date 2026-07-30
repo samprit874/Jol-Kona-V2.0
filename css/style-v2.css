@@ -190,12 +190,182 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 
 /* ─── Hero Section (Premium Full-Screen) ─── */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+  min-height: auto;
+  display: block;
   position: relative;
   overflow: hidden;
+  padding-top: 100px;
+  padding-bottom: 64px;
   background: linear-gradient(135deg, var(--cream) 0%, var(--soft-beige) 100%);
+}
+
+/* ═══════ Facebook-Style Cover Photo Header (Front Page Banner) ═══════ */
+.fb-cover-container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto var(--space-2xl) auto;
+  background: var(--cream, #FFF9F6);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-large);
+  border: 1px solid var(--border-medium);
+  position: relative;
+  z-index: 5;
+}
+
+.fb-cover-photo-wrapper {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 38vw, 440px);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--soft-beige), var(--cream));
+}
+
+.fb-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fb-cover-photo-wrapper:hover .fb-cover-image {
+  transform: scale(1.02);
+}
+
+.fb-cover-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(24, 24, 24, 0.7) 0%, rgba(24, 24, 24, 0.15) 35%, transparent 70%);
+  pointer-events: none;
+}
+
+.fb-cover-badge {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  font-family: var(--font-modern);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.fb-cover-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
+  background: #ffffff;
+}
+
+.fb-profile-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 var(--space-xl) var(--space-lg) var(--space-xl);
+  margin-top: -68px;
+  position: relative;
+  z-index: 10;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  background: linear-gradient(180deg, transparent 0%, rgba(248, 246, 242, 0.98) 60px, var(--cream) 100%);
+}
+
+.fb-profile-left {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.fb-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 5px solid #ffffff;
+  background: #ffffff;
+  box-shadow: 0 10px 32px rgba(24, 24, 24, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  padding: 14px;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fb-avatar:hover {
+  transform: scale(1.04);
+}
+
+.fb-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.fb-page-info {
+  padding-bottom: 6px;
+}
+
+.fb-page-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+
+.fb-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  color: var(--rose-gold);
+  filter: drop-shadow(0 2px 6px rgba(200, 162, 122, 0.3));
+}
+
+.fb-page-subtitle {
+  font-family: var(--font-modern);
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: var(--text-light);
+  margin: 0 0 8px 0;
+}
+
+.fb-page-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.fb-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.fb-page-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 8px;
 }
 
 .hero-bg-pattern {
@@ -953,8 +1123,18 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   .section-title { font-size: clamp(1.5rem, 5vw, 2rem); }
   .section-subtitle { font-size: 0.9375rem; }
   
-  .hero { min-height: auto; padding: 100px 0 40px; }
+  .hero { min-height: auto; padding: 90px 0 36px; }
   .hero-content { gap: var(--space-xl); }
+  
+  /* Facebook-Style Cover Header Mobile */
+  .fb-cover-container { border-radius: var(--radius-lg); margin-bottom: var(--space-xl); }
+  .fb-cover-photo-wrapper { height: 210px; }
+  .fb-cover-badge { bottom: 12px; right: 12px; padding: 6px 12px; font-size: 0.72rem; }
+  .fb-profile-bar { flex-direction: column; align-items: flex-start; padding: 0 var(--space-md) var(--space-md) var(--space-md); margin-top: -55px; gap: 14px; }
+  .fb-profile-left { flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; }
+  .fb-avatar { width: 105px; height: 105px; border-width: 4px; padding: 10px; }
+  .fb-page-actions { width: 100%; justify-content: flex-start; gap: 8px; }
+  .fb-page-actions .btn { flex: 1; min-width: calc(50% - 6px); padding: 10px 14px; font-size: 0.75rem; }
   .hero-image-wrapper { max-width: 280px; }
   .hero-title { font-size: clamp(1.75rem, 6vw, 2.5rem); }
   .hero-description { font-size: 1rem; }
