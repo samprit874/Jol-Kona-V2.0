@@ -2,10 +2,39 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/fireba
 import {
   getAuth, setPersistence, browserLocalPersistence, onAuthStateChanged,
   createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  signInWithPopup, GoogleAuthProvider, sendEmailVerification,
+  signInWithPopup, GoogleAuthProvider,
   sendPasswordResetEmail, signOut, updateProfile
 } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { firebaseConfig, isFirebaseConfigured } from './firebase-config.js';
+
+// Endpoint that generates a Firebase verification link and sends it through
+// Resend. The same origin is used in production; override at runtime by
+// setting `window.JOL_KONA_API_BASE` before this script loads.
+const API_BASE =
+  (typeof window !== 'undefined' && window.JOL_KONA_API_BASE) || '';
+
+/**
+ * Ask the serverless /api/send-verification endpoint to email a verification
+ * link to the freshly-registered user. Returns `true` on success.
+ */
+async function requestServerVerificationEmail(email, displayName) {
+  try {
+    const response = await fetch(`${API_BASE}/api/send-verification`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, displayName }),
+    });
+    if (!response.ok) {
+      const payload = await response.json().catch(() => ({}));
+      console.error('Verification email request failed:', payload);
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error('Verification email request failed:', error);
+    return false;
+  }
+}
 
 const accountPage = 'account.html';
 let auth;
@@ -113,8 +142,21 @@ async function submitEmailForm(event) {
     if (signup) {
       credential = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(credential.user, { displayName: name });
-      await sendEmailVerification(credential.user);
-      setMessage('Your account is ready. We sent a verification link to your inbox.', 'success');
+      // Verification email is now sent server-side through Resend so we can use
+      // a custom template. The client SDK's `sendEmailVerification` is no
+      // longer used for new sign-ups.
+      const sent = await requestServerVerificationEmail(
+        credential.user.email,
+        credential.user.displayName
+      );
+      if (sent) {
+        setMessage('Verification email sent! Please check your inbox.', 'success');
+      } else {
+        setMessage(
+          'Your account is ready, but we couldn\'t send the verification email right now. Please try again from your account page in a moment.',
+          'error'
+        );
+      }
       renderAccount(auth.currentUser);
     } else {
       await signInWithEmailAndPassword(auth, email, password);
@@ -137,8 +179,19 @@ async function forgotPassword() {
   catch (error) { setMessage(friendlyError(error), 'error'); }
 }
 async function sendVerification() {
-  try { await sendEmailVerification(auth.currentUser); setMessage('Verification email sent. Please check your inbox.', 'success'); }
-  catch (error) { setMessage(friendlyError(error), 'error'); }
+  if (!auth?.currentUser) return;
+  const sent = await requestServerVerificationEmail(
+    auth.currentUser.email,
+    auth.currentUser.displayName
+  );
+  if (sent) {
+    setMessage('Verification email sent! Please check your inbox.', 'success');
+  } else {
+    setMessage(
+      'We couldn\'t send the verification email right now. Please try again in a moment.',
+      'error'
+    );
+  }
 }
 
 function addNavControl() {
