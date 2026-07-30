@@ -419,20 +419,54 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   transform: scale(1.08);
 }
 
+/* Tag chips live in the info meta-row — they never cover the product photo */
+.product-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--space-xs);
+}
+
+.product-card-meta .product-card-category {
+  margin-bottom: 0;
+}
+
 .product-card-badge {
-  position: absolute;
-  top: var(--space-md);
-  left: var(--space-md);
-  background: var(--glass);
-  backdrop-filter: blur(8px);
-  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 2px 10px;
   border-radius: var(--radius-full);
-  font-family: var(--font-sketch);
-  font-size: 0.75rem;
-  font-weight: 400;
-  text-transform: none;
-  letter-spacing: 0.03em;
+  background: var(--white);
+  border: 1px solid var(--border-medium);
   color: var(--rose-gold-dark);
+  font-family: var(--font-modern);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+.product-card-badge.badge--bestseller {
+  background: #F6ECD4;
+  border-color: rgba(184,134,11,0.35);
+  color: #94690A;
+}
+
+.product-card-badge.badge--new {
+  background: #E9F3EB;
+  border-color: rgba(70,121,90,0.3);
+  color: #46795A;
+}
+
+.product-card-badge.badge--popular {
+  background: #FBE7DF;
+  border-color: rgba(168,134,96,0.35);
+  color: #B0653F;
 }
 
 .product-card-info {
@@ -930,6 +964,8 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   .products-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-md); }
   .product-card-info { padding: var(--space-md); }
   .product-card-name { font-size: 1rem; }
+  .product-card-meta { gap: 4px; }
+  .product-card-badge { font-size: 0.55rem; padding: 2px 8px; letter-spacing: 0.05em; }
   
   .collections-grid { grid-template-columns: 1fr; gap: var(--space-md); }
   .collection-card { aspect-ratio: 4/3; }
