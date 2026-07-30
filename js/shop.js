@@ -438,21 +438,28 @@
     const cart = getCart();
     const inWishlist = wishlist.has(productId);
     const cartQuantity = cart[productId]?.quantity || 0;
+    // Tags are rendered as tiny inline chips in the info row (never overlaid on the photo)
+    const badgeSlug = snapshot.badge ? slugify(snapshot.badge) : '';
+    const badgeVariant = ['bestseller', 'new', 'popular', 'handmade', 'handpainted'].includes(badgeSlug)
+      ? ` badge--${badgeSlug}`
+      : '';
     const badgeHtml = snapshot.badge
-      ? `<span class="product-card-badge">${escapeHtml(snapshot.badge)}</span>`
+      ? `<span class="product-card-badge${badgeVariant}">${escapeHtml(snapshot.badge)}</span>`
       : '';
 
     return `
       <div class="product-card reveal visible" data-category="${escapeHtml(snapshot.category)}" data-product-id="${escapeHtml(productId)}" style="transition-delay:${(index % 4) * 0.05}s">
         <div class="product-card-image">
           <img src="${escapeHtml(snapshot.image)}" alt="${escapeHtml(snapshot.name)}" loading="lazy">
-          ${badgeHtml}
           <div class="product-card-actions">
             <button type="button" class="product-action-btn wishlist-btn ${inWishlist ? 'is-active' : ''}" data-product-id="${escapeHtml(productId)}" aria-label="${inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}" aria-pressed="${inWishlist}">${inWishlist ? '♥' : '♡'}</button>
           </div>
         </div>
         <div class="product-card-info">
-          <span class="product-card-category">${escapeHtml(getCategoryLabel(snapshot.category))}</span>
+          <div class="product-card-meta">
+            <span class="product-card-category">${escapeHtml(getCategoryLabel(snapshot.category))}</span>
+            ${badgeHtml}
+          </div>
           <h4 class="product-card-name">${escapeHtml(snapshot.name)}</h4>
           <p class="product-card-desc">${escapeHtml(snapshot.description)}</p>
           <div class="product-card-buttons">
