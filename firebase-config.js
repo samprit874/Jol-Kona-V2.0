@@ -11,16 +11,16 @@
  *
  * Note: Firebase web configuration is public and safe to expose in client-side
  * browser code. Secure your database and storage with Firebase Security Rules.
- */
-
+*/
+ // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "G-YOUR_MEASUREMENT_ID"
+  apiKey: "AIzaSyCbXEl2wCoLHiKdjuDaiKv1LC54VPxq5bQ",
+  authDomain: "jol-kona.firebaseapp.com",
+  projectId: "jol-kona",
+  storageBucket: "jol-kona.firebasestorage.app",
+  messagingSenderId: "8094183004",
+  appId: "1:8094183004:web:ceebbcb2bba0a353de0099",
+  measurementId: "G-56H00J5PG1"
 };
 
 /*
