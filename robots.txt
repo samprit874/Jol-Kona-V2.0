@@ -1,0 +1,12 @@
+# জলকণা (Jol Kona) — robots.txt
+# https://jolkona.dpdns.org/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jolkona.dpdns.org/sitemap.xml
+
+# Disallow admin/private areas (if any in future)
+# Disallow: /admin/
+# Disallow: /private/
