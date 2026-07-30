@@ -34,7 +34,7 @@
   --font-bengali-alt: var(--font-bengali-display);
   --font-heading: 'Anek Bangla', 'Hind Siliguri', 'Cormorant Garamond', serif;
   --font-body: 'Hind Siliguri', 'Inter', -apple-system, sans-serif;
-  --font-script: 'Island Moments', cursive;
+  --font-script: 'Caveat', cursive;
   --font-handwritten: 'Shantell Sans', 'Hind Siliguri', cursive;
   --font-sketch: 'Cabin Sketch', cursive;
   --font-artistic: 'Playwrite NZ Guides', cursive;
@@ -927,7 +927,7 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   .hero-cta-group { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
   .hero-cta-group .btn { width: 100%; }
   
-  .products-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+  .products-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-md); }
   .product-card-info { padding: var(--space-md); }
   .product-card-name { font-size: 1rem; }
   
@@ -946,7 +946,7 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 @media (max-width: 480px) {
-  .products-grid { grid-template-columns: 1fr; }
-  .collections-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .collections-grid { grid-template-columns: 1fr 1fr; }
   .instagram-grid { grid-template-columns: repeat(2, 1fr); }
 }
