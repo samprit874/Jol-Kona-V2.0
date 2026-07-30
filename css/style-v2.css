@@ -3,7 +3,11 @@
    Premium Luxury Design System
    ═══════════════════════════════════════════════════════════════ */
 
-/* ─── CSS Custom Properties (New Palette) ─── */
+/* ─── CSS Custom Properties (New Palette + Bengali Typography V2) ─── */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Anek+Bangla:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/li-ador-noirrit');
+@import url('https://fonts.maateen.me/baloo-da-2/font.css');
+
 :root {
   /* New Color Palette */
   --cream: #F8F6F2;
@@ -22,15 +26,21 @@
   --shadow-medium: 0 8px 32px rgba(24,24,24,0.08);
   --shadow-large: 0 16px 48px rgba(24,24,24,0.12);
   
-  /* Typography */
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
+  /* Typography - New Bengali Stack */
+  --font-bengali-body: 'Hind Siliguri', 'Anek Bangla', 'SolaimanLipi', sans-serif;
+  --font-bengali-heading: 'Anek Bangla', 'Hind Siliguri', 'Baloo Da 2', sans-serif;
+  --font-bengali-display: 'Li Ador Noirrit', 'Anek Bangla', 'Hind Siliguri', sans-serif;
+  --font-bengali: var(--font-bengali-body);
+  --font-bengali-alt: var(--font-bengali-display);
+  --font-heading: 'Anek Bangla', 'Hind Siliguri', 'Cormorant Garamond', serif;
+  --font-body: 'Hind Siliguri', 'Inter', -apple-system, sans-serif;
   --font-script: 'Island Moments', cursive;
-  --font-handwritten: 'Shantell Sans', cursive;
+  --font-handwritten: 'Shantell Sans', 'Hind Siliguri', cursive;
   --font-sketch: 'Cabin Sketch', cursive;
   --font-artistic: 'Playwrite NZ Guides', cursive;
-  --font-modern: 'Faculty Glyphic', sans-serif;
-  --font-notes: 'Caveat', cursive;
+  --font-modern: 'Faculty Glyphic', 'Hind Siliguri', sans-serif;
+  --font-notes: 'Caveat', 'Hind Siliguri', cursive;
+  --font-lipi-ador: 'Li Ador Noirrit', 'Hind Siliguri', sans-serif;
   
   /* Spacing */
   --space-xs: 4px;

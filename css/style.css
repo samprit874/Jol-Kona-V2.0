@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Faculty+Glyphic&family=Island+Moments&family=Playwrite+NZ+Guides&family=Shantell+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Caveat:wght@400;500;600;700&display=swap');
+/* ─── Jol Kona Bengali Typography V2 - Google + Lipighor ─── */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Anek+Bangla:wght@100;200;300;400;500;600;700;800&family=Cabin+Sketch:wght@400;700&family=Faculty+Glyphic&family=Island+Moments&family=Playwrite+NZ+Guides&family=Shantell+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Caveat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/li-ador-noirrit');
+@import url('https://fonts.maateen.me/baloo-da-2/font.css');
+@import url('https://fonts.maateen.me/kalpurush/font.css');
+@import url('https://fonts.maateen.me/solaiman-lipi/font.css');
 
 /* ─── Prompt Font Classes ─── */
 .island-moments-regular {  
@@ -53,16 +58,25 @@
   --glass-bg: rgba(255,255,255,0.72);
   --glass-border: rgba(255,255,255,0.4);
   --glass-shadow: rgba(45,41,38,0.06);
-  --font-heading: 'Playfair Display', 'Noto Serif Bengali', serif;
-  --font-bengali: 'Noto Serif Bengali', serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
+  /* ─── New Bengali Typography: Hind Siliguri + Anek Bangla + Lipighor ─── */
+  --font-bengali-body: 'Hind Siliguri', 'Anek Bangla', 'SolaimanLipi', 'Kalpurush', sans-serif;
+  --font-bengali-heading: 'Anek Bangla', 'Hind Siliguri', 'Baloo Da 2', sans-serif;
+  --font-bengali-display: 'Li Ador Noirrit', 'Anek Bangla', 'Hind Siliguri', sans-serif;
+  --font-bengali-heritage: 'Alinur Shishir', 'Li Ador Noirrit', 'Hind Siliguri', serif;
+  --font-bengali-decorative: 'Alinur Mayabati', 'Choyna Tista', 'Hind Siliguri', cursive;
+  --font-bengali: var(--font-bengali-body);
+  --font-bengali-alt: var(--font-bengali-display);
+  --font-heading: 'Anek Bangla', 'Hind Siliguri', 'Playfair Display', serif;
+  --font-body: 'Hind Siliguri', 'Inter', -apple-system, sans-serif;
   --font-accent: 'Cormorant Garamond', serif;
   --font-script: 'Island Moments', cursive;
-  --font-handwritten: 'Shantell Sans', cursive;
+  --font-handwritten: 'Shantell Sans', 'Hind Siliguri', cursive;
   --font-sketch: 'Cabin Sketch', cursive;
   --font-artistic: 'Playwrite NZ Guides', cursive;
-  --font-modern: 'Faculty Glyphic', sans-serif;
-  --font-notes: 'Caveat', cursive;
+  --font-modern: 'Faculty Glyphic', 'Hind Siliguri', sans-serif;
+  --font-notes: 'Caveat', 'Hind Siliguri', cursive;
+  --font-lipi-ador: 'Li Ador Noirrit', 'Hind Siliguri', sans-serif;
+  --font-lipi-shishir: 'Alinur Shishir', 'Hind Siliguri', serif;
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
