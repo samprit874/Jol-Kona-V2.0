@@ -195,6 +195,22 @@
     window.scrollTo({ top, behavior: 'smooth' });
   }
 
+  function scrollToHashWhenReady(hash) {
+    const target = document.querySelector(hash);
+    if (!target) return;
+    let attempts = 0;
+    const attemptScroll = () => {
+      attempts += 1;
+      // main.js locks body scrolling until the loader hides; wait for it.
+      if (document.body.style.overflow === 'hidden' && attempts < 40) {
+        window.setTimeout(attemptScroll, 100);
+        return;
+      }
+      scrollToElement(hash);
+    };
+    window.setTimeout(attemptScroll, 100);
+  }
+
   function showToast(message) {
     let toast = document.getElementById('shopToast');
     if (!toast) {
@@ -597,7 +613,13 @@
     const productId = actionElement.dataset.productId;
 
     if (action === 'go-shop') {
-      scrollToElement('#shop');
+      // The shop grid lives on the homepage; navigate there if it isn't
+      // part of the current page (e.g. on wishlist-cart.html).
+      if (document.getElementById('shop')) {
+        scrollToElement('#shop');
+      } else {
+        window.location.href = 'index.html#shop';
+      }
       return;
     }
 
@@ -673,11 +695,32 @@
       }
     });
 
-    document.getElementById('wishlistNavBtn')?.addEventListener('click', () => scrollToElement('#wishlist'));
-    document.getElementById('cartNavBtn')?.addEventListener('click', () => scrollToElement('#cart'));
+    // The navbar wishlist/cart icons link to wishlist-cart.html#wishlist and
+    // wishlist-cart.html#cart. When the matching section already exists on the
+    // current page (i.e. we're on wishlist-cart.html), smooth-scroll to it
+    // instead of navigating away.
+    document.getElementById('wishlistNavBtn')?.addEventListener('click', (event) => {
+      if (document.getElementById('wishlist')) {
+        event.preventDefault();
+        scrollToElement('#wishlist');
+      }
+    });
+    document.getElementById('cartNavBtn')?.addEventListener('click', (event) => {
+      if (document.getElementById('cart')) {
+        event.preventDefault();
+        scrollToElement('#cart');
+      }
+    });
 
     renderProducts('all');
     renderSavedShop();
+
+    // If this page was opened via a #wishlist or #cart hash (e.g. from the
+    // navbar icons), scroll to it after the dynamic lists have rendered so
+    // the anchor lands at the right spot despite the layout shift.
+    if (window.location.hash === '#wishlist' || window.location.hash === '#cart') {
+      scrollToHashWhenReady(window.location.hash);
+    }
   }
 
   window.JolKonaShop = {
