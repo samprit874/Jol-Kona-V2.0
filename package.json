@@ -1,0 +1,22 @@
+{
+  "name": "jol-kona-v2",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Jol Kona V2.0 — static storefront with a serverless email-verification endpoint powered by Firebase Admin + Resend.",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site — no build step required.'",
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "resend": "^4.0.1"
+  },
+  "devDependencies": {
+    "vercel": "^39.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
