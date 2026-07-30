@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>My Account — Jol Kona</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Hind+Siliguri:wght@300;400;500;600&family=Faculty+Glyphic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+<body data-auth-required="true">
+  <nav class="nav scrolled" id="navbar" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand" aria-label="Jol Kona Home"><img src="img/logo.png" alt="Jol Kona" class="nav-brand-logo"></a>
+      <div class="nav-links"><a href="index.html#shop" class="nav-link">Shop</a><a href="custom-order.html" class="nav-link">Custom Order</a></div>
+      <div class="nav-actions"></div>
+    </div>
+  </nav>
+  <main class="account-page">
+    <section class="account-card" aria-live="polite">
+      <div class="account-avatar" data-auth-avatar></div>
+      <p class="section-overline">Your Atelier</p>
+      <h1 data-auth-name>Your account</h1>
+      <p class="account-email" data-auth-email></p>
+      <p class="account-notice" data-auth-verification hidden>Your email is not verified yet. <button type="button" data-auth-send-verification style="color:var(--rose-gold-dark);text-decoration:underline">Send verification email</button></p>
+      <div class="account-actions"><a href="wishlist-cart.html#wishlist" class="btn btn-secondary">My Wishlist</a><button type="button" class="btn btn-primary" data-auth-logout>Log out</button></div>
+    </section>
+  </main>
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>
