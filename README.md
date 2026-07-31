@@ -8,7 +8,7 @@ User accounts are powered entirely by **Firebase Authentication** (project `jol-
 
 ## Shop admin (products & reviews)
 
-The owner manages **products** and **customer reviews** from a private, unlinked page at `/admin.html` (Google sign-in + Firestore Security Rules — only allowlisted admin emails can write; visitors get read-only access). Content is stored in **Cloud Firestore** and appears on the live shop instantly, with the built-in `js/products.js` data kept as a fallback. See **[ADMIN-SETUP.md](ADMIN-SETUP.md)** for the one-time Firebase setup.
+The owner manages **products** and **customer reviews** from a clean private admin subdomain at `https://admin.jolkona.dpdns.org` (or directly via `/admin.html`) using Google sign-in + Firestore Security Rules — only allowlisted admin emails (`jolkona2007@gmail.com`) can write; visitors get read-only access. Content is stored in **Cloud Firestore** and appears on the live shop instantly, with the built-in `js/products.js` data kept as a fallback. See **[ADMIN-SETUP.md](ADMIN-SETUP.md)** for the one-time Firebase setup.
 
 ## Local development
 
