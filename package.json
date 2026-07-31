@@ -3,18 +3,11 @@
   "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "Jol Kona V2.0 — static storefront with a serverless email-verification endpoint.",
+  "description": "Jol Kona V2.0 — fully static storefront hosted on GitHub Pages with Firebase Authentication.",
   "scripts": {
-    "dev": "vercel dev",
+    "dev": "npx serve .",
     "build": "echo 'Static site — no build step required.'",
-    "start": "vercel dev"
-  },
-  "dependencies": {
-    "firebase-admin": "^12.7.0",
-    "resend": "^4.8.0"
-  },
-  "devDependencies": {
-    "vercel": "^39.0.0"
+    "start": "npx serve ."
   },
   "engines": {
     "node": ">=18.0.0"

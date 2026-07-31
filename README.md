@@ -1,45 +1,64 @@
 # Jol Kona V2.0
 
-## Authentication and verification email setup
+## Overview
 
-The storefront is static, but the branded verification-email endpoint is a Vercel serverless function. Email/password sign-up and sign-in use Firebase Authentication; verification links are minted securely on the server and delivered via Resend.
+Jol Kona V2.0 is a **fully static storefront** hosted on GitHub Pages at [jolkona.dpdns.org](https://jolkona.dpdns.org). There is no server-side code, no serverless functions, and no build step — just HTML, CSS, and JavaScript served directly from the repository.
 
-### Configure Firebase
+User accounts are powered entirely by **Firebase Authentication** (project `jol-kona`). Email verification uses Firebase's built-in default email sent from the client SDK via `sendEmailVerification`.
 
-1. Create/select a Firebase project and register a **Web app**.
-2. Copy its public web configuration to `firebase-config.js`.
-3. In **Firebase Authentication → Sign-in method**, enable **Email/Password** and **Google** (if Google sign-in is used).
-4. In **Firebase Authentication → Settings → Authorized domains**, add `jolkona.dpdns.org`, the Vercel deployment domain, and `localhost` for development.
-5. Add the exact `VERIFICATION_REDIRECT_URL` value (normally `https://jolkona.dpdns.org/account.html`) to Firebase's authorised continue URLs.
-
-### Configure Vercel and Resend
-
-Deploy the repository to Vercel so `/api/send-verification` is available. Set every variable from `.env.example` in **Vercel → Settings → Environment Variables**:
-
-| Variable | Purpose |
-| --- | --- |
-| `FIREBASE_PROJECT_ID` | Firebase project ID. |
-| `FIREBASE_CLIENT_EMAIL` | Firebase service-account client email. |
-| `FIREBASE_PRIVATE_KEY` | Firebase service-account private key. |
-| `RESEND_API_KEY` | Resend API key. |
-| `RESEND_FROM` | A sender address on a domain verified in Resend. |
-| `VERIFICATION_REDIRECT_URL` | Authorised Firebase continue URL after verification. |
-
-The endpoint validates the signed-in user's Firebase ID token before it generates a link, so it cannot be used to send mail to arbitrary addresses. If the site is served purely from GitHub Pages, the client automatically falls back to Firebase's built-in verification email; configure Firebase's email template for that fallback.
-
-### Local setup
+## Local development
 
 ```bash
 npm install
-cp .env.example .env
-# Fill in the values in .env
-vercel dev
+npm run dev
 ```
 
-### Included account behaviour
+This starts a local static file server (`npx serve .`). Open `http://localhost:3000` in your browser.
+
+## Firebase setup
+
+### 1. Create a Firebase project
+
+1. Go to the [Firebase Console](https://console.firebase.google.com) and create or select a project.
+2. Register a **Web app** and copy its public configuration object.
+3. Paste the configuration into `firebase-config.js` (replace the placeholder values).
+
+### 2. Enable sign-in providers
+
+In **Firebase Console → Authentication → Sign-in method**:
+
+- Enable **Email/Password** (the first toggle; do *not* enable "Email link").
+- Enable **Google** if you want Google sign-in on the storefront.
+
+### 3. Authorise domains
+
+In **Firebase Console → Authentication → Settings → Authorised domains**, add:
+
+- `jolkona.dpdns.org`
+- `localhost` (for local development)
+- Any GitHub Pages domain used during development (e.g. `<user>.github.io`)
+
+### 4. Customise the verification email
+
+The verification email is sent by Firebase's default template. To match Jol Kona's branding:
+
+1. Go to **Firebase Console → Authentication → Templates**.
+2. Select **Email address verification**.
+3. Edit the sender name, subject line, and body to your liking. You can use the `%DISPLAY_NAME%`, `%EMAIL%`, and `%LINK%` placeholders.
+4. Save. The next `sendEmailVerification` call from the site will use the updated template.
+
+To customise the sender address further, go to **Authentication → Templates → SMTP Settings** and provide your own mail server credentials.
+
+## Deployment
+
+Push to `main` and GitHub Pages will pick up the changes automatically. No build step, no environment variables, no server configuration required.
+
+## Included account behaviour
 
 - Email/password account creation and sign-in
 - Google sign-in and password reset
-- Branded Resend verification mail on Vercel, with safe Firebase fallback on a static host
+- Firebase-built-in verification email (sent from the client SDK)
 - Visible verification success/failure feedback on `account.html`
+- Friendly error messages for common authentication failures
+- Automatic `user.reload()` on the account page so the "email not verified" notice clears as soon as the verification link is followed
 - Separate, dynamically-set **Sign in** and **Create account** labels (they cannot render together)
