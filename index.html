@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Vercel Speed Insights (uncomment after running: npx vercel env pull)
   <script defer src="/_vercel/speed-insights/script.js"></script>
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -705,15 +707,11 @@
         </a>
       </div>
 
-      <!-- Auto-Sync Instagram Feed (powered by Elfsight) -->
-      <!-- To activate: 1) Go to elfsight.com 2) Create free Instagram Feed widget
-           3) Connect @jol_kona_ account 4) Replace the data-widget-id below -->
-      <div style="margin-top: var(--space-2xl);" class="reveal">
-        <p style="text-align:center; font-family: var(--font-accent); font-style: italic; color: var(--text-muted); margin-bottom: var(--space-md);">
-          ✨ Live from our Instagram — auto-updates with every new post
-        </p>
-        <div class="elfsight-app-PLACEHOLDER" data-elfsight-app-lazy></div>
-      </div>
+      <!-- Instagram Feed - Using static grid above (Elfsight widget optional)
+           To add live Instagram feed:
+           1) Go to elfsight.com 2) Create free Instagram Feed widget
+           3) Get your widget ID and add: <div class="elfsight-app-YOUR-ID"></div>
+      -->
     </div>
   </section>
 
@@ -914,8 +912,9 @@
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
   </a>
 
-  <!-- Instagram Auto-Feed Widget Script (Elfsight) -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://static.elfsight.com/platform/platform.js" defer></script>
+  <!-- Instagram Feed Script (Elfsight) - Uncomment when widget is configured
+  <script src="https://static.elfsight.com/platform/platform.js" defer></script>
+  -->
 
   <!-- Product Database -->
   <script src="js/products.js"></script>
