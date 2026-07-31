@@ -118,29 +118,6 @@ function mountUi() {
 }
 
 async function requestVerificationEmail(user) {
-  // Prefer the server endpoint so Jol Kona's branded Resend email is used. The
-  // Firebase fallback keeps verification working on the static GitHub Pages
-  // deployment, where /api routes are not available.
-  try {
-    const idToken = await user.getIdToken();
-    const response = await fetch('/api/send-verification', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ idToken })
-    });
-    if (response.ok && response.headers.get('content-type')?.includes('application/json')) return;
-    if (response.status !== 404 && response.headers.get('content-type')?.includes('application/json')) {
-      const data = await response.json().catch(() => ({}));
-      const error = new Error(data.error || 'verification-failed');
-      error.code = data.error;
-      throw error;
-    }
-  } catch (error) {
-    // A network error is expected on a static deployment. Other endpoint
-    // errors should be surfaced instead of incorrectly claiming success.
-    if (error?.code || error?.name !== 'TypeError') throw error;
-    console.info("Jol Kona: /api/send-verification is not reachable here — using Firebase's built-in verification email instead.");
-  }
   await sendEmailVerification(user);
 }
 
@@ -241,8 +218,14 @@ if (isFirebaseConfigured) {
   const app = initializeApp(firebaseConfig);
   auth = getAuth(app);
   setPersistence(auth, browserLocalPersistence).catch(() => {});
-  onAuthStateChanged(auth, user => {
+  onAuthStateChanged(auth, async user => {
     currentUser = user;
+    // On the account page, refresh the user's profile so the "Your email is
+    // not verified yet" notice clears as soon as the verification link is
+    // followed, instead of lingering until re-login.
+    if (user && document.body.dataset.authRequired === 'true') {
+      try { await user.reload(); } catch (_) { /* offline or transient */ }
+    }
     renderAccount(user);
     guardAccountPage(user);
     if (user && sessionStorage.getItem('jolKonaAfterLogin')) {
