@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Admin subdomain redirect — must run before anything else -->
+  <script>
+    if (window.location.hostname === 'admin.jolkona.dpdns.org') {
+      window.location.replace('/admin.html');
+    }
+  </script>
   <!-- Vercel Speed Insights (uncomment after running: npx vercel env pull)
   <script defer src="/_vercel/speed-insights/script.js"></script>
   -->
