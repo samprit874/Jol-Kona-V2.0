@@ -366,32 +366,8 @@
   }
   animateCounters();
 
-  // ─── Reviews Auto Scroll ───
-  const reviewsSlider = document.querySelector('.reviews-slider');
-  if (reviewsSlider) {
-    let isAutoScrolling = true;
-    let scrollInterval;
-
-    function startAutoScroll() {
-      scrollInterval = setInterval(() => {
-        if (isAutoScrolling) {
-          reviewsSlider.scrollLeft += 1;
-          if (reviewsSlider.scrollLeft >= reviewsSlider.scrollWidth - reviewsSlider.clientWidth) {
-            reviewsSlider.scrollLeft = 0;
-          }
-        }
-      }, 30);
-    }
-
-    startAutoScroll();
-
-    reviewsSlider.addEventListener('mouseenter', () => { isAutoScrolling = false; });
-    reviewsSlider.addEventListener('mouseleave', () => { isAutoScrolling = true; });
-    reviewsSlider.addEventListener('touchstart', () => { isAutoScrolling = false; });
-    reviewsSlider.addEventListener('touchend', () => {
-      setTimeout(() => { isAutoScrolling = true; }, 3000);
-    });
-  }
+  // ─── Reviews Live Marquee ───
+  // Handled by js/reviews-marquee.js so the reviews can loop seamlessly.
 
   // ─── Smooth Cursor for Interactive Elements ───
   const interactiveElements = document.querySelectorAll('a, button, .product-card, .collection-card, .occasion-card');
