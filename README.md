@@ -13,12 +13,6 @@ The account experience is deployed as static files and works on GitHub Pages wit
 
 `js/auth.js` uses Firebase JavaScript SDK 10.14.1 modular imports and browser-local persistence, so a signed-in visitor remains signed in between browser sessions. It provides email/password sign-up and sign-in, Google sign-in, reset-password email, verification email, logout, profile rendering, and a protected `account.html` route. To protect another static page, add `data-auth-required="true"` to its `<body>` element.
 
-## Custom verification email (Firebase Admin + Resend)
-
-The default Firebase client-side verification email has been replaced with a serverless flow:
-
-1. After `createUserWithEmailAndPassword` succeeds, the client `POST`s `{ email, displayName }` to `/api/send-verification`.
-2. The Vercel serverless function in `api/send-verification.js` uses the **Firebase Admin SDK** (`getAuth().generateEmailVerificationLink`) to mint a one-tap verification link.
 3. The function then hands the link to **Resend**, which sends the email using the pre-built Resend template `a319bebb-0cc9-41d5-9826-aff1d48d00d5` and the variables `{ user_first_name, verification_url }`.
 4. The client shows a success toast: **"Verification email sent! Please check your inbox."**
 
