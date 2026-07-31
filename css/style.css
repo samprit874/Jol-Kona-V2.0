@@ -1,5 +1,6 @@
 /* ─── Jol Kona Bengali Typography V2 - Google + Lipighor ─── */
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Anek+Bangla:wght@100;200;300;400;500;600;700;800&family=Cabin+Sketch:wght@400;700&family=Faculty+Glyphic&family=Island+Moments&family=Playwrite+NZ+Guides&family=Shantell+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Caveat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Island+Moments&display=block');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Anek+Bangla:wght@100;200;300;400;500;600;700;800&family=Cabin+Sketch:wght@400;700&family=Faculty+Glyphic&family=Playwrite+NZ+Guides&family=Shantell+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Caveat:wght@400;500;600;700&display=swap');
 @import url('https://fonts.cdnfonts.com/css/li-ador-noirrit');
 @import url('https://fonts.maateen.me/baloo-da-2/font.css');
 @import url('https://fonts.maateen.me/kalpurush/font.css');
@@ -176,6 +177,9 @@ p { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
   margin-bottom: 4px;
   opacity: 0;
   letter-spacing: 0.02em;
+}
+
+.fonts-loaded .loader-brand {
   animation: fadeInScale 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 
