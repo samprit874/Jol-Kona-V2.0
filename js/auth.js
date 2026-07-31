@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider, signOut
 } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { firebaseConfig, isFirebaseConfigured } from './firebase-config.js';
+import { isAdminEmail, ADMIN_PAGE } from './admin-config.js';
 
 const accountPage = 'account.html';
 const redirectStateKey = 'jolKonaGoogleRedirect';
@@ -204,6 +205,28 @@ function accountMenuMarkup() {
     </div>`;
 }
 
+// Show an "Admin Panel" shortcut in the account dropdown — ONLY for
+// accounts on the admin allowlist (js/admin-config.js). Even if someone
+// hand-edits this, Firebase Security Rules still reject non-admin writes.
+function syncAdminMenuItem(user) {
+  const menu = document.querySelector('#accountMenu');
+  if (!menu) return;
+  const existing = menu.querySelector('[data-auth-admin-link]');
+  if (user && isAdminEmail(user.email)) {
+    if (!existing) {
+      const firstItem = menu.querySelector('.account-menu-list li');
+      firstItem?.insertAdjacentHTML('afterend', `<li role="none"><a class="account-menu-item" role="menuitem" href="${ADMIN_PAGE}" data-auth-admin-link>
+          <span class="account-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </span>
+          <span class="account-menu-label">Admin Panel</span>
+        </a></li>`);
+    }
+  } else if (existing) {
+    existing.closest('li')?.remove();
+  }
+}
+
 function ensureAccountMenu() {
   if (document.querySelector('#accountMenu')) return;
   document.body.insertAdjacentHTML('beforeend', accountMenuMarkup());
@@ -377,6 +400,7 @@ if (isFirebaseConfigured) {
   onAuthStateChanged(auth, user => {
     currentUser = user;
     renderAccount(user);
+    syncAdminMenuItem(user);
     guardAccountPage(user);
     if (user) {
       sessionStorage.removeItem(redirectStateKey);

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Admin Panel — Jol Kona</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Hind+Siliguri:wght@300;400;500;600&family=Faculty+Glyphic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+<body class="admin-body">
+
+  <!-- ═══════ Topbar ═══════ -->
+  <header class="admin-topbar">
+    <a href="index.html" class="admin-brand">
+      <img src="img/logo.png" alt="Jol Kona">
+      <div class="admin-brand-text">
+        <strong>জলকণা</strong>
+        <span><i class="admin-lock-dot" aria-hidden="true"></i> Private Admin</span>
+      </div>
+    </a>
+    <div class="admin-topbar-actions">
+      <div class="admin-user-chip" id="adminUserChip" hidden>
+        <span class="admin-chip-initial" id="adminUserInitial">A</span>
+        <span id="adminUserEmail"></span>
+      </div>
+      <a class="admin-btn admin-btn-ghost admin-btn-small" href="index.html" target="_blank" rel="noopener">View store ↗</a>
+      <button type="button" class="admin-btn admin-btn-danger admin-btn-small" id="adminLogout" hidden>Log out</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+
+    <!-- ═══════ State: checking session ═══════ -->
+    <section class="admin-state-card" id="adminLoading">
+      <div class="admin-state-icon">⏳</div>
+      <h1>Checking access…</h1>
+      <p>Please wait a moment.</p>
+    </section>
+
+    <!-- ═══════ State: sign-in required ═══════ -->
+    <section class="admin-state-card" id="adminSignin" hidden>
+      <div class="admin-state-icon">🔐</div>
+      <h1>Admin sign in</h1>
+      <p>This area is private. Only the Jol Kona owner account can manage products & customer reviews.</p>
+      <button type="button" class="admin-google-btn" id="adminGoogleSignIn">
+        <span class="g-mark">G</span> Continue with Google
+      </button>
+      <div class="admin-message" id="adminAuthMessage" role="alert"></div>
+      <p class="admin-auth-note">Firestore Security Rules block every account that isn't on the admin list — a normal visitor can never add or change anything.</p>
+    </section>
+
+    <!-- ═══════ State: access denied ═══════ -->
+    <section class="admin-state-card" id="adminDenied" hidden>
+      <div class="admin-state-icon">⛔</div>
+      <h1>Access denied</h1>
+      <p id="adminDeniedText">This Google account is not on the admin list.</p>
+      <button type="button" class="admin-btn admin-btn-ghost" id="adminDeniedSwitch">Try a different account</button>
+      <p class="admin-auth-note">Is this your account? Add your email to <code>js/admin-config.js</code> and the Firestore Rules — see ADMIN-SETUP.md.</p>
+    </section>
+
+    <!-- ═══════ State: dashboard ═══════ -->
+    <section id="adminDashboard" hidden>
+      <div class="admin-tabs" role="tablist">
+        <button type="button" class="admin-tab active" role="tab" aria-selected="true" data-tab="products">🎁 Products <span class="admin-count" id="productCount">0</span></button>
+        <button type="button" class="admin-tab" role="tab" aria-selected="false" data-tab="reviews">💬 Reviews <span class="admin-count" id="reviewCount">0</span></button>
+      </div>
+
+      <!-- ░░░░░░ PRODUCTS ░░░░░░ -->
+      <div class="admin-pane" id="pane-products">
+        <div class="admin-grid">
+
+          <!-- Product form -->
+          <div class="admin-card">
+            <h2 class="admin-card-title"><span id="productFormTitle">Add a new product</span></h2>
+            <p class="admin-card-sub">Saved products appear on the shop instantly — no coding, no GitHub upload. 🎉</p>
+
+            <form id="productForm" novalidate>
+              <input type="hidden" id="productEditId">
+
+              <div class="admin-field">
+                <label for="productName">Product name *</label>
+                <input class="admin-input" id="productName" type="text" maxlength="120" placeholder="e.g. Rose Dome Gift Box" required>
+              </div>
+
+              <div class="admin-field-row">
+                <div class="admin-field">
+                  <label for="productCategory">Category *</label>
+                  <select class="admin-select" id="productCategory" required>
+                    <option value="gift-hampers">Gift Hampers</option>
+                    <option value="custom-chocolates">Custom Chocolates</option>
+                    <option value="clay-jewellery">Clay Jewellery</option>
+                    <option value="pipe-cleaner">Pipe Cleaner</option>
+                    <option value="keychains">Keychains</option>
+                  </select>
+                </div>
+                <div class="admin-field">
+                  <label for="productOrder">Order</label>
+                  <input class="admin-input" id="productOrder" type="number" min="0" step="1" placeholder="0">
+                </div>
+              </div>
+
+              <div class="admin-field">
+                <label for="productBadge">Badge <em>(e.g. New, Bestseller — optional)</em></label>
+                <input class="admin-input" id="productBadge" type="text" maxlength="30" placeholder="New">
+              </div>
+
+              <div class="admin-field">
+                <label for="productImage">Photo *</label>
+                <div class="admin-upload-row">
+                  <label class="admin-upload-btn">📷 Upload photo
+                    <input type="file" id="productImageFile" accept="image/*">
+                  </label>
+                  <span class="admin-upload-name" id="productImageFileName">or paste a link below</span>
+                </div>
+                <input class="admin-input" id="productImage" style="margin-top:8px" type="url" maxlength="1024" placeholder="https://i.ibb.co/… (ImgBB link)">
+                <div class="admin-image-preview" id="productImagePreview">
+                  <span class="admin-preview-empty">Photo preview</span>
+                </div>
+              </div>
+
+              <div class="admin-field">
+                <label for="productDescription">Description</label>
+                <textarea class="admin-textarea" id="productDescription" maxlength="600" placeholder="One or two warm lines about this creation…"></textarea>
+              </div>
+
+              <div class="admin-field">
+                <label for="productDmText">Instagram DM text <em>(auto-filled from the name if empty)</em></label>
+                <input class="admin-input" id="productDmText" type="text" maxlength="300" placeholder="Hi! I'd like to order …">
+              </div>
+
+              <div class="admin-message" id="productFormMessage" role="alert"></div>
+
+              <div class="admin-form-actions">
+                <button type="submit" class="admin-btn admin-btn-primary" id="productSaveBtn">Publish product</button>
+                <button type="button" class="admin-btn admin-btn-ghost" id="productCancelBtn" hidden>Cancel</button>
+              </div>
+            </form>
+
+            <div class="admin-seed-box" id="productSeedBox" hidden>
+              <span>🌱 Nothing here yet. Import your <strong>12 existing products</strong> in one click?</span>
+              <button type="button" class="admin-btn admin-btn-primary admin-btn-small" id="seedProductsBtn">Import existing products</button>
+            </div>
+          </div>
+
+          <!-- Product list -->
+          <div class="admin-card">
+            <h2 class="admin-card-title">
+              Live products
+              <button type="button" class="admin-btn admin-btn-ghost admin-btn-small" id="refreshProductsBtn">↻ Refresh</button>
+            </h2>
+            <p class="admin-card-sub">These appear on jolkona.dpdns.org in this exact order.</p>
+            <div class="admin-list" id="productList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ░░░░░░ REVIEWS ░░░░░░ -->
+      <div class="admin-pane" id="pane-reviews" hidden>
+        <div class="admin-grid">
+
+          <!-- Review form -->
+          <div class="admin-card">
+            <h2 class="admin-card-title"><span id="reviewFormTitle">Add a new review</span></h2>
+            <p class="admin-card-sub">These slide across the “What Our Customers Say” section of the homepage.</p>
+
+            <form id="reviewForm" novalidate>
+              <input type="hidden" id="reviewEditId">
+
+              <div class="admin-field-row">
+                <div class="admin-field">
+                  <label for="reviewName">Customer name *</label>
+                  <input class="admin-input" id="reviewName" type="text" maxlength="80" placeholder="e.g. Sneha Das" required>
+                </div>
+                <div class="admin-field">
+                  <label for="reviewStars">Stars</label>
+                  <select class="admin-select" id="reviewStars">
+                    <option value="5" selected>★★★★★</option>
+                    <option value="4">★★★★☆</option>
+                    <option value="3">★★★☆☆</option>
+                    <option value="2">★★☆☆☆</option>
+                    <option value="1">★☆☆☆☆</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="admin-field-row">
+                <div class="admin-field">
+                  <label for="reviewLocation">Location</label>
+                  <input class="admin-input" id="reviewLocation" type="text" maxlength="80" placeholder="e.g. Kolkata">
+                </div>
+                <div class="admin-field">
+                  <label for="reviewOrder">Order</label>
+                  <input class="admin-input" id="reviewOrder" type="number" min="0" step="1" placeholder="0">
+                </div>
+              </div>
+
+              <div class="admin-field">
+                <label for="reviewText">Review *</label>
+                <textarea class="admin-textarea" id="reviewText" maxlength="600" placeholder="What did they say about their order?"></textarea>
+              </div>
+
+              <div class="admin-message" id="reviewFormMessage" role="alert"></div>
+
+              <div class="admin-form-actions">
+                <button type="submit" class="admin-btn admin-btn-primary" id="reviewSaveBtn">Publish review</button>
+                <button type="button" class="admin-btn admin-btn-ghost" id="reviewCancelBtn" hidden>Cancel</button>
+              </div>
+            </form>
+
+            <div class="admin-seed-box" id="reviewSeedBox" hidden>
+              <span>🌱 Nothing here yet. Import the <strong>5 reviews currently on the homepage</strong>?</span>
+              <button type="button" class="admin-btn admin-btn-primary admin-btn-small" id="seedReviewsBtn">Import existing reviews</button>
+            </div>
+          </div>
+
+          <!-- Review list -->
+          <div class="admin-card">
+            <h2 class="admin-card-title">
+              Live reviews
+              <button type="button" class="admin-btn admin-btn-ghost admin-btn-small" id="refreshReviewsBtn">↻ Refresh</button>
+            </h2>
+            <p class="admin-card-sub">These appear in the “Love Letters” section, in this order.</p>
+            <div class="admin-list" id="reviewList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="admin-toast" id="adminToast" role="status" aria-live="polite"></div>
+
+  <!-- Static products (used by the one-click "Import existing products") -->
+  <script src="js/products.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

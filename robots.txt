@@ -4,9 +4,9 @@
 User-agent: *
 Allow: /
 
+# Private admin area — not linked anywhere on the site and additionally
+# protected by Google sign-in + Firebase Security Rules.
+Disallow: /admin.html
+
 # Sitemap
 Sitemap: https://jolkona.dpdns.org/sitemap.xml
-
-# Disallow admin/private areas (if any in future)
-# Disallow: /admin/
-# Disallow: /private/

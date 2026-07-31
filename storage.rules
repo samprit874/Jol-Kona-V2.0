@@ -1,0 +1,49 @@
+rules_version = '2';
+
+/* ═══════════════════════════════════════════════════════════════
+   জলকণা — Firebase Storage Security Rules (OPTIONAL but recommended)
+   ═══════════════════════════════════════════════════════════════
+
+   These rules power the "Upload photo" button in the Admin Panel,
+   so you can add product photos WITHOUT using ImgBB or GitHub.
+
+   HOW TO ACTIVATE:
+   1. Go to https://console.firebase.google.com → project "jol-kona"
+   2. Build → Storage → Get started (Production mode)
+   3. Open the "Rules" tab, paste THIS ENTIRE FILE, click "Publish".
+
+   DESIGN:
+   - Anyone can VIEW photos (the shop needs to show them).
+   - ONLY admin email(s) below can upload/overwrite/delete, and only
+     image files under 5 MB.
+
+   ⚠️ The email list here must match js/admin-config.js
+   ═══════════════════════════════════════════════════════════════ */
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in [
+          'jolkona2007@gmail.com'
+          // Add more admins below — must also be added in js/admin-config.js
+          // ,'second-admin@gmail.com'
+        ];
+    }
+
+    match /products/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin()
+        && request.resource != null
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // Default deny
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
