@@ -30,7 +30,7 @@ export const ADMIN_EMAILS = [
   'jolkona2007@gmail.com',
 ];
 
-export const ADMIN_PAGE = 'admin.html';
+export const ADMIN_PAGE = 'https://admin.jolkona.dpdns.org';
 
 /**
  * Case-insensitive check — is this email an admin?

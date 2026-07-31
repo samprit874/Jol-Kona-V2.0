@@ -2,7 +2,7 @@
 
 You now have a **private admin page** where you can add/edit/delete **products** and **customer reviews** yourself — no coding, no GitHub uploads ever again.
 
-**Your admin URL:** `https://jolkona.dpdns.org/admin.html`
+**Your admin URL:** `https://admin.jolkona.dpdns.org` (or fallback: `https://jolkona.dpdns.org/admin.html`)
 It is **not linked anywhere** on the site, is marked `noindex` for search engines, is blocked in `robots.txt`, requires **Google sign-in**, and — most importantly — the **database itself refuses** any change from accounts that aren't yours.
 
 The code is ready. You only need to switch on the database **once** (about 5 minutes, free):
@@ -37,7 +37,7 @@ With this step, the admin page lets you upload product photos straight from your
 ## Step 4 — First login & one-click import
 
 1. Push these changes live (just merge this branch — the site deploys automatically).
-2. Visit **`/admin.html`** on your site → **Continue with Google** → sign in with **`jolkona2007@gmail.com`** (that email is pre-set as the admin — see below to change it).
+2. Visit **`https://admin.jolkona.dpdns.org`** (or **`/admin.html`** on your main site) → **Continue with Google** → sign in with **`jolkona2007@gmail.com`** (that email is pre-set as the admin — see below to change it).
 3. On the **Products** tab, click **🌱 Import existing products** → your 12 current products are copied into the database in one shot.
 4. On the **Reviews** tab, click **🌱 Import existing reviews** → the 5 current homepage reviews are copied too.
 5. From now on, the shop shows whatever is in the admin panel. Refresh the homepage to see it.
@@ -48,7 +48,7 @@ With this step, the admin page lets you upload product photos straight from your
 
 | Want to… | Do this |
 | --- | --- |
-| Add a product | `/admin.html` → Products → fill the form (name, category, upload photo) → **Publish product** |
+| Add a product | `admin.jolkona.dpdns.org` (or `/admin.html`) → Products → fill the form (name, category, upload photo) → **Publish product** |
 | Edit / delete a product | Products tab → ✏️ Edit or 🗑 on any card |
 | Add/edit/delete reviews (comments) | Reviews tab *(“What Our Customers Say” section)* |
 | Change the order things appear in | Use the **Order** number (0 = first) |
