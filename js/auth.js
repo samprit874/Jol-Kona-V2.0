@@ -17,7 +17,8 @@ const errorMessages = {
   'auth/user-disabled': 'This account has been disabled. Please contact Jol Kona.',
   'auth/invalid-user-token': 'Your session has expired. Please sign in again.',
   'auth/user-token-expired': 'Your session has expired. Please sign in again.',
-  'auth/web-storage-unsupported': 'Your browser is blocking the storage sign-in needs. Please enable cookies and try again.'
+  'auth/web-storage-unsupported': 'Your browser is blocking the storage sign-in needs. Please enable cookies and try again.',
+  'auth/account-exists-with-different-credential': 'This Google account is already linked to a different sign-in method on Jol Kona.'
 };
 
 function friendlyError(error) {
@@ -64,6 +65,16 @@ function renderAccount(user) {
     if (user?.photoURL) { el.innerHTML = `<img src="${escapeHtml(user.photoURL)}" alt="${escapeHtml(user.displayName || 'Profile photo')}">`; }
     else el.textContent = user ? initials(user) : '';
   });
+  // Keep the dropdown's identity card in sync (in case it stays open during a switch).
+  document.querySelectorAll('[data-auth-menu-name]').forEach(el => el.textContent = user?.displayName || user?.email?.split('@')[0] || '');
+  document.querySelectorAll('[data-auth-menu-email]').forEach(el => el.textContent = user?.email || '');
+  // Clear any leftover "busy" state on action buttons after a re-render (e.g. when a user
+  // returns to a page after a "Switch account" that briefly disabled the trigger).
+  document.querySelectorAll('.account-menu-action').forEach(btn => {
+    if (btn.dataset.label) { btn.textContent = btn.dataset.label; btn.disabled = false; }
+  });
+  // If the user just signed out, close any open dropdown so the login icon shows again.
+  if (!user) closeAccountMenu();
 }
 
 function mountUi() {
@@ -82,16 +93,180 @@ function mountUi() {
   document.querySelectorAll('[data-auth-open]').forEach(button => button.addEventListener('click', () => openModal()));
   document.querySelector('.auth-close').addEventListener('click', closeModal);
   document.querySelector('#authModal').addEventListener('click', e => { if (e.target.id === 'authModal') closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeAccountMenu(); } });
   document.querySelector('#googleSignIn').addEventListener('click', googleSignIn);
 }
 
-async function googleSignIn(event) {
-  if (!auth) return setMessage('Authentication is not configured yet. Please contact Jol Kona.', 'error');
-  setBusy(event.currentTarget, true);
-  try { await signInWithPopup(auth, new GoogleAuthProvider()); closeModal(); }
-  catch (error) { setMessage(friendlyError(error), 'error'); }
-  finally { setBusy(event.currentTarget, false, 'G  Continue with Google'); }
+// Configure a provider that always shows the Google account chooser.
+// This powers both "Add another account" and "Switch account".
+function buildChooserProvider() {
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+  return provider;
+}
+
+function accountMenuMarkup() {
+  return `
+    <div class="account-menu" id="accountMenu" role="menu" aria-label="Account menu" hidden>
+      <div class="account-menu-header" role="presentation">
+        <div class="account-menu-avatar" data-auth-avatar aria-hidden="true"></div>
+        <div class="account-menu-identity">
+          <div class="account-menu-name" data-auth-menu-name>Your account</div>
+          <div class="account-menu-email" data-auth-menu-email></div>
+        </div>
+      </div>
+      <ul class="account-menu-list" role="none">
+        <li role="none"><a class="account-menu-item" role="menuitem" href="${accountPage}">
+          <span class="account-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <span class="account-menu-label">My Account</span>
+        </a></li>
+        <li role="none"><a class="account-menu-item" role="menuitem" href="wishlist-cart.html#wishlist">
+          <span class="account-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </span>
+          <span class="account-menu-label">My Wishlist</span>
+        </a></li>
+        <li role="none"><a class="account-menu-item" role="menuitem" href="${accountPage}#orders">
+          <span class="account-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </span>
+          <span class="account-menu-label">My Orders</span>
+        </a></li>
+        <li class="account-menu-divider" role="separator" aria-hidden="true"></li>
+        <li role="none"><button class="account-menu-item account-menu-action" type="button" role="menuitem" data-auth-action="add-account">
+          <span class="account-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </span>
+          <span class="account-menu-label">Add another account</span>
+        </button></li>
+        <li role="none"><button class="account-menu-item account-menu-action" type="button" role="menuitem" data-auth-action="switch-account">
+          <span class="account-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </span>
+          <span class="account-menu-label">Switch account</span>
+        </button></li>
+        <li class="account-menu-divider" role="separator" aria-hidden="true"></li>
+        <li role="none"><button class="account-menu-item account-menu-action account-menu-item--danger" type="button" role="menuitem" data-auth-action="logout">
+          <span class="account-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </span>
+          <span class="account-menu-label">Log out</span>
+        </button></li>
+      </ul>
+    </div>`;
+}
+
+function ensureAccountMenu() {
+  if (document.querySelector('#accountMenu')) return;
+  document.body.insertAdjacentHTML('beforeend', accountMenuMarkup());
+  const menu = document.querySelector('#accountMenu');
+  // Single delegated click handler for everything inside the dropdown.
+  menu.addEventListener('click', e => {
+    const actionTrigger = e.target.closest('[data-auth-action]');
+    if (actionTrigger) {
+      runAccountAction(actionTrigger.dataset.authAction, actionTrigger);
+      return;
+    }
+    // Clicking a regular link closes the dropdown (navigation still proceeds).
+    if (e.target.closest('a')) closeAccountMenu();
+  });
+}
+
+function openAccountMenu(trigger) {
+  const menu = document.querySelector('#accountMenu');
+  if (!menu) return;
+  // Position the menu under the avatar trigger so it works on both V1 and V2 navs.
+  // The menu is `position: fixed`, so coordinates are viewport-relative.
+  if (trigger) {
+    positionAccountMenu(trigger);
+    window.addEventListener('resize', positionOnScrollOrResize);
+    window.addEventListener('scroll', positionOnScrollOrResize, true);
+  }
+  menu.hidden = false;
+  menu.classList.add('is-open');
+  trigger?.setAttribute('aria-expanded', 'true');
+  document.addEventListener('click', outsideAccountMenuHandler, true);
+  document.addEventListener('keydown', escAccountMenuHandler);
+}
+
+function positionAccountMenu(trigger) {
+  const menu = document.querySelector('#accountMenu');
+  if (!menu || !trigger) return;
+  const rect = trigger.getBoundingClientRect();
+  const menuWidth = menu.offsetWidth || 280;
+  const viewportWidth = document.documentElement.clientWidth;
+  let left = rect.right - menuWidth;
+  if (left < 12) left = 12;
+  if (left + menuWidth > viewportWidth - 12) left = viewportWidth - menuWidth - 12;
+  const top = rect.bottom + 8;
+  menu.style.top = `${top}px`;
+  menu.style.left = `${left}px`;
+  menu.style.right = 'auto';
+}
+
+function positionOnScrollOrResize() {
+  const trigger = document.querySelector('[data-auth-menu-toggle]');
+  if (trigger) positionAccountMenu(trigger);
+}
+
+function closeAccountMenu() {
+  const menu = document.querySelector('#accountMenu');
+  if (!menu || menu.hidden) return;
+  menu.hidden = true;
+  menu.classList.remove('is-open');
+  document.querySelectorAll('[data-auth-menu-toggle][aria-expanded="true"]').forEach(el => el.setAttribute('aria-expanded', 'false'));
+  document.removeEventListener('click', outsideAccountMenuHandler, true);
+  document.removeEventListener('keydown', escAccountMenuHandler);
+  window.removeEventListener('resize', positionOnScrollOrResize);
+  window.removeEventListener('scroll', positionOnScrollOrResize, true);
+}
+
+function outsideAccountMenuHandler(event) {
+  const menu = document.querySelector('#accountMenu');
+  if (!menu || menu.hidden) return;
+  if (event.target.closest('#accountMenu') || event.target.closest('[data-auth-menu-toggle]')) return;
+  closeAccountMenu();
+}
+function escAccountMenuHandler(event) {
+  if (event.key === 'Escape') closeAccountMenu();
+}
+
+async function runAccountAction(action, triggerButton) {
+  if (!auth) {
+    setMessage('Authentication is not configured yet. Please contact Jol Kona.', 'error');
+    return;
+  }
+  closeAccountMenu();
+  if (action === 'logout') {
+    setBusy(triggerButton, true, 'Log out');
+    try { await signOut(auth); }
+    catch (error) { setMessage(friendlyError(error), 'error'); }
+    finally { setBusy(triggerButton, false, 'Log out'); }
+    return;
+  }
+  if (action === 'add-account' || action === 'switch-account') {
+    const label = action === 'add-account' ? 'Add another account' : 'Switch account';
+    setBusy(triggerButton, true, label);
+    try {
+      // For "Switch account", sign out first so the new account fully replaces the session.
+      if (action === 'switch-account' && auth.currentUser) {
+        await signOut(auth);
+      }
+      await signInWithPopup(auth, buildChooserProvider());
+    }
+    catch (error) {
+      if (error?.code === 'auth/popup-closed-by-user') {
+        // If the user cancelled a "Switch account" after we already signed them out,
+        // reopen the login modal so they aren't stuck signed out.
+        if (action === 'switch-account' && !auth.currentUser) openModal();
+      } else {
+        setMessage(friendlyError(error), 'error');
+      }
+    }
+    finally { setBusy(triggerButton, false, label); }
+  }
 }
 
 function addNavControl() {
@@ -102,21 +277,46 @@ function addNavControl() {
       <button class="nav-action-btn auth-trigger" type="button" data-auth-open data-auth-guest aria-label="Log in">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
       </button>
-      <a class="nav-action-btn auth-user-btn" href="${accountPage}" data-auth-user hidden aria-label="View account">
+      <button class="nav-action-btn auth-user-btn" type="button" data-auth-user hidden data-auth-menu-toggle aria-label="Open account menu" aria-haspopup="menu" aria-expanded="false">
         <div class="auth-avatar" data-auth-avatar></div>
-      </a>
+      </button>
     </div>`);
+  ensureAccountMenu();
+  const toggle = actions.querySelector('[data-auth-menu-toggle]');
+  toggle?.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    const menu = document.querySelector('#accountMenu');
+    if (menu && !menu.hidden) closeAccountMenu();
+    else openAccountMenu(toggle);
+  });
   actions.querySelector('[data-auth-open]').addEventListener('click', () => openModal());
 }
 
 function addMobileAccountControl() {
   const mobileNav = document.querySelector('.mobile-nav');
   if (!mobileNav || mobileNav.querySelector('.mobile-auth-link')) return;
-  mobileNav.insertAdjacentHTML('beforeend', `<button class="mobile-nav-link mobile-auth-link" type="button" data-auth-open data-auth-guest>Login</button><a class="mobile-nav-link mobile-auth-link" href="${accountPage}" data-auth-user hidden>My Account</a>`);
+  mobileNav.insertAdjacentHTML('beforeend', `
+    <button class="mobile-nav-link mobile-auth-link" type="button" data-auth-open data-auth-guest>Login</button>
+    <div class="mobile-auth-link mobile-auth-user" data-auth-user hidden>
+      <a class="mobile-nav-link" href="${accountPage}">My Account</a>
+      <a class="mobile-nav-link" href="wishlist-cart.html#wishlist">My Wishlist</a>
+      <a class="mobile-nav-link" href="${accountPage}#orders">My Orders</a>
+      <button class="mobile-nav-link mobile-auth-action" type="button" data-auth-action="add-account">Add another account</button>
+      <button class="mobile-nav-link mobile-auth-action" type="button" data-auth-action="switch-account">Switch account</button>
+      <button class="mobile-nav-link mobile-auth-action" type="button" data-auth-action="logout">Log out</button>
+    </div>`);
   mobileNav.querySelector('[data-auth-open]').addEventListener('click', () => {
     mobileNav.classList.remove('active');
     document.getElementById('mobileToggle')?.classList.remove('active');
     openModal();
+  });
+  mobileNav.querySelectorAll('[data-auth-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      mobileNav.classList.remove('active');
+      document.getElementById('mobileToggle')?.classList.remove('active');
+      runAccountAction(btn.dataset.authAction, btn);
+    });
   });
 }
 
