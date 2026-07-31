@@ -1,4 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "host",
+          "value": "admin\\.jolkona\\.dpdns\\.org"
+        }
+      ],
+      "destination": "/admin.html"
+    }
+  ]
 }
