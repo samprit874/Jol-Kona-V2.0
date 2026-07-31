@@ -45,7 +45,7 @@
   transition: background 0.2s var(--mnav-ease), border-color 0.2s var(--mnav-ease), transform 0.2s var(--mnav-ease);
 }
 .nav-mobile-toggle:active { transform: scale(0.94); }
-.nav-mobile-toggle span {
+.nav-mobile-toggle span:not(.mnav-toggle-dot) {
   display: block;
   width: 18px;
   height: 2px;
@@ -53,11 +53,11 @@
   background: var(--mnav-ink);
   transition: transform 0.32s var(--mnav-ease), opacity 0.18s ease, width 0.32s var(--mnav-ease);
 }
-.nav-mobile-toggle span:nth-child(3) { width: 12px; }
+.nav-mobile-toggle span:not(.mnav-toggle-dot):nth-child(3) { width: 12px; }
 .nav-mobile-toggle.active { background: var(--mnav-tint); border-color: var(--mnav-line-strong); }
-.nav-mobile-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-mobile-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0.4); }
-.nav-mobile-toggle.active span:nth-child(3) { width: 18px; margin-left: 0; transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-toggle.active span:not(.mnav-toggle-dot):nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-mobile-toggle.active span:not(.mnav-toggle-dot):nth-child(2) { opacity: 0; transform: scaleX(0.4); }
+.nav-mobile-toggle.active span:not(.mnav-toggle-dot):nth-child(3) { width: 18px; margin-left: 0; transform: translateY(-7px) rotate(-45deg); }
 
 /* Count bubble on the toggle so users see cart/wishlist activity while closed */
 .nav-mobile-toggle { position: relative; }
@@ -360,5 +360,5 @@ body.mnav-open { overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mnav, .mnav-backdrop, .nav-mobile-toggle span, .mnav-item, .mnav-tile { transition-duration: 0.01ms !important; }
+  .mnav, .mnav-backdrop, .nav-mobile-toggle span:not(.mnav-toggle-dot), .mnav-item, .mnav-tile { transition-duration: 0.01ms !important; }
 }
