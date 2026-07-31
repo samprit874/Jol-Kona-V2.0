@@ -1,9 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import {
   getAuth, setPersistence, browserLocalPersistence, onAuthStateChanged,
-  createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification,
-  signInWithPopup, GoogleAuthProvider,
-  sendPasswordResetEmail, signOut, updateProfile
+  signInWithPopup, GoogleAuthProvider, signOut
 } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { firebaseConfig, isFirebaseConfigured } from './firebase-config.js';
 
@@ -12,17 +10,9 @@ let auth;
 let currentUser = null;
 
 const errorMessages = {
-  'auth/invalid-credential': 'That email or password does not look right. Please try again.',
-  'auth/email-already-in-use': 'An account already exists with this email. Try logging in instead.',
-  'auth/weak-password': 'Please choose a password with at least 6 characters.',
-  'auth/invalid-email': 'Please enter a valid email address.',
   'auth/popup-closed-by-user': 'Google sign-in was cancelled. Please try again when you are ready.',
   'auth/popup-blocked': 'Your browser blocked the sign-in window. Please allow pop-ups and try again.',
   'auth/network-request-failed': 'We could not connect. Please check your internet connection and try again.',
-  'auth/too-many-requests': 'Too many emails were requested. Please wait a few minutes and try again.',
-  'auth/requires-recent-login': 'For your security, please sign out and sign in again before requesting another email.',
-  'auth/unauthorized-continue-uri': 'Email verification is not configured for this site yet. Please contact Jol Kona.',
-  'auth/quota-exceeded': 'The email quota for today has been reached. Please try again tomorrow.',
   'auth/internal-error': 'The sign-in service hit an unexpected problem. Please try again shortly.',
   'auth/user-disabled': 'This account has been disabled. Please contact Jol Kona.',
   'auth/invalid-user-token': 'Your session has expired. Please sign in again.',
@@ -52,20 +42,13 @@ function setBusy(button, busy, label) {
   button.dataset.label ||= button.textContent;
   button.textContent = busy ? 'Please wait…' : (label || button.dataset.label);
 }
-function openModal(mode = 'login') {
+function openModal() {
   const modal = document.querySelector('#authModal');
   if (!modal) return;
-  const signup = mode === 'signup';
-  modal.dataset.mode = signup ? 'signup' : 'login';
-  modal.querySelector('#authTitle').textContent = signup ? 'Create your account' : 'Welcome back';
-  modal.querySelector('#authSubtitle').textContent = signup
-    ? 'Save your favourites and make every gift more personal.'
-    : 'Sign in to keep your favourites close.';
-  modal.querySelector('#authSubmit').textContent = signup ? 'Create account' : 'Sign in';
   modal.classList.add('is-open');
   document.body.classList.add('auth-modal-open');
   setMessage();
-  modal.querySelector(signup ? '#authName' : '#authEmail')?.focus();
+  modal.querySelector('#googleSignIn')?.focus();
 }
 function closeModal() {
   document.querySelector('#authModal')?.classList.remove('is-open');
@@ -81,8 +64,6 @@ function renderAccount(user) {
     if (user?.photoURL) { el.innerHTML = `<img src="${escapeHtml(user.photoURL)}" alt="${escapeHtml(user.displayName || 'Profile photo')}">`; }
     else el.textContent = user ? initials(user) : '';
   });
-  const verification = document.querySelector('[data-auth-verification]');
-  if (verification) verification.hidden = !user || user.emailVerified;
 }
 
 function mountUi() {
@@ -96,54 +77,15 @@ function mountUi() {
         <p class="auth-subtitle" id="authSubtitle">Sign in to keep your favourites close.</p>
         <div class="auth-message" id="authMessage" aria-live="polite"></div>
         <button class="auth-google" id="googleSignIn" type="button"><span>G</span> Continue with Google</button>
-        <div class="auth-divider"><span>or continue with email</span></div>
-        <form id="authForm" novalidate>
-          <label class="auth-field signup-only">Your name<input id="authName" type="text" autocomplete="name" placeholder="Your name"></label>
-          <label class="auth-field">Email address<input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></label>
-          <label class="auth-field">Password<input id="authPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters"></label>
-          <button class="auth-forgot login-copy" id="forgotPassword" type="button">Forgot password?</button>
-          <button class="auth-submit" id="authSubmit" type="submit">Sign in</button>
-        </form>
-        <p class="auth-switch"><span class="login-copy">New to Jol Kona? <button type="button" data-auth-mode="signup">Create an account</button></span><span class="signup-copy">Already have an account? <button type="button" data-auth-mode="login">Sign in</button></span></p>
       </div>
     </div>`);
-  document.querySelectorAll('[data-auth-open]').forEach(button => button.addEventListener('click', () => openModal(button.dataset.authOpen || 'login')));
+  document.querySelectorAll('[data-auth-open]').forEach(button => button.addEventListener('click', () => openModal()));
   document.querySelector('.auth-close').addEventListener('click', closeModal);
   document.querySelector('#authModal').addEventListener('click', e => { if (e.target.id === 'authModal') closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-  document.querySelectorAll('[data-auth-mode]').forEach(button => button.addEventListener('click', () => openModal(button.dataset.authMode)));
-  document.querySelector('#authForm').addEventListener('submit', submitEmailForm);
   document.querySelector('#googleSignIn').addEventListener('click', googleSignIn);
-  document.querySelector('#forgotPassword').addEventListener('click', forgotPassword);
 }
 
-async function requestVerificationEmail(user) {
-  await sendEmailVerification(user);
-}
-
-async function submitEmailForm(event) {
-  event.preventDefault();
-  if (!auth) return setMessage('Authentication is not configured yet. Please contact Jol Kona.', 'error');
-  const form = event.currentTarget, button = form.querySelector('[type="submit"]');
-  const email = form.authEmail.value.trim(), password = form.authPassword.value, name = form.authName.value.trim();
-  const signup = document.querySelector('#authModal').dataset.mode === 'signup';
-  if (signup && !name) return setMessage('Please enter your name so we know what to call you.', 'error');
-  setBusy(button, true);
-  try {
-    let credential;
-    if (signup) {
-      credential = await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(credential.user, { displayName: name });
-      await requestVerificationEmail(credential.user);
-      setMessage('Verification email sent! Please check your inbox.', 'success');
-      renderAccount(auth.currentUser);
-    } else {
-      await signInWithEmailAndPassword(auth, email, password);
-      closeModal();
-    }
-  } catch (error) { setMessage(friendlyError(error), 'error'); }
-  finally { setBusy(button, false); }
-}
 async function googleSignIn(event) {
   if (!auth) return setMessage('Authentication is not configured yet. Please contact Jol Kona.', 'error');
   setBusy(event.currentTarget, true);
@@ -151,55 +93,30 @@ async function googleSignIn(event) {
   catch (error) { setMessage(friendlyError(error), 'error'); }
   finally { setBusy(event.currentTarget, false, 'G  Continue with Google'); }
 }
-async function forgotPassword() {
-  const email = document.querySelector('#authEmail').value.trim();
-  if (!email) return setMessage('Enter your email address first, then we’ll send a reset link.', 'error');
-  try { await sendPasswordResetEmail(auth, email); setMessage('Password reset link sent — please check your inbox.', 'success'); }
-  catch (error) { setMessage(friendlyError(error), 'error'); }
-}
-async function sendVerification() {
-  if (!auth?.currentUser) return;
-  try {
-    await requestVerificationEmail(auth.currentUser);
-    setMessage('Verification email sent! Please check your inbox.', 'success');
-  } catch (error) {
-    // Log the raw error so the real cause stays visible in the console even
-    // when the friendly message shown on screen has to stay generic.
-    console.error('Jol Kona: could not send verification email.', error?.code || error?.name || '', error);
-    const messages = {
-      'email-not-configured': 'Email delivery is not configured yet. Please contact Jol Kona.',
-      'email-delivery-failed': 'We could not deliver the verification email. Please try again later.',
-      'unauthenticated': 'Your session has expired. Please sign in again.',
-      'missing-email': 'Your account has no email address to verify. Please contact Jol Kona.',
-      'verification-failed': 'The verification service is not reachable right now. Please try again in a moment.'
-    };
-    setMessage(messages[error?.code] || friendlyError(error), 'error');
-  }
-}
 
 function addNavControl() {
   const actions = document.querySelector('.nav-actions');
   if (!actions || actions.querySelector('.auth-nav-control')) return;
   actions.insertAdjacentHTML('afterbegin', `
     <div class="auth-nav-control">
-      <button class="nav-action-btn auth-trigger" type="button" data-auth-open="login" data-auth-guest aria-label="Log in">
+      <button class="nav-action-btn auth-trigger" type="button" data-auth-open data-auth-guest aria-label="Log in">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
       </button>
       <a class="nav-action-btn auth-user-btn" href="${accountPage}" data-auth-user hidden aria-label="View account">
         <div class="auth-avatar" data-auth-avatar></div>
       </a>
     </div>`);
-  actions.querySelector('[data-auth-open]').addEventListener('click', () => openModal('login'));
+  actions.querySelector('[data-auth-open]').addEventListener('click', () => openModal());
 }
 
 function addMobileAccountControl() {
   const mobileNav = document.querySelector('.mobile-nav');
   if (!mobileNav || mobileNav.querySelector('.mobile-auth-link')) return;
-  mobileNav.insertAdjacentHTML('beforeend', `<button class="mobile-nav-link mobile-auth-link" type="button" data-auth-open="login" data-auth-guest>Login</button><a class="mobile-nav-link mobile-auth-link" href="${accountPage}" data-auth-user hidden>My Account</a>`);
+  mobileNav.insertAdjacentHTML('beforeend', `<button class="mobile-nav-link mobile-auth-link" type="button" data-auth-open data-auth-guest>Login</button><a class="mobile-nav-link mobile-auth-link" href="${accountPage}" data-auth-user hidden>My Account</a>`);
   mobileNav.querySelector('[data-auth-open]').addEventListener('click', () => {
     mobileNav.classList.remove('active');
     document.getElementById('mobileToggle')?.classList.remove('active');
-    openModal('login');
+    openModal();
   });
 }
 
@@ -213,19 +130,13 @@ function guardAccountPage(user) {
 mountUi();
 addNavControl();
 addMobileAccountControl();
-if (new URLSearchParams(location.search).get('login') === '1') window.addEventListener('load', () => openModal('login'));
+if (new URLSearchParams(location.search).get('login') === '1') window.addEventListener('load', () => openModal());
 if (isFirebaseConfigured) {
   const app = initializeApp(firebaseConfig);
   auth = getAuth(app);
   setPersistence(auth, browserLocalPersistence).catch(() => {});
-  onAuthStateChanged(auth, async user => {
+  onAuthStateChanged(auth, user => {
     currentUser = user;
-    // On the account page, refresh the user's profile so the "Your email is
-    // not verified yet" notice clears as soon as the verification link is
-    // followed, instead of lingering until re-login.
-    if (user && document.body.dataset.authRequired === 'true') {
-      try { await user.reload(); } catch (_) { /* offline or transient */ }
-    }
     renderAccount(user);
     guardAccountPage(user);
     if (user && sessionStorage.getItem('jolKonaAfterLogin')) {
@@ -239,7 +150,6 @@ if (isFirebaseConfigured) {
 }
 document.addEventListener('click', event => {
   if (event.target.closest('[data-auth-logout]')) { event.preventDefault(); if (auth) signOut(auth); }
-  if (event.target.closest('[data-auth-send-verification]')) { event.preventDefault(); if (auth && currentUser) sendVerification(); }
 });
 
 export { openModal, currentUser };
