@@ -23,6 +23,8 @@
 import { Resend } from 'resend';
 import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 
 // ----- Bootstrap singletons (re-used across warm invocations) -------------
 if (getApps().length === 0) {
@@ -64,7 +66,7 @@ export default async function handler(req, res) {
   if (typeof body === 'string') {
     try { body = JSON.parse(body); } catch { /* fall through to validation */ }
   }
-  const email = (body?.email || '').toString().trim().toLowerCase();
+  const email = (body?.email || '').toString().trim();
   const displayName = (body?.displayName || '').toString().trim();
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -86,17 +88,17 @@ export default async function handler(req, res) {
     };
     const link = await getAuth().generateEmailVerificationLink(email, actionCodeSettings);
 
-    // --- 2. Send through Resend using the pre-built template ---------------
+    // --- 2. Build custom HTML from the fixed template file ---------------
+    const templatePath = resolve(process.cwd(), 'email-template-fixed.html');
+    let htmlContent = readFileSync(templatePath, 'utf8');
+    htmlContent = htmlContent.replace(/\{\{\{user_first_name\}\}\}/g, displayName || 'User');
+    htmlContent = htmlContent.replace(/\{\{\{verification_url\}\}\}/g, link);
+
     const { data, error } = await resend.emails.send({
       from: FROM_ADDRESS,
       to: [email],
-      template: {
-        id: TEMPLATE_ID,
-        variables: {
-          first_name: displayName || 'User',
-          verification_url: link,
-        },
-      },
+      subject: 'Verify your email for Jol Kona',
+      html: htmlContent,
     });
 
     if (error) {
