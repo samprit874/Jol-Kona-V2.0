@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Hind+Siliguri:wght@300;400;500;600&family=Faculty+Glyphic&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/mobile-nav.css">
   <link rel="icon" type="image/png" href="img/logo.png">
 </head>
 <body data-auth-required="true">
@@ -16,7 +17,13 @@
     <div class="nav-inner">
       <a href="index.html" class="nav-brand" aria-label="Jol Kona Home"><img src="img/logo.png" alt="Jol Kona" class="nav-brand-logo"></a>
       <div class="nav-links"><a href="index.html#shop" class="nav-link">Shop</a><a href="custom-order.html" class="nav-link">Custom Order</a></div>
-      <div class="nav-actions"></div>
+      <div class="nav-actions">
+        <button class="nav-mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </nav>
   <main class="account-page">
@@ -29,6 +36,7 @@
       <div class="account-actions"><a href="wishlist-cart.html#wishlist" class="btn btn-secondary">My Wishlist</a><button type="button" class="btn btn-primary" data-auth-logout>Log out</button></div>
     </section>
   </main>
+  <script src="js/mobile-nav.js"></script>
   <script type="module" src="js/auth.js"></script>
 </body>
 </html>
