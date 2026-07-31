@@ -580,11 +580,13 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 /* ─── Reviews Section ─── */
 .reviews-section {
   background: var(--cream);
+  overflow: hidden;
 }
 
 .reviews-slider {
+  --reviews-gap: var(--space-lg);
   display: flex;
-  gap: var(--space-lg);
+  gap: var(--reviews-gap);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -592,6 +594,52 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 }
 
 .reviews-slider::-webkit-scrollbar { display: none; }
+
+/* Live reviews marquee (JS-enhanced, with scrollable fallback above) */
+.reviews-slider.is-live {
+  display: block;
+  overflow: hidden;
+  scroll-snap-type: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+}
+
+.reviews-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: reviewsMarquee var(--reviews-marquee-duration, 38s) linear infinite;
+}
+
+.reviews-slider[data-review-direction="ltr"] .reviews-track { animation-direction: reverse; }
+
+.reviews-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--reviews-gap);
+  padding-right: var(--reviews-gap);
+}
+
+.reviews-slider.is-paused .reviews-track,
+.reviews-slider.is-live:hover .reviews-track,
+.reviews-slider.is-live:focus-within .reviews-track { animation-play-state: paused; }
+
+.reviews-slider.is-live .review-card { scroll-snap-align: none; }
+
+@keyframes reviewsMarquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-slider.is-live {
+    display: flex;
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .reviews-slider.is-live .reviews-track { animation: none; }
+}
 
 .review-card {
   min-width: 360px;
@@ -972,7 +1020,7 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   
   .instagram-grid { grid-template-columns: repeat(3, 1fr); gap: 3px; }
   
-  .reviews-slider { gap: var(--space-md); padding: 0 var(--space-md) var(--space-lg); }
+  .reviews-slider { --reviews-gap: var(--space-md); gap: var(--reviews-gap); padding: 0 var(--space-md) var(--space-lg); }
   .review-card { min-width: 280px; padding: var(--space-lg); }
   
   .newsletter-form { flex-direction: column; }
