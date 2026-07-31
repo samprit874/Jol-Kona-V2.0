@@ -10,7 +10,8 @@
     "start": "vercel dev"
   },
   "dependencies": {
-    "firebase-admin": "^12.7.0"
+    "firebase-admin": "^12.7.0",
+    "resend": "^4.8.0"
   },
   "devDependencies": {
     "vercel": "^39.0.0"

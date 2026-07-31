@@ -18,8 +18,10 @@ const errorMessages = {
   'auth/invalid-email': 'Please enter a valid email address.',
   'auth/popup-closed-by-user': 'Google sign-in was cancelled. Please try again when you are ready.',
   'auth/popup-blocked': 'Your browser blocked the sign-in window. Please allow pop-ups and try again.',
-  'auth/too-many-requests': 'Too many attempts. Please wait a moment before trying again.',
-  'auth/network-request-failed': 'We could not connect. Please check your internet connection and try again.'
+  'auth/network-request-failed': 'We could not connect. Please check your internet connection and try again.',
+  'auth/too-many-requests': 'Too many emails were requested. Please wait a few minutes and try again.',
+  'auth/requires-recent-login': 'For your security, please sign out and sign in again before requesting another email.',
+  'auth/unauthorized-continue-uri': 'Email verification is not configured for this site yet. Please contact Jol Kona.'
 };
 
 function friendlyError(error) {
@@ -32,8 +34,11 @@ function escapeHtml(value = '') {
   const element = document.createElement('div'); element.textContent = value; return element.innerHTML;
 }
 function setMessage(text = '', type = '') {
-  const message = document.querySelector('#authMessage');
-  if (message) { message.textContent = text; message.className = `auth-message ${type}`; }
+  // The account page has no sign-in modal open, so show feedback there too.
+  document.querySelectorAll('#authMessage, #accountMessage').forEach(message => {
+    message.textContent = text;
+    message.className = `auth-message ${type}`;
+  });
 }
 function setBusy(button, busy, label) {
   if (!button) return;
@@ -44,11 +49,17 @@ function setBusy(button, busy, label) {
 function openModal(mode = 'login') {
   const modal = document.querySelector('#authModal');
   if (!modal) return;
-  modal.dataset.mode = mode;
+  const signup = mode === 'signup';
+  modal.dataset.mode = signup ? 'signup' : 'login';
+  modal.querySelector('#authTitle').textContent = signup ? 'Create your account' : 'Welcome back';
+  modal.querySelector('#authSubtitle').textContent = signup
+    ? 'Save your favourites and make every gift more personal.'
+    : 'Sign in to keep your favourites close.';
+  modal.querySelector('#authSubmit').textContent = signup ? 'Create account' : 'Sign in';
   modal.classList.add('is-open');
   document.body.classList.add('auth-modal-open');
   setMessage();
-  modal.querySelector(mode === 'signup' ? '#authName' : '#authEmail')?.focus();
+  modal.querySelector(signup ? '#authName' : '#authEmail')?.focus();
 }
 function closeModal() {
   document.querySelector('#authModal')?.classList.remove('is-open');
@@ -75,8 +86,8 @@ function mountUi() {
       <div class="auth-panel">
         <button class="auth-close" type="button" aria-label="Close account dialog">×</button>
         <p class="auth-kicker">Jol Kona</p>
-        <h2 id="authTitle"><span class="login-copy">Welcome back</span><span class="signup-copy">Create your account</span></h2>
-        <p class="auth-subtitle"><span class="login-copy">Sign in to keep your favourites close.</span><span class="signup-copy">Save your favourites and make every gift more personal.</span></p>
+        <h2 id="authTitle">Welcome back</h2>
+        <p class="auth-subtitle" id="authSubtitle">Sign in to keep your favourites close.</p>
         <div class="auth-message" id="authMessage" aria-live="polite"></div>
         <button class="auth-google" id="googleSignIn" type="button"><span>G</span> Continue with Google</button>
         <div class="auth-divider"><span>or continue with email</span></div>
@@ -85,7 +96,7 @@ function mountUi() {
           <label class="auth-field">Email address<input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></label>
           <label class="auth-field">Password<input id="authPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters"></label>
           <button class="auth-forgot login-copy" id="forgotPassword" type="button">Forgot password?</button>
-          <button class="auth-submit" type="submit"><span class="login-copy">Sign in</span><span class="signup-copy">Create account</span></button>
+          <button class="auth-submit" id="authSubmit" type="submit">Sign in</button>
         </form>
         <p class="auth-switch"><span class="login-copy">New to Jol Kona? <button type="button" data-auth-mode="signup">Create an account</button></span><span class="signup-copy">Already have an account? <button type="button" data-auth-mode="login">Sign in</button></span></p>
       </div>
@@ -98,6 +109,32 @@ function mountUi() {
   document.querySelector('#authForm').addEventListener('submit', submitEmailForm);
   document.querySelector('#googleSignIn').addEventListener('click', googleSignIn);
   document.querySelector('#forgotPassword').addEventListener('click', forgotPassword);
+}
+
+async function requestVerificationEmail(user) {
+  // Prefer the server endpoint so Jol Kona's branded Resend email is used. The
+  // Firebase fallback keeps verification working on the static GitHub Pages
+  // deployment, where /api routes are not available.
+  try {
+    const idToken = await user.getIdToken();
+    const response = await fetch('/api/send-verification', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idToken })
+    });
+    if (response.ok && response.headers.get('content-type')?.includes('application/json')) return;
+    if (response.status !== 404 && response.headers.get('content-type')?.includes('application/json')) {
+      const data = await response.json().catch(() => ({}));
+      const error = new Error(data.error || 'verification-failed');
+      error.code = data.error;
+      throw error;
+    }
+  } catch (error) {
+    // A network error is expected on a static deployment. Other endpoint
+    // errors should be surfaced instead of incorrectly claiming success.
+    if (error?.code || error?.name !== 'TypeError') throw error;
+  }
+  await sendEmailVerification(user);
 }
 
 async function submitEmailForm(event) {
@@ -113,7 +150,7 @@ async function submitEmailForm(event) {
     if (signup) {
       credential = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(credential.user, { displayName: name });
-      await sendEmailVerification(credential.user);
+      await requestVerificationEmail(credential.user);
       setMessage('Verification email sent! Please check your inbox.', 'success');
       renderAccount(auth.currentUser);
     } else {
@@ -139,10 +176,15 @@ async function forgotPassword() {
 async function sendVerification() {
   if (!auth?.currentUser) return;
   try {
-    await sendEmailVerification(auth.currentUser);
+    await requestVerificationEmail(auth.currentUser);
     setMessage('Verification email sent! Please check your inbox.', 'success');
   } catch (error) {
-    setMessage('We couldn\'t send the verification email right now. Please try again in a moment.', 'error');
+    const messages = {
+      'email-not-configured': 'Email delivery is not configured yet. Please contact Jol Kona.',
+      'email-delivery-failed': 'We could not deliver the verification email. Please try again later.',
+      'unauthenticated': 'Your session has expired. Please sign in again.'
+    };
+    setMessage(messages[error?.code] || friendlyError(error), 'error');
   }
 }
 
