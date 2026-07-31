@@ -21,7 +21,13 @@ const errorMessages = {
   'auth/network-request-failed': 'We could not connect. Please check your internet connection and try again.',
   'auth/too-many-requests': 'Too many emails were requested. Please wait a few minutes and try again.',
   'auth/requires-recent-login': 'For your security, please sign out and sign in again before requesting another email.',
-  'auth/unauthorized-continue-uri': 'Email verification is not configured for this site yet. Please contact Jol Kona.'
+  'auth/unauthorized-continue-uri': 'Email verification is not configured for this site yet. Please contact Jol Kona.',
+  'auth/quota-exceeded': 'The email quota for today has been reached. Please try again tomorrow.',
+  'auth/internal-error': 'The sign-in service hit an unexpected problem. Please try again shortly.',
+  'auth/user-disabled': 'This account has been disabled. Please contact Jol Kona.',
+  'auth/invalid-user-token': 'Your session has expired. Please sign in again.',
+  'auth/user-token-expired': 'Your session has expired. Please sign in again.',
+  'auth/web-storage-unsupported': 'Your browser is blocking the storage sign-in needs. Please enable cookies and try again.'
 };
 
 function friendlyError(error) {
@@ -133,6 +139,7 @@ async function requestVerificationEmail(user) {
     // A network error is expected on a static deployment. Other endpoint
     // errors should be surfaced instead of incorrectly claiming success.
     if (error?.code || error?.name !== 'TypeError') throw error;
+    console.info("Jol Kona: /api/send-verification is not reachable here — using Firebase's built-in verification email instead.");
   }
   await sendEmailVerification(user);
 }
@@ -179,10 +186,15 @@ async function sendVerification() {
     await requestVerificationEmail(auth.currentUser);
     setMessage('Verification email sent! Please check your inbox.', 'success');
   } catch (error) {
+    // Log the raw error so the real cause stays visible in the console even
+    // when the friendly message shown on screen has to stay generic.
+    console.error('Jol Kona: could not send verification email.', error?.code || error?.name || '', error);
     const messages = {
       'email-not-configured': 'Email delivery is not configured yet. Please contact Jol Kona.',
       'email-delivery-failed': 'We could not deliver the verification email. Please try again later.',
-      'unauthenticated': 'Your session has expired. Please sign in again.'
+      'unauthenticated': 'Your session has expired. Please sign in again.',
+      'missing-email': 'Your account has no email address to verify. Please contact Jol Kona.',
+      'verification-failed': 'The verification service is not reachable right now. Please try again in a moment.'
     };
     setMessage(messages[error?.code] || friendlyError(error), 'error');
   }
