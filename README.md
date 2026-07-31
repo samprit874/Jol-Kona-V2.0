@@ -34,7 +34,8 @@ In **Firebase Console → Authentication → Sign-in method**:
 
 In **Firebase Console → Authentication → Settings → Authorised domains**, add:
 
-- `jolkona.dpdns.org`
+- `jolkona.dpdns.org` (GitHub Pages)
+- `jol-kona.vercel.app` (Vercel)
 - `localhost` (for local development)
 - Any GitHub Pages domain used during development (e.g. `<user>.github.io`)
 
@@ -51,7 +52,12 @@ To customise the sender address further, go to **Authentication → Templates �
 
 ## Deployment
 
-Push to `main` and GitHub Pages will pick up the changes automatically. No build step, no environment variables, no server configuration required.
+The site is deployed on two platforms:
+
+- **GitHub Pages** at [jolkona.dpdns.org](https://jolkona.dpdns.org) — push to `main` and GitHub Pages picks up changes automatically
+- **Vercel** at [jol-kona.vercel.app](https://jol-kona.vercel.app) — auto-deploys from Git using the minimal `vercel.json` config
+
+No build step, no environment variables, no server configuration required on either platform.
 
 ## Included account behaviour
 
