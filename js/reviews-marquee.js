@@ -79,4 +79,8 @@
   }
 
   sliders.forEach(initReviewsMarquee);
+
+  // Exposed for js/catalog.js: when live reviews arrive from Firestore
+  // after page load, the catalog resets the slider and re-inits the marquee.
+  window.JolKonaReviewsMarquee = { init: initReviewsMarquee };
 })();

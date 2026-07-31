@@ -6,6 +6,10 @@ Jol Kona V2.0 is a **fully static storefront** hosted on GitHub Pages at [jolkon
 
 User accounts are powered entirely by **Firebase Authentication** (project `jol-kona`). Email verification uses Firebase's built-in default email sent from the client SDK via `sendEmailVerification`.
 
+## Shop admin (products & reviews)
+
+The owner manages **products** and **customer reviews** from a private, unlinked page at `/admin.html` (Google sign-in + Firestore Security Rules — only allowlisted admin emails can write; visitors get read-only access). Content is stored in **Cloud Firestore** and appears on the live shop instantly, with the built-in `js/products.js` data kept as a fallback. See **[ADMIN-SETUP.md](ADMIN-SETUP.md)** for the one-time Firebase setup.
+
 ## Local development
 
 ```bash

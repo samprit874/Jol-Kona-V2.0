@@ -1,0 +1,75 @@
+rules_version = '2';
+
+/* ═══════════════════════════════════════════════════════════════
+   জলকণা — Firestore Security Rules
+   ═══════════════════════════════════════════════════════════════
+
+   HOW TO ACTIVATE:
+   1. Go to https://console.firebase.google.com → project "jol-kona"
+   2. Build → Firestore Database → Create database (Production mode)
+   3. Open the "Rules" tab, paste THIS ENTIRE FILE, click "Publish".
+
+   DESIGN:
+   - Products & customer reviews are PUBLICLY READABLE (the shop
+     needs to display them to every visitor).
+   - ONLY the admin Google account(s) listed below can CREATE, EDIT
+     or DELETE them. This is enforced by Google's servers — nobody
+     can bypass it from the browser, even if they modify the site's
+     JavaScript.
+
+   ⚠️ The email list here must match js/admin-config.js
+   See ADMIN-SETUP.md for the full guide.
+   ═══════════════════════════════════════════════════════════════ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Admin check: signed in + Google-verified email + allowlist ──
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in [
+          'jolkona2007@gmail.com'
+          // Add more admins below — must also be added in js/admin-config.js
+          // ,'second-admin@gmail.com'
+        ];
+    }
+
+    // ── Lightweight data validation (prevents broken cards on the site) ──
+    function validProduct(d) {
+      return d.name is string && d.name.size() > 0 && d.name.size() <= 120
+        && d.category is string
+        && d.category in ['gift-hampers', 'custom-chocolates', 'clay-jewellery', 'pipe-cleaner', 'keychains']
+        && d.image is string && d.image.size() > 0 && d.image.size() <= 1024
+        && (!d.keys().hasAny(['badge']) || d.badge is string)
+        && (!d.keys().hasAny(['description']) || (d.description is string && d.description.size() <= 600))
+        && (!d.keys().hasAny(['dmText']) || (d.dmText is string && d.dmText.size() <= 300))
+        && (!d.keys().hasAny(['order']) || d.order is number);
+    }
+
+    function validReview(d) {
+      return d.name is string && d.name.size() > 0 && d.name.size() <= 80
+        && d.text is string && d.text.size() > 0 && d.text.size() <= 600
+        && d.stars is number && d.stars >= 1 && d.stars <= 5
+        && (!d.keys().hasAny(['location']) || (d.location is string && d.location.size() <= 80))
+        && (!d.keys().hasAny(['order']) || d.order is number);
+    }
+
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin()
+        && (request.method == 'delete' || validProduct(request.resource.data));
+    }
+
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin()
+        && (request.method == 'delete' || validReview(request.resource.data));
+    }
+
+    // Default deny: every other collection is locked.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
