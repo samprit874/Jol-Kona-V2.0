@@ -307,6 +307,9 @@
 .mnav-item--danger .mnav-item-icon { background: #fae7e4; color: #9d3d38; }
 .mnav-item--danger:hover, .mnav-item--danger:focus-visible { background: #fae7e4; color: #7e2f2a; }
 .mnav-item:disabled { opacity: 0.6; cursor: wait; }
+/* `display:flex` above beats the plain [hidden] attribute, so admin-only rows
+   need an explicit override or they would leak to every signed-in visitor. */
+.mnav-item[hidden] { display: none !important; }
 
 /* ─── Contact strip ─── */
 .mnav-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }

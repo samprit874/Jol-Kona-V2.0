@@ -38,6 +38,7 @@
     add: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>',
     swap: '<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>',
     logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
+    shield: '<path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z"/><polyline points="9 12 11 14 15 10"/>',
     mail: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
     instagram: '<rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>',
     close: '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
@@ -124,6 +125,9 @@
             '<div class="mnav-list">' +
               row({ icon: 'user', label: 'My Account', href: 'account.html', current: page === 'account.html' }) +
               row({ icon: 'orders', label: 'My Orders', href: 'account.html#orders' }) +
+              // Hidden by default; js/auth.js unhides it only for allowlisted
+              // admin emails (same rule the desktop dropdown uses).
+              row({ icon: 'shield', label: 'Admin Panel', href: 'admin.html', attrs: 'data-auth-admin-row hidden', current: page === 'admin.html' }) +
               row({ icon: 'add', label: 'Add another account', attrs: 'data-mnav-auth-action="add-account"' }) +
               row({ icon: 'swap', label: 'Switch account', attrs: 'data-mnav-auth-action="switch-account"' }) +
               row({ icon: 'logout', label: 'Log out', className: 'mnav-item--danger', attrs: 'data-mnav-auth-action="logout"' }) +

@@ -30,7 +30,10 @@ export const ADMIN_EMAILS = [
   'jolkona2007@gmail.com',
 ];
 
-export const ADMIN_PAGE = 'https://admin.jolkona.dpdns.org';
+// The admin panel lives at one place only: /admin.html on the main site
+// (https://jolkona.dpdns.org/admin.html). Relative so it works on the live
+// site, on preview deploys, and when opened locally.
+export const ADMIN_PAGE = 'admin.html';
 
 /**
  * Case-insensitive check — is this email an admin?

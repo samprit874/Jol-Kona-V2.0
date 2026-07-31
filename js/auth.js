@@ -209,6 +209,15 @@ function accountMenuMarkup() {
 // accounts on the admin allowlist (js/admin-config.js). Even if someone
 // hand-edits this, Firebase Security Rules still reject non-admin writes.
 function syncAdminMenuItem(user) {
+  // Mobile drawer (js/mobile-nav.js) ships the row already rendered but hidden,
+  // so it only needs unhiding. Do this first and independently of the desktop
+  // dropdown, which may not exist yet on some pages.
+  const isAdmin = !!(user && isAdminEmail(user.email));
+  document.querySelectorAll('[data-auth-admin-row]').forEach(el => {
+    el.hidden = !isAdmin;
+    el.classList.toggle('is-admin-visible', isAdmin);
+  });
+
   const menu = document.querySelector('#accountMenu');
   if (!menu) return;
   const existing = menu.querySelector('[data-auth-admin-link]');
