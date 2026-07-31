@@ -91,26 +91,12 @@
   }, { passive: true });
 
   // ─── Mobile Navigation ───
-  const mobileToggle = document.getElementById('mobileToggle');
-  const mobileNav = document.getElementById('mobileNav');
-
-  mobileToggle.addEventListener('click', () => {
-    mobileToggle.classList.toggle('active');
-    mobileNav.classList.toggle('active');
-    document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-  });
-
-  // Close mobile nav on link click
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileToggle.classList.remove('active');
-      mobileNav.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  });
+  // Handled by js/mobile-nav.js (redesigned slide-in drawer).
 
   // ─── Smooth Scroll for Anchor Links ───
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // The mobile drawer handles its own links (close first, then scroll).
+    if (anchor.closest('.mnav')) return;
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
@@ -320,7 +306,7 @@
 
   // ─── Search Toggle ───
   const searchToggle = document.getElementById('searchToggle');
-  searchToggle.addEventListener('click', () => {
+  searchToggle?.addEventListener('click', () => {
     const searchInput = document.querySelector('.filter-search input');
     if (searchInput) {
       searchInput.focus();
@@ -415,16 +401,6 @@
     });
     el.addEventListener('mouseleave', () => {
       document.body.style.cursor = '';
-    });
-  });
-
-  // ─── Keyboard Accessibility ───
-  document.querySelectorAll('.nav-mobile-toggle').forEach(el => {
-    el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        el.click();
-      }
     });
   });
 
@@ -554,6 +530,8 @@
 
   // ─── Smooth Scroll offset for fixed nav ───
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // The mobile drawer handles its own links (close first, then scroll).
+    if (anchor.closest('.mnav')) return;
     anchor.addEventListener('click', function(e) {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {

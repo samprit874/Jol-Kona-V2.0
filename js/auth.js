@@ -339,33 +339,6 @@ function addNavControl() {
   actions.querySelector('[data-auth-open]').addEventListener('click', () => openModal());
 }
 
-function addMobileAccountControl() {
-  const mobileNav = document.querySelector('.mobile-nav');
-  if (!mobileNav || mobileNav.querySelector('.mobile-auth-link')) return;
-  mobileNav.insertAdjacentHTML('beforeend', `
-    <button class="mobile-nav-link mobile-auth-link" type="button" data-auth-open data-auth-guest>Login</button>
-    <div class="mobile-auth-link mobile-auth-user" data-auth-user hidden>
-      <a class="mobile-nav-link" href="${accountPage}">My Account</a>
-      <a class="mobile-nav-link" href="wishlist-cart.html#wishlist">My Wishlist</a>
-      <a class="mobile-nav-link" href="${accountPage}#orders">My Orders</a>
-      <button class="mobile-nav-link mobile-auth-action" type="button" data-auth-action="add-account">Add another account</button>
-      <button class="mobile-nav-link mobile-auth-action" type="button" data-auth-action="switch-account">Switch account</button>
-      <button class="mobile-nav-link mobile-auth-action" type="button" data-auth-action="logout">Log out</button>
-    </div>`);
-  mobileNav.querySelector('[data-auth-open]').addEventListener('click', () => {
-    mobileNav.classList.remove('active');
-    document.getElementById('mobileToggle')?.classList.remove('active');
-    openModal();
-  });
-  mobileNav.querySelectorAll('[data-auth-action]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      mobileNav.classList.remove('active');
-      document.getElementById('mobileToggle')?.classList.remove('active');
-      runAccountAction(btn.dataset.authAction, btn);
-    });
-  });
-}
-
 function guardAccountPage(user) {
   if (document.body.dataset.authRequired === 'true' && !user) {
     sessionStorage.setItem('jolKonaAfterLogin', window.location.href);
@@ -375,7 +348,8 @@ function guardAccountPage(user) {
 
 mountUi();
 addNavControl();
-addMobileAccountControl();
+// Expose a tiny surface so other scripts (e.g. the mobile drawer) can trigger auth UI.
+window.JolKonaAuth = { openModal, closeModal };
 if (new URLSearchParams(location.search).get('login') === '1') window.addEventListener('load', () => openModal());
 if (isFirebaseConfigured) {
   const app = initializeApp(firebaseConfig);

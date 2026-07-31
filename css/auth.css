@@ -90,24 +90,12 @@
 .account-menu-label { flex:1; }
 .account-menu-action:disabled { opacity:.6; cursor:wait; }
 
-/* Mobile: the profile DP lives in the mobile menu — show a small stack of account links. */
-.mobile-auth-user { display:flex; flex-direction:column; align-items:stretch; gap:0; margin-top:7px; padding-top:7px; border-top:1px solid var(--border-light); }
-.mobile-auth-action { cursor:pointer; }
-
-/* Mobile: a compact menu opens as a small popover from the top-right toggle. */
+/* Mobile: the nav collapses to the redesigned drawer (css/mobile-nav.css). */
 @media(max-width:1024px){
-  #navbar .nav-inner { flex-wrap:nowrap; justify-content:space-between; padding:0 16px; }
-  #navbar .nav-brand { width:auto; }
-  #navbar .nav-brand-logo { height:38px; }
-  #navbar .nav-actions { width:auto; margin:0; gap:0; }
-  #navbar .nav-actions > .nav-action-btn, #navbar .auth-nav-control { display:none; }
-  #navbar .nav-mobile-toggle { width:32px; height:32px; padding:4px 0; display:flex; align-items:center; justify-content:center; border:0; border-radius:0; color:var(--charcoal); }
-  #navbar .nav-mobile-toggle::after { content:none; }
-  #navbar .nav-mobile-toggle span { display:block; width:23px; }
-  .mobile-nav { inset:auto 16px auto auto; top:66px; z-index:1001; width:min(250px,calc(100vw - 32px)); padding:10px; display:flex; align-items:stretch; justify-content:flex-start; gap:0; background:rgba(255,254,249,.98); border:1px solid var(--border-light); border-radius:16px; box-shadow:0 15px 40px rgba(45,41,38,.16); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); opacity:0; visibility:hidden; pointer-events:none; transform:translateY(-10px) scale(.96); transform-origin:top right; transition:opacity .24s ease,visibility .24s ease,transform .3s cubic-bezier(.16,1,.3,1); }
-  .mobile-nav.active { opacity:1; visibility:visible; pointer-events:auto; transform:translateY(0) scale(1); }
-  .mobile-nav-link, .mobile-nav.active .mobile-nav-link { width:100%; padding:10px 12px; color:var(--charcoal); font-family:var(--font-modern,var(--font-body)); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; text-align:left; opacity:1; transform:none; transition:background .18s ease,color .18s ease; }
-  .mobile-nav-link:hover { background:var(--soft-pink); color:var(--rose-gold-dark); }
-  .mobile-nav .mobile-auth-link { margin-top:7px; padding-top:14px; border-top:1px solid var(--border-light); background:transparent; color:var(--rose-gold-dark); }
+  .nav .nav-inner { flex-wrap:nowrap; justify-content:space-between; padding:0 16px; }
+  .nav .nav-brand { width:auto; }
+  .nav .nav-brand-logo { height:38px; }
+  .nav .nav-actions { width:auto; margin:0; gap:8px; }
+  .nav .nav-actions > .nav-action-btn, .nav .auth-nav-control { display:none; }
 }
 @media(max-width:520px){.auth-modal{padding:14px}.auth-panel{padding:31px 23px;border-radius:18px}.account-page{padding:120px 16px 50px}.account-card{padding:32px 20px}}

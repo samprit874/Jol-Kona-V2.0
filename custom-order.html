@@ -161,6 +161,7 @@
     }
   </style>
   <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/mobile-nav.css">
 </head>
 <body>
   <!-- ═══════ Navigation (same as home) ═══════ -->
@@ -180,9 +181,11 @@
         <a href="/cdn-cgi/l/email-protection#39535655525657580b09090e795e54585055175a5654" class="nav-action-btn" aria-label="Email">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
-        <div class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu" role="button" tabindex="0">
-          <span></span><span></span><span></span>
-        </div>
+        <button class="nav-mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </nav>
@@ -541,13 +544,7 @@
     });
     
     // DM button handled by href link
-    // Mobile toggle
-    const mobileToggle = document.getElementById('mobileToggle');
-    if (mobileToggle) {
-      mobileToggle.addEventListener('click', () => {
-        window.location.href = 'index.html';
-      });
-    }
+    // Mobile menu is handled by js/mobile-nav.js
 
     // Reveal animations
     const reveals = document.querySelectorAll('.reveal');
@@ -562,6 +559,7 @@
     reveals.forEach(el => observer.observe(el));
   </script>
 <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2237b90ee837b08',t:'MTc4NTIzNzUwMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+  <script src="js/mobile-nav.js"></script>
   <script type="module" src="js/auth.js"></script>
 </body>
 </html>
