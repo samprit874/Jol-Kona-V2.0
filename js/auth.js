@@ -1,24 +1,31 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import {
   getAuth, setPersistence, browserLocalPersistence, onAuthStateChanged,
-  signInWithPopup, GoogleAuthProvider, signOut
+  signInWithPopup, signInWithRedirect, getRedirectResult,
+  GoogleAuthProvider, signOut
 } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 import { firebaseConfig, isFirebaseConfigured } from './firebase-config.js';
 
 const accountPage = 'account.html';
+const redirectStateKey = 'jolKonaGoogleRedirect';
 let auth;
 let currentUser = null;
 
 const errorMessages = {
   'auth/popup-closed-by-user': 'Google sign-in was cancelled. Please try again when you are ready.',
-  'auth/popup-blocked': 'Your browser blocked the sign-in window. Please allow pop-ups and try again.',
+  'auth/popup-blocked': 'Your browser blocked the sign-in window. We will try a full-page Google redirect instead.',
+  'auth/cancelled-popup-request': 'Another sign-in window was already opening. Please try again in a moment.',
   'auth/network-request-failed': 'We could not connect. Please check your internet connection and try again.',
   'auth/internal-error': 'The sign-in service hit an unexpected problem. Please try again shortly.',
   'auth/user-disabled': 'This account has been disabled. Please contact Jol Kona.',
   'auth/invalid-user-token': 'Your session has expired. Please sign in again.',
   'auth/user-token-expired': 'Your session has expired. Please sign in again.',
   'auth/web-storage-unsupported': 'Your browser is blocking the storage sign-in needs. Please enable cookies and try again.',
-  'auth/account-exists-with-different-credential': 'This Google account is already linked to a different sign-in method on Jol Kona.'
+  'auth/account-exists-with-different-credential': 'This Google account is already linked to a different sign-in method on Jol Kona.',
+  'auth/operation-not-allowed': 'Google sign-in is not enabled in Firebase Authentication for this project yet.',
+  'auth/invalid-api-key': 'The Firebase configuration is invalid. Please update the site\'s API key.',
+  'auth/unauthorized-domain': 'This website domain is not authorised in Firebase Authentication yet. Add it in Firebase → Authentication → Settings → Authorised domains.',
+  'auth/operation-not-supported-in-this-environment': 'This browser cannot open the Google sign-in popup here, so we will try a full-page redirect instead.'
 };
 
 function friendlyError(error) {
@@ -103,6 +110,45 @@ function buildChooserProvider() {
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
   return provider;
+}
+
+async function googleSignIn() {
+  const button = document.querySelector('#googleSignIn');
+  if (!auth) {
+    setMessage('Authentication is not configured yet. Please contact Jol Kona.', 'error');
+    return;
+  }
+
+  setBusy(button, true, 'Continue with Google');
+  setMessage();
+
+  try {
+    await signInWithPopup(auth, buildChooserProvider());
+    sessionStorage.removeItem(redirectStateKey);
+    closeModal();
+  } catch (error) {
+    const shouldFallbackToRedirect = [
+      'auth/popup-blocked',
+      'auth/operation-not-supported-in-this-environment'
+    ].includes(error?.code);
+
+    if (shouldFallbackToRedirect) {
+      try {
+        sessionStorage.setItem(redirectStateKey, '1');
+        setMessage('Redirecting to Google…', 'success');
+        await signInWithRedirect(auth, buildChooserProvider());
+        return;
+      } catch (redirectError) {
+        sessionStorage.removeItem(redirectStateKey);
+        setMessage(friendlyError(redirectError), 'error');
+        return;
+      }
+    }
+
+    setMessage(friendlyError(error), 'error');
+  } finally {
+    setBusy(button, false, 'Continue with Google');
+  }
 }
 
 function accountMenuMarkup() {
@@ -335,10 +381,34 @@ if (isFirebaseConfigured) {
   const app = initializeApp(firebaseConfig);
   auth = getAuth(app);
   setPersistence(auth, browserLocalPersistence).catch(() => {});
+
+  if (sessionStorage.getItem(redirectStateKey)) {
+    setMessage('Finishing Google sign-in…', 'success');
+  }
+
+  getRedirectResult(auth)
+    .then(result => {
+      sessionStorage.removeItem(redirectStateKey);
+      if (result?.user) {
+        closeModal();
+        setMessage();
+      }
+    })
+    .catch(error => {
+      sessionStorage.removeItem(redirectStateKey);
+      setMessage(friendlyError(error), 'error');
+      openModal();
+    });
+
   onAuthStateChanged(auth, user => {
     currentUser = user;
     renderAccount(user);
     guardAccountPage(user);
+    if (user) {
+      sessionStorage.removeItem(redirectStateKey);
+      closeModal();
+      setMessage();
+    }
     if (user && sessionStorage.getItem('jolKonaAfterLogin')) {
       const destination = sessionStorage.getItem('jolKonaAfterLogin'); sessionStorage.removeItem('jolKonaAfterLogin'); window.location.assign(destination);
     }
