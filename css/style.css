@@ -2730,12 +2730,6 @@ body {
   color: #1A1816;
 }
 
-[data-theme="dark"] .countdown-number {
-  background: rgba(200,149,108,0.12);
-  border-color: rgba(200,149,108,0.25);
-  color: var(--rose-gold);
-}
-
 [data-theme="dark"] .scroll-progress {
   background: linear-gradient(90deg, var(--rose-gold), var(--gold-light), var(--rose-gold));
   box-shadow: 0 0 8px rgba(200,149,108,0.3);
@@ -3136,6 +3130,15 @@ body {
 }
 
 /* ── Festival countdown ── */
+[data-theme="dark"] .festival-countdown {
+  background: linear-gradient(135deg, #0F0E0D, #1A1816);
+  border: 1px solid rgba(200,149,108,0.15);
+}
+
+[data-theme="dark"] .festival-countdown::before {
+  background: radial-gradient(ellipse, rgba(200,149,108,0.08) 0%, transparent 70%);
+}
+
 [data-theme="dark"] .festival-countdown-label {
   color: var(--rose-gold-light);
 }
@@ -3145,6 +3148,8 @@ body {
 }
 
 [data-theme="dark"] .countdown-number {
+  background: rgba(200,149,108,0.12);
+  border-color: rgba(200,149,108,0.25);
   color: var(--rose-gold);
 }
 
