@@ -570,26 +570,29 @@
 
   // ─── 4. Festival Countdown Timer ───
   const festivals = [
-    { name: '🪔 Durga Puja', date: new Date('2026-10-08T00:00:00+05:30') },
-    { name: '🌸 Poila Boishakh', date: new Date('2027-04-15T00:00:00+05:30') },
     { name: '🧵 Rakhi', date: new Date('2026-08-28T00:00:00+05:30') },
-    { name: '❤️ Valentine\'s Day', date: new Date('2027-02-14T00:00:00+05:30') },
+    { name: '🪔 Durga Puja', date: new Date('2026-10-08T00:00:00+05:30') },
+    { name: '🪔 Diwali', date: new Date('2026-11-08T00:00:00+05:30') },
     { name: '🎄 Christmas', date: new Date('2026-12-25T00:00:00+05:30') },
+    { name: '❤️ Valentine\'s Day', date: new Date('2027-02-14T00:00:00+05:30') },
     { name: '🌙 Eid ul-Fitr', date: new Date('2027-03-22T00:00:00+05:30') },
+    { name: '🌸 Poila Boishakh', date: new Date('2027-04-15T00:00:00+05:30') },
     { name: '👩‍👧 Mother\'s Day', date: new Date('2027-05-09T00:00:00+05:30') },
   ];
 
   function updateFestivalCountdown() {
     const now = new Date();
-    // Find the next upcoming festival
-    let nextFestival = null;
-    for (const festival of festivals) {
-      if (festival.date > now) {
-        nextFestival = festival;
-        break;
-      }
+    // Sort and find the *nearest* upcoming festival (not just first in array)
+    const upcoming = festivals
+      .filter(f => f.date > now)
+      .sort((a,b) => a.date - b.date);
+    const nextFestival = upcoming[0] || null;
+    if (!nextFestival) {
+      // All 2026-27 festivals passed? Fallback to next year's Rakhi
+      const fbName = document.getElementById('festivalName');
+      if (fbName) fbName.textContent = '✨ Everyday Celebration';
+      return;
     }
-    if (!nextFestival) return;
 
     const festivalName = document.getElementById('festivalName');
     if (festivalName) festivalName.textContent = nextFestival.name;
