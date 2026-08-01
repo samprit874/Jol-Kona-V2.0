@@ -2589,6 +2589,370 @@ body {
   border-top-color: rgba(200,149,108,0.1);
 }
 
+/* ─── Dark Mode: Button Visibility Fixes ─── */
+/* In dark mode, --charcoal becomes light (#F0EBE6), so buttons using
+   background: var(--charcoal) + color: white become invisible.
+   Fix: Override to use rose-gold or deep dark backgrounds with proper contrast. */
+
+[data-theme="dark"] .cart-add-btn {
+  background: var(--rose-gold);
+  border-color: var(--rose-gold);
+  color: #1A1816;
+  font-weight: 800;
+}
+
+[data-theme="dark"] .cart-add-btn:hover {
+  background: var(--rose-gold-light);
+  border-color: var(--rose-gold-light);
+  color: #1A1816;
+  box-shadow: 0 4px 20px rgba(200,149,108,0.3);
+}
+
+[data-theme="dark"] .cart-add-btn.in-cart {
+  background: #D4A84B;
+  border-color: #D4A84B;
+  color: #1A1816;
+}
+
+[data-theme="dark"] .btn-primary {
+  background: var(--rose-gold);
+  color: #1A1816;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: var(--rose-gold-light);
+  color: #1A1816;
+  box-shadow: 0 4px 20px rgba(200,149,108,0.3);
+}
+
+[data-theme="dark"] .btn-secondary {
+  border-color: rgba(200,149,108,0.4);
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  border-color: var(--rose-gold);
+  color: var(--rose-gold);
+  background: rgba(200,149,108,0.08);
+}
+
+[data-theme="dark"] .customize-send {
+  background: var(--rose-gold);
+  color: #1A1816;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .customize-send:hover {
+  background: var(--rose-gold-light);
+  color: #1A1816;
+}
+
+[data-theme="dark"] .product-action-btn {
+  background: #2D2520;
+  color: var(--charcoal);
+  border: 1px solid rgba(200,149,108,0.2);
+}
+
+[data-theme="dark"] .product-action-btn:hover {
+  background: var(--rose-gold);
+  color: #1A1816;
+  border-color: var(--rose-gold);
+}
+
+[data-theme="dark"] .product-action-btn.wishlist-btn.is-active {
+  background: var(--rose-gold);
+  color: #e74c3c;
+  border-color: var(--rose-gold);
+}
+
+[data-theme="dark"] .nav-action-btn {
+  color: var(--charcoal-light);
+}
+
+[data-theme="dark"] .nav-action-btn:hover {
+  background: rgba(200,149,108,0.15);
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .newsletter-btn {
+  background: var(--rose-gold);
+  color: #1A1816;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .newsletter-btn:hover {
+  background: var(--rose-gold-light);
+  color: #1A1816;
+}
+
+[data-theme="dark"] .newsletter-input {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(200,149,108,0.2);
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .newsletter-input::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+[data-theme="dark"] .dark-mode-toggle:hover {
+  background: rgba(200,149,108,0.15);
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .back-to-top {
+  background: rgba(45,37,32,0.9);
+  border-color: rgba(200,149,108,0.2);
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .back-to-top:hover {
+  background: var(--rose-gold);
+  color: #1A1816;
+  border-color: var(--rose-gold);
+}
+
+[data-theme="dark"] .footer-social a {
+  border-color: rgba(200,149,108,0.2);
+}
+
+[data-theme="dark"] .footer-social a:hover {
+  background: var(--rose-gold);
+  border-color: var(--rose-gold);
+}
+
+[data-theme="dark"] .footer-bottom-links a:hover {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .checkout-btn {
+  font-weight: 900;
+}
+
+[data-theme="dark"] .saved-mini-btn.primary {
+  background: var(--rose-gold);
+  border-color: var(--rose-gold);
+  color: #1A1816;
+  font-weight: 800;
+}
+
+[data-theme="dark"] .saved-mini-btn.primary:hover {
+  background: var(--rose-gold-light);
+  border-color: var(--rose-gold-light);
+  color: #1A1816;
+}
+
+[data-theme="dark"] .countdown-number {
+  background: rgba(200,149,108,0.12);
+  border-color: rgba(200,149,108,0.25);
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .scroll-progress {
+  background: linear-gradient(90deg, var(--rose-gold), var(--gold-light), var(--rose-gold));
+  box-shadow: 0 0 8px rgba(200,149,108,0.3);
+}
+
+[data-theme="dark"] .loader-droplet {
+  border-color: var(--rose-gold);
+}
+
+[data-theme="dark"] .kantha-divider svg line,
+[data-theme="dark"] .kantha-divider svg circle,
+[data-theme="dark"] .kantha-divider svg path {
+  stroke: var(--rose-gold);
+  opacity: 0.6;
+}
+
+[data-theme="dark"] .product-card-badge.badge--bestseller {
+  background: rgba(184,134,11,0.2);
+  border-color: rgba(184,134,11,0.4);
+  color: #D4A84B;
+}
+
+[data-theme="dark"] .product-card-badge.badge--new {
+  background: rgba(70,121,90,0.2);
+  border-color: rgba(70,121,90,0.35);
+  color: #6BAF82;
+}
+
+[data-theme="dark"] .product-card-badge.badge--popular {
+  background: rgba(166,123,85,0.2);
+  border-color: rgba(166,123,85,0.35);
+  color: #D4A882;
+}
+
+[data-theme="dark"] .product-card-badge.badge--handmade,
+[data-theme="dark"] .product-card-badge.badge--handpainted {
+  background: rgba(138,90,126,0.2);
+  border-color: rgba(138,90,126,0.35);
+  color: #B882B0;
+}
+
+[data-theme="dark"] .faq-question {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .faq-question:hover {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .faq-icon {
+  border-color: rgba(200,149,108,0.25);
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .celebrate-cta-button {
+  background: linear-gradient(135deg, var(--rose-gold), var(--rose-gold-dark));
+  color: #1A1816 !important;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .celebrate-cta-button:hover {
+  background: linear-gradient(135deg, var(--rose-gold-light), var(--rose-gold));
+  color: #1A1816 !important;
+}
+
+[data-theme="dark"] .review-text::before {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .review-avatar {
+  background: linear-gradient(135deg, #3D2E28, #2D2520);
+}
+
+[data-theme="dark"] .review-stars {
+  color: var(--gold-light);
+}
+
+[data-theme="dark"] .stat-number {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .why-card::before {
+  background: linear-gradient(90deg, var(--rose-gold), var(--lotus-pink));
+}
+
+[data-theme="dark"] .why-card:hover .why-card-icon {
+  background: var(--rose-gold);
+}
+
+[data-theme="dark"] .why-card:hover .why-card-icon span {
+  filter: brightness(0.2);
+}
+
+[data-theme="dark"] .value-card:hover .value-icon {
+  background: var(--rose-gold);
+}
+
+[data-theme="dark"] .value-card:hover .value-icon span {
+  filter: brightness(0.2);
+}
+
+[data-theme="dark"] .mv-card-icon {
+  filter: brightness(0.9);
+}
+
+[data-theme="dark"] .workshop-label {
+  background: rgba(45,37,32,0.85);
+  color: var(--charcoal);
+  border: 1px solid rgba(200,149,108,0.2);
+}
+
+[data-theme="dark"] .section-overline {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .hero-title .highlight {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .hero-title .highlight::after {
+  background: rgba(200,149,108,0.2);
+}
+
+[data-theme="dark"] .hero-overline {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .hero-overline::before,
+[data-theme="dark"] .hero-overline::after {
+  background: var(--rose-gold);
+}
+
+[data-theme="dark"] .celebrate-highlight-spark {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .celebrate-highlight-spark::after {
+  background: linear-gradient(90deg, rgba(200,149,108,0.2) 0%, rgba(212,168,130,0.4) 50%, rgba(200,149,108,0.2) 100%);
+}
+
+[data-theme="dark"] .celebrate-script-accent {
+  background: linear-gradient(135deg, #C08A5E 0%, #D4A882 50%, #D4A84B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="dark"] .celebrate-subtext .brand-word {
+  border-bottom-color: var(--rose-gold);
+}
+
+[data-theme="dark"] .celebrate-card-icon-wrap svg {
+  color: var(--rose-gold-dark);
+}
+
+[data-theme="dark"] .instagram-item-overlay {
+  background: rgba(0,0,0,0.5);
+}
+
+[data-theme="dark"] .instagram-item-overlay svg {
+  color: white;
+}
+
+[data-theme="dark"] .footer-contact-item svg {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .footer-heading {
+  color: white;
+}
+
+[data-theme="dark"] .footer-links a:hover {
+  color: var(--rose-gold);
+  text-decoration-color: var(--rose-gold);
+}
+
+[data-theme="dark"] .footer-bottom-links a:hover {
+  color: var(--rose-gold);
+  text-decoration-color: var(--rose-gold);
+}
+
+[data-theme="dark"] .footer-social a {
+  color: var(--charcoal-light);
+}
+
+[data-theme="dark"] .footer-social a:hover {
+  color: white;
+}
+
+[data-theme="dark"] .process-step-number {
+  box-shadow: 0 4px 16px rgba(200,149,108,0.2);
+}
+
+[data-theme="dark"] .process-step-new:hover .process-step-number {
+  box-shadow: 0 6px 24px rgba(200,149,108,0.35);
+}
+
+[data-theme="dark"] .process-step-new:hover .process-step-icon span {
+  filter: brightness(0.9);
+}
+
+[data-theme="dark"] .typewriter-cursor {
+  background: var(--rose-gold);
+}
+
 /* ─── 12. Typewriter Effect for Bengali Text ─── */
 .typewriter-cursor {
   display: inline-block;
