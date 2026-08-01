@@ -614,55 +614,6 @@
   updateFestivalCountdown();
   setInterval(updateFestivalCountdown, 1000);
 
-  // ─── 5. Live Order Notification ───
-  const liveNotifications = [
-    { title: 'Someone in Kolkata ordered a Gift Bouquet', subtitle: 'Just now • ⭐ 4.9 rated', icon: '💐' },
-    { title: 'Someone in Raiganj ordered a Clay Necklace', subtitle: '2 minutes ago • 🤲 Handmade', icon: '💍' },
-    { title: 'Someone in Siliguri ordered a Pipe Cleaner Bouquet', subtitle: '5 minutes ago • 🌸 Popular', icon: '🌸' },
-    { title: 'Someone in Howrah ordered a Custom Gift Box', subtitle: '8 minutes ago • 💝 Custom', icon: '🎁' },
-    { title: 'Someone in Malda ordered Couple Keychains', subtitle: '12 minutes ago • 🔑 Bestseller', icon: '🔑' },
-    { title: 'Someone in Durgapur ordered a Photo Hamper', subtitle: '15 minutes ago • 📸 New', icon: '📸' },
-  ];
-
-  let notificationIndex = 0;
-  const liveNotification = document.getElementById('liveOrderNotification');
-  const notificationTitle = document.getElementById('notificationTitle');
-  const notificationSubtitle = document.getElementById('notificationSubtitle');
-  const notificationClose = document.getElementById('notificationClose');
-
-  function showLiveNotification() {
-    if (!liveNotification || !notificationTitle || !notificationSubtitle) return;
-    const notif = liveNotifications[notificationIndex % liveNotifications.length];
-    
-    // Update the icon
-    const iconEl = liveNotification.querySelector('.notification-icon');
-    if (iconEl) iconEl.textContent = notif.icon;
-    
-    notificationTitle.textContent = notif.title;
-    notificationSubtitle.textContent = notif.subtitle;
-    
-    liveNotification.classList.add('show');
-    
-    // Auto-hide after 5 seconds
-    setTimeout(() => {
-      liveNotification.classList.remove('show');
-    }, 5000);
-    
-    notificationIndex++;
-  }
-
-  // Show first notification after 8 seconds, then every 30 seconds
-  setTimeout(() => {
-    showLiveNotification();
-    setInterval(showLiveNotification, 30000);
-  }, 8000);
-
-  if (notificationClose) {
-    notificationClose.addEventListener('click', () => {
-      liveNotification.classList.remove('show');
-    });
-  }
-
   // ─── 6. Gift Finder Quiz ───
   const giftFinderSteps = document.querySelectorAll('.gift-finder-step');
   const giftFinderDots = document.querySelectorAll('.gift-finder-progress-dot');

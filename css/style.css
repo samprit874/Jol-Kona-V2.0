@@ -2215,101 +2215,6 @@ body {
   }
 }
 
-/* ─── 9. Live Order Notification ─── */
-.live-order-notification {
-  position: fixed;
-  bottom: 90px;
-  left: 24px;
-  z-index: 800;
-  max-width: 340px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--space-md) var(--space-lg);
-  box-shadow: var(--shadow-medium);
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  opacity: 0;
-  transform: translateX(-120%);
-  transition: all 0.6s var(--ease-out);
-  pointer-events: none;
-}
-
-.live-order-notification.show {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-}
-
-.live-order-notification .notification-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--soft-pink), var(--lotus-pink));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.live-order-notification .notification-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.live-order-notification .notification-title {
-  font-family: var(--font-modern);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--charcoal);
-}
-
-.live-order-notification .notification-subtitle {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
-
-.live-order-notification .notification-close {
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-smooth);
-  background: none;
-  border: none;
-}
-
-.live-order-notification .notification-close:hover {
-  background: var(--cream-dark);
-  color: var(--charcoal);
-}
-
-[data-theme="dark"] .live-order-notification {
-  background: rgba(45,37,32,0.92);
-  border-color: rgba(200,149,108,0.15);
-}
-
-[data-theme="dark"] .live-order-notification .notification-icon {
-  background: linear-gradient(135deg, #3D2E28, #2D2520);
-}
-
-[data-theme="dark"] .live-order-notification .notification-close:hover {
-  background: #3D2E28;
-}
-
 /* ─── 10. Bottom Mobile Navigation ─── */
 .bottom-nav {
   display: none;
@@ -2410,10 +2315,6 @@ body {
   }
   .back-to-top {
     bottom: 86px !important;
-  }
-  .live-order-notification {
-    bottom: 86px;
-    left: 14px;
   }
 }
 
@@ -3155,15 +3056,6 @@ body {
 
 [data-theme="dark"] .countdown-label {
   color: rgba(255,255,255,0.45);
-}
-
-/* ── Live notification ── */
-[data-theme="dark"] .notification-title {
-  color: var(--charcoal);
-}
-
-[data-theme="dark"] .notification-subtitle {
-  color: var(--text-muted);
 }
 
 /* ── Stat numbers ── */
