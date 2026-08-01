@@ -1735,8 +1735,8 @@ body {
   --charcoal: #F0EBE6;
   --charcoal-light: #D4CFC9;
   --text-primary: #F0EBE6;
-  --text-secondary: #A89E96;
-  --text-muted: #7A716A;
+  --text-secondary: #BFB5AD;
+  --text-muted: #9A8E86;
   --border-light: rgba(200,149,108,0.12);
   --border-medium: rgba(200,149,108,0.22);
   --glass-bg: rgba(30,28,26,0.82);
@@ -2951,6 +2951,453 @@ body {
 
 [data-theme="dark"] .typewriter-cursor {
   background: var(--rose-gold);
+}
+
+/* ─── Dark Mode: Comprehensive Text Color Fixes ─── */
+/* Fix all text elements that are hard to read in dark mode.
+   Only dark mode overrides — light mode is untouched. */
+
+/* ── Story section ── */
+[data-theme="dark"] .story-text p {
+  color: var(--text-secondary);
+}
+
+/* ── Why cards ── */
+[data-theme="dark"] .why-card p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .why-card h4 {
+  color: var(--charcoal);
+}
+
+/* ── Product cards ── */
+[data-theme="dark"] .product-card-desc {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .product-card-name {
+  color: var(--charcoal);
+}
+
+/* ── Review cards ── */
+[data-theme="dark"] .review-text {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .review-author-name {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .review-author-location {
+  color: var(--text-muted);
+}
+
+/* ── Process timeline ── */
+[data-theme="dark"] .process-step-title {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .process-step-desc {
+  color: var(--text-muted);
+}
+
+/* ── Celebrate section ── */
+[data-theme="dark"] .celebrate-title {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .celebrate-subtext {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .celebrate-card-title {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .celebrate-card-bengali {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .celebrate-card-desc {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .celebrate-card-badge {
+  color: var(--rose-gold-dark);
+}
+
+[data-theme="dark"] .celebrate-tag-item {
+  color: var(--charcoal-light);
+}
+
+[data-theme="dark"] .celebrate-cta-heading {
+  color: #F0EBE6;
+}
+
+/* ── Newsletter ── */
+[data-theme="dark"] .newsletter-content h2 {
+  color: #F0EBE6;
+}
+
+[data-theme="dark"] .newsletter-content p {
+  color: rgba(255,255,255,0.65);
+}
+
+/* ── Footer ── */
+[data-theme="dark"] .footer-brand p {
+  color: rgba(255,255,255,0.55);
+}
+
+[data-theme="dark"] .footer-links a {
+  color: rgba(255,255,255,0.55);
+}
+
+[data-theme="dark"] .footer-bottom p {
+  color: rgba(255,255,255,0.35);
+}
+
+[data-theme="dark"] .footer-bottom-links a {
+  color: rgba(255,255,255,0.35);
+}
+
+/* ── Section headers ── */
+[data-theme="dark"] .section-title {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .section-subtitle {
+  color: var(--text-secondary);
+}
+
+/* ── Hero section ── */
+[data-theme="dark"] .hero-title {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .hero-bengali-title {
+  color: var(--charcoal);
+  opacity: 0.92;
+}
+
+[data-theme="dark"] .hero-description {
+  color: var(--text-secondary);
+}
+
+/* ── FAQ ── */
+[data-theme="dark"] .faq-answer p {
+  color: var(--text-secondary);
+}
+
+/* ── Trust badges ── */
+[data-theme="dark"] .trust-badge-title {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .trust-badge-desc {
+  color: var(--text-muted);
+}
+
+/* ── Gift finder ── */
+[data-theme="dark"] .gift-finder-question {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .gift-finder-option-text {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .gift-finder-results h3 {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .gift-finder-results p {
+  color: var(--text-secondary);
+}
+
+/* ── Festival countdown ── */
+[data-theme="dark"] .festival-countdown-label {
+  color: var(--rose-gold-light);
+}
+
+[data-theme="dark"] .festival-countdown-occasion {
+  color: #F0EBE6;
+}
+
+[data-theme="dark"] .countdown-number {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .countdown-label {
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── Live notification ── */
+[data-theme="dark"] .notification-title {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .notification-subtitle {
+  color: var(--text-muted);
+}
+
+/* ── Stat numbers ── */
+[data-theme="dark"] .stat-number {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .stat-label {
+  color: var(--text-muted);
+}
+
+/* ── About page ── */
+[data-theme="dark"] .about-hero-section .brand-meaning {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .about-hero-section .hero-story {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .about-full-story p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .about-full-story .bengali-quote {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .mv-card h3 {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .mv-card p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .workshop-label {
+  color: var(--charcoal-light);
+}
+
+[data-theme="dark"] .process-detail-text h4 {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .process-detail-text p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .value-card h4 {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .value-card p {
+  color: var(--text-secondary);
+}
+
+/* ── Custom order page ── */
+[data-theme="dark"] .custom-hero p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .form-label {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .form-upload-text {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .occasion-option {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .budget-display {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .submit-note {
+  color: var(--text-muted);
+}
+
+/* ── Copy/DM action buttons in custom order ── */
+[data-theme="dark"] .custom-order-page #copyBtn {
+  background: var(--rose-gold) !important;
+  color: #1A1816 !important;
+}
+
+/* ── Modal ── */
+[data-theme="dark"] .modal-info h3 {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .modal-info p {
+  color: var(--text-secondary);
+}
+
+/* ── Product card rating stars ── */
+[data-theme="dark"] .product-card-rating {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .product-card-rating .stars {
+  color: var(--gold-light);
+}
+
+/* ── Saved items ── */
+[data-theme="dark"] .saved-item-info h4 {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .saved-item-info p {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .saved-item-category {
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .cart-summary-row {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .cart-note {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .saved-empty-state h4,
+[data-theme="dark"] .shop-empty-state h4 {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .saved-empty-state p,
+[data-theme="dark"] .shop-empty-state p {
+  color: var(--text-muted);
+}
+
+/* ── Bottom nav text ── */
+[data-theme="dark"] .bottom-nav-item {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .bottom-nav-item.active,
+[data-theme="dark"] .bottom-nav-item:hover {
+  color: var(--rose-gold);
+}
+
+/* ── Dark mode: placeholder text ── */
+[data-theme="dark"] .form-input::placeholder,
+[data-theme="dark"] .form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .customize-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .filter-search input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── Dark mode: collection card overlay text ── */
+[data-theme="dark"] .collection-card-title {
+  color: white;
+}
+
+[data-theme="dark"] .collection-card-count {
+  color: rgba(255,255,255,0.7);
+}
+
+/* ── Dark mode: about page brand mark ── */
+[data-theme="dark"] .about-hero-section .brand-mark {
+  color: var(--charcoal);
+}
+
+/* ── Dark mode: custom order bengali text ── */
+[data-theme="dark"] .custom-hero .bengali-text {
+  color: var(--rose-gold);
+}
+
+/* ── Dark mode: about page CTA section ── */
+[data-theme="dark"] .about-page .section-overline,
+[data-theme="dark"] .about-page .section-title {
+  color: var(--charcoal);
+}
+
+/* ── Dark mode: form section title ── */
+[data-theme="dark"] .form-section-title {
+  color: var(--charcoal);
+}
+
+/* ── Dark mode: step number ── */
+[data-theme="dark"] .form-section-title .step-number {
+  color: white;
+}
+
+/* ── Dark mode: color option checkmark ── */
+[data-theme="dark"] .color-option.selected::after {
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* ── Dark mode: success message ── */
+[data-theme="dark"] .form-success h2 {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .form-success p {
+  color: var(--text-secondary);
+}
+
+/* ── Dark mode: shop filter search input ── */
+[data-theme="dark"] .filter-search input {
+  color: var(--charcoal);
+}
+
+/* ── Dark mode: Instagram float button ── */
+[data-theme="dark"] a[aria-label="Follow on Instagram"] {
+  /* Instagram gradient stays the same, always visible */
+}
+
+/* ── Dark mode: product card price ── */
+[data-theme="dark"] .product-card-price .current {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .product-card-price .original {
+  color: var(--text-muted);
+}
+
+/* ── Dark mode: loader text ── */
+[data-theme="dark"] .loader-brand {
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .loader-tagline {
+  color: var(--text-muted);
+}
+
+/* ── Dark mode: kantha divider ── */
+[data-theme="dark"] .kantha-divider {
+  opacity: 0.3;
+}
+
+/* ── Dark mode: wishlist/cart badge ── */
+[data-theme="dark"] .nav-action-btn .badge {
+  background: var(--rose-gold);
+  color: white;
+}
+
+/* ── Dark mode: skeleton / empty state ── */
+[data-theme="dark"] .saved-empty-icon {
+  background: #2D2520;
+  color: var(--rose-gold);
+}
+
+/* ── Dark mode: hover filter for emoji icons in dark cards ── */
+[data-theme="dark"] .why-card:hover .why-card-icon span,
+[data-theme="dark"] .trust-badge-item:hover .trust-badge-icon span {
+  filter: brightness(0.2);
 }
 
 /* ─── 12. Typewriter Effect for Bengali Text ─── */
