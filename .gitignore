@@ -25,3 +25,14 @@ pnpm-debug.log*
 Thumbs.db
 .idea/
 .vscode/
+
+# Firebase — local overrides with real project keys
+# Keep only placeholders in version control to avoid secret scanning alerts.
+# Use firebase-config.local.js or firebase-config.example.js pattern.
+firebase-config.local.js
+js/firebase-config.local.js
+firebase-config.prod.js
+
+# Optional: if you choose to keep real config only locally and never commit,
+# uncomment the next line. By default we keep placeholder version tracked.
+# firebase-config.js

@@ -25,7 +25,14 @@ This starts a local static file server (`npx serve .`). Open `http://localhost:3
 
 1. Go to the [Firebase Console](https://console.firebase.google.com) and create or select a project.
 2. Register a **Web app** and copy its public configuration object.
-3. Paste the configuration into `firebase-config.js` (replace the placeholder values).
+3. For local dev, copy `firebase-config.example.js` → `firebase-config.js` (or `firebase-config.local.js` which is gitignored)
+   and paste your config there. **Never commit real `AIza...` values** — the tracked `firebase-config.js`
+   contains only placeholders to keep GitHub Secret Scanning clean. See `SECURITY.md` for details on
+   runtime injection (`window.__FIREBASE_CONFIG__`) for production deploys.
+
+   > **Note**: Firebase `apiKey` is public by design. Security comes from Firestore/Storage Rules and
+   > restricting the key to your domains in Google Cloud Console → APIs & Services → Credentials.
+   > Still, we keep placeholders in git to avoid false-positive secret alerts.
 
 ### 2. Enable sign-in providers
 
