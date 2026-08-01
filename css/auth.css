@@ -90,6 +90,38 @@
 .account-menu-label { flex:1; }
 .account-menu-action:disabled { opacity:.6; cursor:wait; }
 
+/* ─── Dark mode ───
+   The panel, Google button and account menu use hardcoded light surfaces,
+   while text colours follow the dark theme variables — producing light text
+   on light surfaces. Re-skin the surfaces so everything stays readable. */
+[data-theme="dark"] .auth-modal { background:rgba(10,8,7,.55); }
+[data-theme="dark"] .auth-panel {
+  background:linear-gradient(145deg,rgba(45,37,32,.98),rgba(30,28,26,.97));
+  border-color:rgba(255,255,255,.12);
+  box-shadow:0 24px 70px rgba(0,0,0,.55);
+}
+[data-theme="dark"] .auth-kicker { color:var(--rose-gold-light); }
+[data-theme="dark"] .auth-google {
+  background:#1E1C1A;
+  color:var(--text-primary);
+  border-color:var(--border-medium);
+  box-shadow:0 4px 18px rgba(0,0,0,.35);
+}
+[data-theme="dark"] .auth-google:hover { background:#2D2520; border-color:var(--rose-gold); box-shadow:0 8px 28px rgba(0,0,0,.45); }
+[data-theme="dark"] .auth-message.error { color:#F0A9A0; background:rgba(157,61,56,.32); }
+[data-theme="dark"] .auth-message.success { color:#A9CFA9; background:rgba(73,109,75,.34); }
+[data-theme="dark"] .account-menu {
+  background:linear-gradient(160deg,rgba(45,37,32,.98),rgba(30,28,26,.97));
+  border-color:rgba(255,255,255,.12);
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+}
+[data-theme="dark"] .account-menu-item:hover,
+[data-theme="dark"] .account-menu-item:focus-visible { background:var(--lotus-pink); color:var(--rose-gold-light); outline:none; }
+[data-theme="dark"] .account-menu-item--danger { color:#F0A9A0; }
+[data-theme="dark"] .account-menu-item--danger .account-menu-icon { color:#F0A9A0; }
+[data-theme="dark"] .account-menu-item--danger:hover,
+[data-theme="dark"] .account-menu-item--danger:focus-visible { background:rgba(157,61,56,.32); color:#F7C6BE; }
+
 /* Mobile: the nav collapses to the redesigned drawer (css/mobile-nav.css). */
 @media(max-width:1024px){
   .nav .nav-inner { flex-wrap:nowrap; justify-content:space-between; padding:0 16px; }
