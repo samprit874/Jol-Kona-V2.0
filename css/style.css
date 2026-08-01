@@ -38,11 +38,11 @@
 
 /* ─── CSS Custom Properties ─── */
 :root {
-  --cream: #FFFAF5;
-  --cream-dark: #FFF0E5;
-  --soft-pink: #F5E0D0;
+  --cream: #FFF5EE;
+  --cream-dark: #FFE8D8;
+  --soft-pink: #FFD8C4;
   --lotus-pink: #E0B89A;
-  --warm-beige: #F2E6DA;
+  --warm-beige: #FFEDDF;
   --ivory: #FFFCF7;
   --rose-gold: #C0623A;
   --rose-gold-light: #D47A55;
@@ -300,7 +300,7 @@ p { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
 .collection-card:hover .collection-card-arrow { opacity: 1; transform: translate(0, 0); }
 .collection-card:nth-child(1) .collection-card-bg { background: linear-gradient(135deg, #E0B89A, #D47A55); }
 .collection-card:nth-child(2) .collection-card-bg { background: linear-gradient(135deg, #C0623A, #A04E2A); }
-.collection-card:nth-child(3) .collection-card-bg { background: linear-gradient(135deg, #F2E6DA, #E0B89A); }
+.collection-card:nth-child(3) .collection-card-bg { background: linear-gradient(135deg, #FFEDDF, #E0B89A); }
 
 @media (max-width: 768px) {
   .collections-grid { grid-template-columns: 1fr; gap: var(--space-md); }
@@ -732,7 +732,7 @@ p { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
 
 /* ─── Celebrate Everything Section ─── */
 .celebrate-section {
-  background: linear-gradient(180deg, var(--cream) 0%, #FDE8DA 50%, var(--cream) 100%);
+  background: linear-gradient(180deg, var(--cream) 0%, #FFD8C4 50%, var(--cream) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -2292,7 +2292,7 @@ body {
 
 /* ─── 11. Gift Finder Quiz ─── */
 .gift-finder-section {
-  background: linear-gradient(180deg, var(--cream) 0%, #FDE8DA 50%, var(--cream) 100%);
+  background: linear-gradient(180deg, var(--cream) 0%, #FFD8C4 50%, var(--cream) 100%);
   position: relative;
   overflow: hidden;
 }
