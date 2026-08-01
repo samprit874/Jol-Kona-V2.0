@@ -519,6 +519,380 @@
     });
   });
 
+  // ─── 1. Scroll Progress Bar ───
+  const scrollProgress = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    if (scrollProgress) {
+      scrollProgress.style.width = scrollPercent + '%';
+    }
+  }, { passive: true });
+
+  // ─── 2. Back to Top Button ───
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (backToTop) {
+      if (window.pageYOffset > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+  }, { passive: true });
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ─── 3. Dark Mode Toggle ───
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const savedTheme = localStorage.getItem('jolkona-theme');
+  if (savedTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('jolkona-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('jolkona-theme', 'dark');
+      }
+    });
+  }
+
+  // ─── 4. Festival Countdown Timer ───
+  const festivals = [
+    { name: '🪔 Durga Puja', date: new Date('2026-10-08T00:00:00+05:30') },
+    { name: '🌸 Poila Boishakh', date: new Date('2027-04-15T00:00:00+05:30') },
+    { name: '🧵 Rakhi', date: new Date('2026-08-28T00:00:00+05:30') },
+    { name: '❤️ Valentine\'s Day', date: new Date('2027-02-14T00:00:00+05:30') },
+    { name: '🎄 Christmas', date: new Date('2026-12-25T00:00:00+05:30') },
+    { name: '🌙 Eid ul-Fitr', date: new Date('2027-03-22T00:00:00+05:30') },
+    { name: '👩‍👧 Mother\'s Day', date: new Date('2027-05-09T00:00:00+05:30') },
+  ];
+
+  function updateFestivalCountdown() {
+    const now = new Date();
+    // Find the next upcoming festival
+    let nextFestival = null;
+    for (const festival of festivals) {
+      if (festival.date > now) {
+        nextFestival = festival;
+        break;
+      }
+    }
+    if (!nextFestival) return;
+
+    const festivalName = document.getElementById('festivalName');
+    if (festivalName) festivalName.textContent = nextFestival.name;
+
+    const diff = nextFestival.date - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    const daysEl = document.getElementById('countdownDays');
+    const hoursEl = document.getElementById('countdownHours');
+    const minsEl = document.getElementById('countdownMinutes');
+    const secsEl = document.getElementById('countdownSeconds');
+
+    if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+    if (minsEl) minsEl.textContent = String(minutes).padStart(2, '0');
+    if (secsEl) secsEl.textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateFestivalCountdown();
+  setInterval(updateFestivalCountdown, 1000);
+
+  // ─── 5. Live Order Notification ───
+  const liveNotifications = [
+    { title: 'Someone in Kolkata ordered a Gift Bouquet', subtitle: 'Just now • ⭐ 4.9 rated', icon: '💐' },
+    { title: 'Someone in Raiganj ordered a Clay Necklace', subtitle: '2 minutes ago • 🤲 Handmade', icon: '💍' },
+    { title: 'Someone in Siliguri ordered a Pipe Cleaner Bouquet', subtitle: '5 minutes ago • 🌸 Popular', icon: '🌸' },
+    { title: 'Someone in Dhaka ordered a Custom Gift Box', subtitle: '8 minutes ago • 💝 Custom', icon: '🎁' },
+    { title: 'Someone in Malda ordered Couple Keychains', subtitle: '12 minutes ago • 🔑 Bestseller', icon: '🔑' },
+    { title: 'Someone in Howrah ordered a Photo Hamper', subtitle: '15 minutes ago • 📸 New', icon: '📸' },
+  ];
+
+  let notificationIndex = 0;
+  const liveNotification = document.getElementById('liveOrderNotification');
+  const notificationTitle = document.getElementById('notificationTitle');
+  const notificationSubtitle = document.getElementById('notificationSubtitle');
+  const notificationClose = document.getElementById('notificationClose');
+
+  function showLiveNotification() {
+    if (!liveNotification || !notificationTitle || !notificationSubtitle) return;
+    const notif = liveNotifications[notificationIndex % liveNotifications.length];
+    
+    // Update the icon
+    const iconEl = liveNotification.querySelector('.notification-icon');
+    if (iconEl) iconEl.textContent = notif.icon;
+    
+    notificationTitle.textContent = notif.title;
+    notificationSubtitle.textContent = notif.subtitle;
+    
+    liveNotification.classList.add('show');
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+      liveNotification.classList.remove('show');
+    }, 5000);
+    
+    notificationIndex++;
+  }
+
+  // Show first notification after 8 seconds, then every 30 seconds
+  setTimeout(() => {
+    showLiveNotification();
+    setInterval(showLiveNotification, 30000);
+  }, 8000);
+
+  if (notificationClose) {
+    notificationClose.addEventListener('click', () => {
+      liveNotification.classList.remove('show');
+    });
+  }
+
+  // ─── 6. Gift Finder Quiz ───
+  const giftFinderSteps = document.querySelectorAll('.gift-finder-step');
+  const giftFinderDots = document.querySelectorAll('.gift-finder-progress-dot');
+  const giftFinderPrev = document.getElementById('giftFinderPrev');
+  const giftFinderNext = document.getElementById('giftFinderNext');
+  let currentGiftStep = 1;
+  const giftFinderAnswers = {};
+
+  // Gift recommendation logic
+  const giftRecommendations = {
+    'partner-birthday-under-500': { category: 'keychains', text: 'Couple Keychains — a sweet token of love' },
+    'partner-birthday-500-1000': { category: 'pipe-cleaner', text: 'Pipe Cleaner Flower Bouquet — handmade with love' },
+    'partner-birthday-1000-2000': { category: 'gift-hampers', text: 'Photo & Chocolate Memory Bouquet — unforgettable' },
+    'partner-birthday-above-2000': { category: 'gift-hampers', text: 'Premium Gift Hamper — the ultimate expression' },
+    'partner-anniversary-under-500': { category: 'keychains', text: 'Couple Heart Keychain — carry your love everywhere' },
+    'partner-anniversary-500-1000': { category: 'clay-jewellery', text: 'Clay Name Necklace — personalized forever' },
+    'partner-anniversary-1000-2000': { category: 'gift-hampers', text: 'Anniversary Gift Hamper — celebrate your journey' },
+    'partner-anniversary-above-2000': { category: 'gift-hampers', text: 'Luxury Anniversary Collection — premium love' },
+    'partner-festival-under-500': { category: 'keychains', text: 'Festive Keychain — small joy, big love' },
+    'partner-festival-500-1000': { category: 'pipe-cleaner', text: 'Festive Flower Bouquet — bloom together' },
+    'partner-festival-1000-2000': { category: 'clay-jewellery', text: 'Festive Clay Jewellery — traditional elegance' },
+    'partner-festival-above-2000': { category: 'gift-hampers', text: 'Grand Festive Hamper — celebrate in style' },
+    'partner-just-because-under-500': { category: 'keychains', text: 'Surprise Keychain — just because you care' },
+    'partner-just-because-500-1000': { category: 'pipe-cleaner', text: 'Surprise Flower Bouquet — no reason needed' },
+    'partner-just-because-1000-2000': { category: 'clay-jewellery', text: 'Surprise Clay Necklace — spontaneous love' },
+    'partner-just-because-above-2000': { category: 'gift-hampers', text: 'Surprise Gift Box — go all out' },
+    'family-birthday-under-500': { category: 'pipe-cleaner', text: 'Handmade Flower Bouquet — for the ones who raised you' },
+    'family-birthday-500-1000': { category: 'clay-jewellery', text: 'Clay Hair Pin — elegant & thoughtful' },
+    'family-birthday-1000-2000': { category: 'gift-hampers', text: 'Birthday Gift Hamper — make their day special' },
+    'family-birthday-above-2000': { category: 'gift-hampers', text: 'Premium Family Gift Collection' },
+    'friend-birthday-under-500': { category: 'keychains', text: 'Friendship Keychain — bond forever' },
+    'friend-birthday-500-1000': { category: 'pipe-cleaner', text: 'Fun Flower Bouquet — friendship blooms' },
+    'friend-birthday-1000-2000': { category: 'gift-hampers', text: 'Birthday Gift Box — for your bestie' },
+    'friend-birthday-above-2000': { category: 'gift-hampers', text: 'Premium Gift Hamper — best friend deserves the best' },
+    'colleague-birthday-under-500': { category: 'keychains', text: 'Elegant Keychain — professional & thoughtful' },
+    'colleague-birthday-500-1000': { category: 'pipe-cleaner', text: 'Desk Flower Bouquet — brighten their day' },
+    'colleague-birthday-1000-2000': { category: 'custom-chocolates', text: 'Custom Chocolate Wrapper — sweet surprise' },
+    'colleague-birthday-above-2000': { category: 'gift-hampers', text: 'Premium Gift Box — impressive & tasteful' },
+  };
+
+  function getDefaultRecommendation() {
+    return { category: 'gift-hampers', text: 'Our Best-Selling Gift Hampers — loved by everyone!' };
+  }
+
+  function updateGiftFinderUI() {
+    giftFinderSteps.forEach(step => {
+      step.classList.remove('active');
+      if (parseInt(step.dataset.step) === currentGiftStep) {
+        step.classList.add('active');
+      }
+    });
+    giftFinderDots.forEach(dot => {
+      const stepNum = parseInt(dot.dataset.step);
+      dot.classList.remove('active', 'completed');
+      if (stepNum === currentGiftStep) dot.classList.add('active');
+      if (stepNum < currentGiftStep) dot.classList.add('completed');
+    });
+    if (giftFinderPrev) {
+      giftFinderPrev.style.visibility = currentGiftStep > 1 ? 'visible' : 'hidden';
+    }
+    if (giftFinderNext) {
+      if (currentGiftStep === 3) {
+        giftFinderNext.textContent = 'Find My Gift ✨';
+      } else {
+        giftFinderNext.textContent = 'Next →';
+      }
+    }
+  }
+
+  // Gift finder option click
+  document.querySelectorAll('.gift-finder-option').forEach(option => {
+    option.addEventListener('click', () => {
+      const step = option.closest('.gift-finder-step');
+      const stepNum = parseInt(step.dataset.step);
+      step.querySelectorAll('.gift-finder-option').forEach(o => o.classList.remove('selected'));
+      option.classList.add('selected');
+      giftFinderAnswers[stepNum] = option.dataset.value;
+    });
+  });
+
+  if (giftFinderNext) {
+    giftFinderNext.addEventListener('click', () => {
+      if (!giftFinderAnswers[currentGiftStep]) {
+        // Shake the current step options to indicate selection needed
+        const currentStep = document.querySelector(`.gift-finder-step[data-step="${currentGiftStep}"]`);
+        if (currentStep) {
+          currentStep.style.animation = 'none';
+          currentStep.offsetHeight; // Trigger reflow
+          currentStep.style.animation = 'shake 0.4s ease';
+        }
+        return;
+      }
+      if (currentGiftStep < 3) {
+        currentGiftStep++;
+        updateGiftFinderUI();
+      } else {
+        // Show results
+        const key = `${giftFinderAnswers[1]}-${giftFinderAnswers[2]}-${giftFinderAnswers[3]}`;
+        const recommendation = giftRecommendations[key] || getDefaultRecommendation();
+        
+        const resultText = document.getElementById('giftFinderResultText');
+        if (resultText) resultText.textContent = recommendation.text;
+        
+        // Show the results step
+        giftFinderSteps.forEach(step => step.classList.remove('active'));
+        const resultsStep = document.querySelector('.gift-finder-step[data-step="results"]');
+        if (resultsStep) resultsStep.classList.add('active');
+        
+        // Update progress dots
+        giftFinderDots.forEach(dot => {
+          dot.classList.add('completed');
+          dot.classList.remove('active');
+        });
+        
+        // Hide nav
+        if (giftFinderPrev) giftFinderPrev.style.visibility = 'hidden';
+        if (giftFinderNext) giftFinderNext.style.display = 'none';
+        
+        // Filter products to show recommended category
+        if (window.filterProducts) {
+          window.filterProducts(recommendation.category);
+        }
+      }
+    });
+  }
+
+  if (giftFinderPrev) {
+    giftFinderPrev.addEventListener('click', () => {
+      if (currentGiftStep > 1) {
+        currentGiftStep--;
+        updateGiftFinderUI();
+      }
+    });
+  }
+
+  // ─── 7. Bottom Mobile Nav Active State ───
+  const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+  bottomNavItems.forEach(item => {
+    item.addEventListener('click', function() {
+      bottomNavItems.forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Update bottom nav active state on scroll
+  const sections = ['home', 'shop', 'collections', 'story'];
+  window.addEventListener('scroll', () => {
+    const scrollPos = window.pageYOffset + 200;
+    sections.forEach(sectionId => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const top = section.offsetTop;
+        const bottom = top + section.offsetHeight;
+        if (scrollPos >= top && scrollPos < bottom) {
+          bottomNavItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === '#' + sectionId) {
+              item.classList.add('active');
+            }
+          });
+        }
+      }
+    }
+    );
+  }, { passive: true });
+
+  // ─── 8. Typewriter Effect for Hero Bengali Title ───
+  const bengaliTitle = document.querySelector('.hero-bengali-title');
+  if (bengaliTitle) {
+    const originalText = bengaliTitle.textContent.trim();
+    bengaliTitle.textContent = '';
+    bengaliTitle.style.opacity = '1';
+    let charIndex = 0;
+    
+    function typeWriter() {
+      if (charIndex < originalText.length) {
+        bengaliTitle.textContent = originalText.substring(0, charIndex + 1);
+        // Add cursor
+        const cursor = document.createElement('span');
+        cursor.className = 'typewriter-cursor';
+        bengaliTitle.appendChild(cursor);
+        charIndex++;
+        setTimeout(typeWriter, 60 + Math.random() * 40);
+      } else {
+        // Remove cursor after typing is done
+        const cursor = bengaliTitle.querySelector('.typewriter-cursor');
+        if (cursor) {
+          setTimeout(() => cursor.remove(), 2000);
+        }
+      }
+    }
+    
+    // Start typewriter after a short delay
+    setTimeout(typeWriter, 1500);
+  }
+
+  // ─── 9. Cart Badge Bounce ───
+  const cartBadge = document.getElementById('cartCount');
+  const wishlistBadge = document.getElementById('wishlistCount');
+  
+  // Observe badge changes for bounce animation
+  if (cartBadge) {
+    const badgeObserver = new MutationObserver(() => {
+      cartBadge.classList.add('bounce');
+      setTimeout(() => cartBadge.classList.remove('bounce'), 600);
+    });
+    badgeObserver.observe(cartBadge, { childList: true, characterData: true, subtree: true });
+  }
+  
+  if (wishlistBadge) {
+    const badgeObserver = new MutationObserver(() => {
+      wishlistBadge.classList.add('bounce');
+      setTimeout(() => wishlistBadge.classList.remove('bounce'), 600);
+    });
+    badgeObserver.observe(wishlistBadge, { childList: true, characterData: true, subtree: true });
+  }
+
+  // ─── Shake animation for gift finder ───
+  const shakeStyle = document.createElement('style');
+  shakeStyle.textContent = `
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+  `;
+  document.head.appendChild(shakeStyle);
+
   console.log('%c💧 জলকণা (Jol Kona)', 'font-size: 24px; color: #C8956C; font-family: serif;');
   console.log('%cCrafted with Love from Bengal', 'font-size: 12px; color: #6B5E57; font-style: italic;');
 
