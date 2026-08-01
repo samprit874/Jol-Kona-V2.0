@@ -365,3 +365,17 @@ body.mnav-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .mnav, .mnav-backdrop, .nav-mobile-toggle span:not(.mnav-toggle-dot), .mnav-item, .mnav-tile { transition-duration: 0.01ms !important; }
 }
+
+/* ─── Dark mode ───
+   The toggle hardcodes a white glass background while the bars follow the
+   dark theme's light ink colour, making the hamburger invisible. The danger
+   row also uses light-theme reds that wash out on dark surfaces. */
+[data-theme="dark"] .nav-mobile-toggle {
+  background: var(--glass-bg, rgba(30,28,26,0.82));
+  border-color: var(--glass-border, rgba(255,255,255,0.12));
+}
+[data-theme="dark"] .nav-mobile-toggle.active { background: var(--mnav-tint); border-color: var(--mnav-line-strong); }
+[data-theme="dark"] .mnav-item--danger { color: #F0A9A0; }
+[data-theme="dark"] .mnav-item--danger .mnav-item-icon { background: rgba(157,61,56,0.32); color: #F0A9A0; }
+[data-theme="dark"] .mnav-item--danger:hover,
+[data-theme="dark"] .mnav-item--danger:focus-visible { background: rgba(157,61,56,0.32); color: #F7C6BE; }
