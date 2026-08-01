@@ -3132,7 +3132,60 @@ body {
   color: var(--gold-light);
 }
 
-/* ── Saved items ── */
+/* ── Saved items (wishlist & cart page) ── */
+[data-theme="dark"] .saved-shop-panel {
+  background: #2D2520;
+  border-color: rgba(192,98,58,0.18);
+}
+
+[data-theme="dark"] .saved-shop-panel-header {
+  background: rgba(34,31,28,0.85);
+  border-bottom-color: rgba(192,98,58,0.18);
+}
+
+[data-theme="dark"] .saved-item {
+  background: #221F1C;
+  border-color: rgba(192,98,58,0.15);
+}
+
+[data-theme="dark"] .saved-item:hover {
+  border-color: rgba(192,98,58,0.35);
+  box-shadow: var(--shadow-medium);
+}
+
+[data-theme="dark"] .saved-item-image {
+  background: #1E1C1A;
+}
+
+[data-theme="dark"] .saved-mini-btn {
+  background: #1E1C1A;
+  border-color: rgba(192,98,58,0.2);
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .saved-mini-btn:hover {
+  background: #2D2520;
+  border-color: var(--rose-gold);
+  color: var(--rose-gold);
+}
+
+[data-theme="dark"] .saved-mini-btn.danger:hover {
+  border-color: #F0A9A0;
+  color: #F0A9A0;
+  background: #2D2520;
+}
+
+[data-theme="dark"] .cart-quantity {
+  background: #1E1C1A;
+  border-color: rgba(192,98,58,0.2);
+  color: var(--charcoal);
+}
+
+[data-theme="dark"] .cart-summary {
+  background: #1E1C1A;
+  border-top-color: rgba(192,98,58,0.18);
+}
+
 [data-theme="dark"] .saved-item-info h4 {
   color: var(--charcoal);
 }
