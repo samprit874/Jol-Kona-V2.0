@@ -570,7 +570,7 @@
 
   // ─── 4. Festival Countdown Timer ───
   const festivals = [
-    { name: '🧵 Rakhi', date: new Date('2026-08-28T00:00:00+05:30') },
+    { name: 'Rakhi', date: new Date('2026-08-28T00:00:00+05:30') },
     { name: '🪔 Durga Puja', date: new Date('2026-10-08T00:00:00+05:30') },
     { name: '🪔 Diwali', date: new Date('2026-11-08T00:00:00+05:30') },
     { name: '🎄 Christmas', date: new Date('2026-12-25T00:00:00+05:30') },

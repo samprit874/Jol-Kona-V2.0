@@ -217,6 +217,7 @@ p { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
 .nav-actions { display: flex; align-items: center; gap: var(--space-md); }
 .nav-action-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all var(--duration-fast) var(--ease-smooth); color: var(--text-secondary); position: relative; }
 .nav-action-btn:hover { background: var(--soft-pink); color: var(--charcoal); transform: scale(1.05); }
+.nav-action-btn[hidden] { display: none; }
 .nav-action-btn .badge { position: absolute; top: 2px; right: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--rose-gold); color: white; font-size: 0.6rem; display: flex; align-items: center; justify-content: center; font-weight: 600; }
 
 /* Mobile hamburger + drawer now live in css/mobile-nav.css */
@@ -1417,8 +1418,7 @@ body { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; wi
   .modal-info { padding: 14px; }
   .modal-close { top: 8px; right: 8px; width: 30px; height: 30px; }
 
-  /* Instagram float button */
-  a[aria-label="Follow on Instagram"] { bottom: 14px; right: 14px; width: 48px; height: 48px; }
+  /* Instagram float button — sized responsively via .insta-float-btn rules */
 
   /* Typography */
   h1 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
@@ -1717,6 +1717,23 @@ body {
 
 .back-to-top:hover svg {
   transform: translateY(-2px);
+}
+
+/* ─── 2b. Instagram Float Button ─── */
+.insta-float-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.insta-float-btn svg {
+  width: 26px;
+  height: 26px;
 }
 
 /* ─── 3. Dark Mode ─── */
@@ -3308,7 +3325,7 @@ body {
 }
 
 /* ── Dark mode: Instagram float button ── */
-[data-theme="dark"] a[aria-label="Follow on Instagram"] {
+[data-theme="dark"] .insta-float-btn {
   /* Instagram gradient stays the same, always visible */
 }
 
@@ -3615,23 +3632,27 @@ body,
 /* ── Back to Top — Mobile ── */
 @media (max-width: 768px) {
   .back-to-top {
-    width: 42px;
-    height: 42px;
+    width: 34px;
+    height: 34px;
     bottom: 150px !important;
     right: 16px;
   }
   .back-to-top svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 }
 
 @media (max-width: 480px) {
   .back-to-top {
-    width: 38px;
-    height: 38px;
+    width: 30px;
+    height: 30px;
     right: 12px;
     bottom: 146px !important;
+  }
+  .back-to-top svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
@@ -3643,8 +3664,15 @@ body,
   body {
     padding-bottom: 72px;
   }
-  a[aria-label="Follow on Instagram"] {
-    bottom: 86px !important;
+  .insta-float-btn {
+    bottom: 84px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+  }
+  .insta-float-btn svg {
+    width: 21px;
+    height: 21px;
   }
   .back-to-top {
     bottom: 150px !important;
@@ -3679,6 +3707,14 @@ body,
     font-size: 0.5rem;
   }
   .bottom-nav-item svg {
+    width: 18px;
+    height: 18px;
+  }
+  .insta-float-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .insta-float-btn svg {
     width: 18px;
     height: 18px;
   }
