@@ -4,7 +4,7 @@
 "Every handmade product carries emotions."
 
 ## Target Audience
-- Women 18-45 in West Bengal & Bangladesh
+- Women 18-45 in West Bengal
 - Instagram-first shoppers
 - Gift buyers seeking premium handmade items
 - Festival & occasion shoppers

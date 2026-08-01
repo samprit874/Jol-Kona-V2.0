@@ -40,11 +40,11 @@ const CATEGORY_LABELS = {
 /* The 5 reviews currently hard-coded on the homepage (used by the
    one-click importer so the panel starts from existing content). */
 const SEED_REVIEWS = [
-  { name: 'Sneha Das', location: 'Kolkata', stars: 5, text: "The bouquet I ordered for my mother's birthday was beyond beautiful. She actually cried seeing it! The craftsmanship is incredible. জলকণা truly puts emotion into every piece." },
-  { name: 'Rahul Mondal', location: 'Raiganj', stars: 5, text: 'Ordered a personalized gift box for our anniversary. The packaging, the quality, the attention to detail — everything was premium. My wife absolutely loved it!' },
-  { name: 'Priya Saha', location: 'Dhaka', stars: 5, text: 'The crochet teddy bear I received was the cutest thing ever! You can feel the love in every stitch. Already planning my next order. This is hands down the best handmade brand!' },
-  { name: 'Ananya Roy', location: 'Siliguri', stars: 5, text: 'I ordered handmade earrings for Durga Puja and they were stunning! Everyone asked where I got them. The Bengali touch makes them so special. ❤️' },
-  { name: 'Debashish Ghosh', location: 'Malda', stars: 5, text: "Ordered pipe cleaner flowers for my girlfriend on Valentine's Day. She said it was the most thoughtful gift she ever received. Thank you জলকণা for making me look good!" },
+  { name: 'Sneha Das', location: 'Kolkata, WB', stars: 5, text: "The bouquet I ordered for my mother's birthday was beyond beautiful. She actually cried seeing it! The craftsmanship is incredible. জলকণা truly puts emotion into every piece." },
+  { name: 'Rahul Mondal', location: 'Raiganj, WB', stars: 5, text: 'Ordered a personalized gift box for our anniversary. The packaging, the quality, the attention to detail — everything was premium. My wife absolutely loved it!' },
+  { name: 'Priya Saha', location: 'Burdwan, WB', stars: 5, text: 'The crochet teddy bear I received was the cutest thing ever! You can feel the love in every stitch. Already planning my next order. This is hands down the best handmade brand!' },
+  { name: 'Ananya Roy', location: 'Siliguri, WB', stars: 5, text: 'I ordered handmade earrings for Durga Puja and they were stunning! Everyone asked where I got them. The Bengali touch makes them so special. ❤️' },
+  { name: 'Debashish Ghosh', location: 'Malda, WB', stars: 5, text: "Ordered pipe cleaner flowers for my girlfriend on Valentine's Day. She said it was the most thoughtful gift she ever received. Thank you জলকণা for making me look good!" },
 ];
 
 let productsCache = [];

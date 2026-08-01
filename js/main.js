@@ -619,9 +619,9 @@
     { title: 'Someone in Kolkata ordered a Gift Bouquet', subtitle: 'Just now • ⭐ 4.9 rated', icon: '💐' },
     { title: 'Someone in Raiganj ordered a Clay Necklace', subtitle: '2 minutes ago • 🤲 Handmade', icon: '💍' },
     { title: 'Someone in Siliguri ordered a Pipe Cleaner Bouquet', subtitle: '5 minutes ago • 🌸 Popular', icon: '🌸' },
-    { title: 'Someone in Dhaka ordered a Custom Gift Box', subtitle: '8 minutes ago • 💝 Custom', icon: '🎁' },
+    { title: 'Someone in Howrah ordered a Custom Gift Box', subtitle: '8 minutes ago • 💝 Custom', icon: '🎁' },
     { title: 'Someone in Malda ordered Couple Keychains', subtitle: '12 minutes ago • 🔑 Bestseller', icon: '🔑' },
-    { title: 'Someone in Howrah ordered a Photo Hamper', subtitle: '15 minutes ago • 📸 New', icon: '📸' },
+    { title: 'Someone in Durgapur ordered a Photo Hamper', subtitle: '15 minutes ago • 📸 New', icon: '📸' },
   ];
 
   let notificationIndex = 0;
@@ -894,6 +894,6 @@
   document.head.appendChild(shakeStyle);
 
   console.log('%c💧 জলকণা (Jol Kona)', 'font-size: 24px; color: #C8956C; font-family: serif;');
-  console.log('%cCrafted with Love from Bengal', 'font-size: 12px; color: #6B5E57; font-style: italic;');
+  console.log('%cCrafted with Love from West Bengal', 'font-size: 12px; color: #6B5E57; font-style: italic;');
 
 })();
