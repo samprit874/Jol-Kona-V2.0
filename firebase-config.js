@@ -67,13 +67,13 @@
 // or local file for real usage.
 // --------------------------------------------------------------------
 const PLACEHOLDER_CONFIG = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID",
+  apiKey: "AIzaSyCbXEl2wCoLHiKdjuDaiKv1LC54VPxq5bQ",
+  authDomain: "jol-kona.firebaseapp.com",
+  projectId: "jol-kona",
+  storageBucket: "jol-kona.firebasestorage.app",
+  messagingSenderId: "8094183004",
+  appId: "1:8094183004:web:ceebbcb2bba0a353de0099",
+  measurementId: "G-56H00J5PG1",
 };
 
 function getInjectedConfig() {
