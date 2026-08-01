@@ -844,7 +844,7 @@
   `;
   document.head.appendChild(shakeStyle);
 
-  console.log('%c💧 জলকণা (Jol Kona)', 'font-size: 24px; color: #C8956C; font-family: serif;');
+  console.log('%c💧 জলকণা (Jol Kona)', 'font-size: 24px; color: #C0623A; font-family: serif;');
   console.log('%cCrafted with Love from West Bengal', 'font-size: 12px; color: #6B5E57; font-style: italic;');
 
 })();
