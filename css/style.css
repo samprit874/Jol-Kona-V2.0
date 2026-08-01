@@ -3114,6 +3114,18 @@ body {
   color: #1A1816 !important;
 }
 
+/* The custom-order page uses inline button styling for its generated-order actions.
+   Keep those actions readable when the theme changes. */
+[data-theme="dark"] .custom-order-page #dmBtn {
+  color: #fff !important;
+}
+
+[data-theme="dark"] .custom-order-page input,
+[data-theme="dark"] .custom-order-page textarea,
+[data-theme="dark"] .custom-order-page select {
+  color-scheme: dark;
+}
+
 /* ── Modal ── */
 [data-theme="dark"] .modal-info h3 {
   color: var(--charcoal);
