@@ -3617,7 +3617,7 @@ body,
   .back-to-top {
     width: 42px;
     height: 42px;
-    bottom: 86px !important;
+    bottom: 150px !important;
     right: 16px;
   }
   .back-to-top svg {
@@ -3631,7 +3631,7 @@ body,
     width: 38px;
     height: 38px;
     right: 12px;
-    bottom: 80px !important;
+    bottom: 146px !important;
   }
 }
 
@@ -3647,7 +3647,7 @@ body,
     bottom: 86px !important;
   }
   .back-to-top {
-    bottom: 86px !important;
+    bottom: 150px !important;
   }
   .bottom-nav-item {
     padding: 6px 8px;
