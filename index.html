@@ -223,114 +223,195 @@
     </svg>
   </div>
 
-  <!-- ═══════ Collections Section ═══════ -->
+    <!-- ═══════ Collections Section — REDESIGNED (Fixed 6 categories) ═══════ -->
   <section class="section-padding" id="collections">
     <div class="container">
       <div class="section-header reveal">
         <p class="section-overline">Curated for You</p>
         <h2 class="section-title">Our Collections</h2>
-        <p class="section-subtitle">Each collection tells a unique story of craftsmanship, tradition, and heartfelt emotion</p>
+        <p class="section-subtitle">Six handcrafted worlds — each a story of Bengali artistry, emotion, and love</p>
       </div>
 
-      <div class="collections-grid">
-        <a href="#shop" class="collection-card reveal" style="transition-delay: 0.1s" onclick="filterProducts('gift-hampers')">
-          <div class="collection-card-bg" style="background: url('img/products/gift-hamper-bouquet-1.webp') center/cover no-repeat;"></div>
-          <div class="collection-card-overlay"></div>
-          <div class="collection-card-content">
-            <h3 class="collection-card-title">Gift Hamper Bouquets</h3>
-            <span class="collection-card-count">Photo + Chocolate Bouquets</span>
+      <div class="collections-grid-v2 reveal">
+        <!-- 1 — Gift Hamper Bouquets -->
+        <a href="#shop" class="collection-card-v2" data-filter="gift-hampers" onclick="event.preventDefault();filterProducts('gift-hampers')">
+          <div class="ccv2-media">
+            <img src="img/products/gift-hamper-bouquet-1.webp" alt="Gift Hamper Bouquets" loading="lazy" class="ccv2-img">
+            <div class="ccv2-gradient"></div>
+            <span class="ccv2-pill">Most Loved</span>
+            <div class="ccv2-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
           </div>
-          <div class="collection-card-arrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </div>
-        </a>
-
-        <a href="#shop" class="collection-card reveal" style="transition-delay: 0.2s" onclick="filterProducts('clay-jewellery')">
-          <div class="collection-card-bg" style="background: url('img/products/clay-name-necklace.webp') center/cover no-repeat;"></div>
-          <div class="collection-card-overlay"></div>
-          <div class="collection-card-content">
-            <h3 class="collection-card-title">Clay Jewellery</h3>
-            <span class="collection-card-count">Necklaces & Hair Accessories</span>
-          </div>
-          <div class="collection-card-arrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          <div class="ccv2-info">
+            <h3 class="ccv2-title">Gift Hamper Bouquets</h3>
+            <span class="ccv2-sub">Curated memories • 12+ designs</span>
           </div>
         </a>
 
-        <a href="#shop" class="collection-card reveal" style="transition-delay: 0.3s" onclick="filterProducts('pipe-cleaner')">
-          <div class="collection-card-bg" style="background: url('img/products/pipe-cleaner-collection.webp') center/cover no-repeat;"></div>
-          <div class="collection-card-overlay"></div>
-          <div class="collection-card-content">
-            <h3 class="collection-card-title">Pipe Cleaner & Keychains</h3>
-            <span class="collection-card-count">Flowers, Bears & More</span>
+        <!-- 2 — Photo + Chocolate -->
+        <a href="#shop" class="collection-card-v2" data-filter="custom-chocolates" onclick="event.preventDefault();filterProducts('custom-chocolates')">
+          <div class="ccv2-media">
+            <img src="img/products/gift-hamper-bouquet-2.webp" alt="Photo + Chocolate Bouquets" loading="lazy" class="ccv2-img">
+            <div class="ccv2-gradient"></div>
+            <span class="ccv2-pill" style="background:#FFF3E6;color:#A04E2A;">Sweet + Personal</span>
+            <div class="ccv2-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
           </div>
-          <div class="collection-card-arrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          <div class="ccv2-info">
+            <h3 class="ccv2-title">Photo + Chocolate Bouquets</h3>
+            <span class="ccv2-sub">Keepsakes you can eat & keep</span>
+          </div>
+        </a>
+
+        <!-- 3 — Clay Jewellery -->
+        <a href="#shop" class="collection-card-v2" data-filter="clay-jewellery" onclick="event.preventDefault();filterProducts('clay-jewellery')">
+          <div class="ccv2-media">
+            <img src="img/products/clay-name-necklace.webp" alt="Clay Jewellery" loading="lazy" class="ccv2-img">
+            <div class="ccv2-gradient"></div>
+            <span class="ccv2-pill" style="background:#F2E9F2;color:#8A5A7E;">Bengali Heritage</span>
+            <div class="ccv2-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="ccv2-info">
+            <h3 class="ccv2-title">Clay Jewellery</h3>
+            <span class="ccv2-sub">Terracotta • Hand-painted</span>
+          </div>
+        </a>
+
+        <!-- 4 — Necklaces & Hair Accessories -->
+        <a href="#shop" class="collection-card-v2" data-filter="clay-jewellery" onclick="event.preventDefault();filterProducts('clay-jewellery')">
+          <div class="ccv2-media">
+            <img src="img/products/braided-hair-accessory.jpg" alt="Necklaces & Hair Accessories" loading="lazy" class="ccv2-img">
+            <div class="ccv2-gradient"></div>
+            <span class="ccv2-pill">Wearable Art</span>
+            <div class="ccv2-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="ccv2-info">
+            <h3 class="ccv2-title">Necklaces & Hair Accessories</h3>
+            <span class="ccv2-sub">চুলের গহনা • Name pendants</span>
+          </div>
+        </a>
+
+        <!-- 5 — Pipe Cleaner & Keychains -->
+        <a href="#shop" class="collection-card-v2" data-filter="keychains" onclick="event.preventDefault();filterProducts('keychains')">
+          <div class="ccv2-media">
+            <img src="img/products/spiderman-couple-keychain.webp" alt="Pipe Cleaner & Keychains" loading="lazy" class="ccv2-img">
+            <div class="ccv2-gradient"></div>
+            <span class="ccv2-pill" style="background:#E9F3EB;color:#46795A;">Couple Gifts</span>
+            <div class="ccv2-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="ccv2-info">
+            <h3 class="ccv2-title">Pipe Cleaner & Keychains</h3>
+            <span class="ccv2-sub">Cute, fluffy & meaningful</span>
+          </div>
+        </a>
+
+        <!-- 6 — Flowers, Bears & More -->
+        <a href="#shop" class="collection-card-v2" data-filter="pipe-cleaner" onclick="event.preventDefault();filterProducts('pipe-cleaner')">
+          <div class="ccv2-media">
+            <img src="img/products/pipe-cleaner-collection.webp" alt="Flowers, Bears & More" loading="lazy" class="ccv2-img">
+            <div class="ccv2-gradient"></div>
+            <span class="ccv2-pill" style="background:#F9EDD3;color:#94690A;">Everlasting</span>
+            <div class="ccv2-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+          <div class="ccv2-info">
+            <h3 class="ccv2-title">Flowers, Bears & More</h3>
+            <span class="ccv2-sub">Never-wilting bouquets</span>
           </div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ═══════ Trust Badges ═══════ -->
-  <div class="trust-badges-row reveal">
-    <div class="trust-badge-item">
-      <div class="trust-badge-icon"><span>🤲</span></div>
-      <div class="trust-badge-title">100% Handmade</div>
-      <div class="trust-badge-desc">No machines, pure artistry</div>
+  <!-- ═══════ Trust Badges — REDESIGNED ═══════ -->
+  <section class="trust-section reveal" aria-label="Why choose us">
+    <div class="container">
+      <div class="trust-grid-v2">
+        <div class="trust-v2">
+          <div class="trust-v2-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 22c4-2.5 8-5.5 8-9.5a4 4 0 0 0-4-4c-1.8 0-3 1-4 2-.9-1-2.2-2-4-2a4 4 0 0 0-4 4c0 4 4 7 8 9.5z"/><path d="M8 12c0-1 1-2 4-5 3 3 4 4 4 5" opacity="0.6"/></svg>
+          </div>
+          <div class="trust-v2-text">
+            <div class="trust-v2-title">100% Handmade</div>
+            <div class="trust-v2-desc">No machines, pure artistry from Raiganj</div>
+          </div>
+        </div>
+        <div class="trust-v2">
+          <div class="trust-v2-icon" style="background:linear-gradient(135deg,#FFF6D6,#FFE9A8);color:#94690A;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="trust-v2-text">
+            <div class="trust-v2-title">4.9★ Rated</div>
+            <div class="trust-v2-desc">500+ verified happy customers</div>
+          </div>
+        </div>
+        <div class="trust-v2">
+          <div class="trust-v2-icon" style="background:linear-gradient(135deg,#E9F3EB,#C8E2CC);color:#46795A;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <div class="trust-v2-text">
+            <div class="trust-v2-title">Premium Packaging</div>
+            <div class="trust-v2-desc">Gift-ready unboxing experience</div>
+          </div>
+        </div>
+        <div class="trust-v2">
+          <div class="trust-v2-icon" style="background:linear-gradient(135deg,#FFEEDF,#FFD8B5);color:#B0653F;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="trust-v2-text">
+            <div class="trust-v2-title">Made in Bengal</div>
+            <div class="trust-v2-desc">Delivered across West Bengal</div>
+          </div>
+        </div>
+        <div class="trust-v2">
+          <div class="trust-v2-icon" style="background:linear-gradient(135deg,#FCE7F3,#FBCFE8);color:#9D4D6A;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="trust-v2-text">
+            <div class="trust-v2-title">Custom Orders</div>
+            <div class="trust-v2-desc">Your vision, our hands — bespoke</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="trust-badge-item">
-      <div class="trust-badge-icon"><span>⭐</span></div>
-      <div class="trust-badge-title">4.9★ Rated</div>
-      <div class="trust-badge-desc">500+ verified reviews</div>
-    </div>
-    <div class="trust-badge-item">
-      <div class="trust-badge-icon"><span>📦</span></div>
-      <div class="trust-badge-title">Premium Packaging</div>
-      <div class="trust-badge-desc">Gift-ready unboxing</div>
-    </div>
-    <div class="trust-badge-item">
-      <div class="trust-badge-icon"><span>🇮🇳</span></div>
-      <div class="trust-badge-title">Made in Bengal</div>
-      <div class="trust-badge-desc">Delivered across West Bengal</div>
-    </div>
-    <div class="trust-badge-item">
-      <div class="trust-badge-icon"><span>💝</span></div>
-      <div class="trust-badge-title">Custom Orders</div>
-      <div class="trust-badge-desc">Your vision, our hands</div>
-    </div>
-  </div>
+  </section>
 
-  <!-- ═══════ Festival Countdown ═══════ -->
-  <div class="container reveal">
-    <div class="festival-countdown" id="festivalCountdown">
-      <div class="festival-countdown-text">
-        <span class="festival-countdown-label">Upcoming Festival</span>
-        <span class="festival-countdown-occasion" id="festivalName">🪔 Durga Puja</span>
-      </div>
-      <div class="festival-countdown-timer">
-        <div class="countdown-unit">
-          <div class="countdown-number" id="countdownDays">--</div>
-          <div class="countdown-label">Days</div>
+  <!-- ═══════ Festival Countdown — REDESIGNED ═══════ -->
+  <section class="festival-wrap reveal" aria-label="Festival countdown">
+    <div class="container">
+      <div class="festival-countdown-v2" id="festivalCountdown">
+        <div class="fest-v2-pattern" aria-hidden="true"></div>
+        <div class="fest-v2-left">
+          <span class="fest-v2-overline">Upcoming Festival Drop</span>
+          <span class="fest-v2-occasion" id="festivalName">🪔 Durga Puja</span>
+          <p class="fest-v2-note">Limited festive slots — custom orders close 5 days before.</p>
         </div>
-        <div class="countdown-unit">
-          <div class="countdown-number" id="countdownHours">--</div>
-          <div class="countdown-label">Hours</div>
+        <div class="festival-countdown-timer-v2">
+          <div class="countdown-unit-v2">
+            <div class="countdown-number-v2" id="countdownDays">--</div>
+            <div class="countdown-label-v2">Days</div>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit-v2">
+            <div class="countdown-number-v2" id="countdownHours">--</div>
+            <div class="countdown-label-v2">Hours</div>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit-v2">
+            <div class="countdown-number-v2" id="countdownMinutes">--</div>
+            <div class="countdown-label-v2">Mins</div>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit-v2">
+            <div class="countdown-number-v2" id="countdownSeconds">--</div>
+            <div class="countdown-label-v2">Secs</div>
+          </div>
         </div>
-        <div class="countdown-unit">
-          <div class="countdown-number" id="countdownMinutes">--</div>
-          <div class="countdown-label">Mins</div>
+        <div class="fest-v2-cta">
+          <a href="custom-order.html" class="btn btn-gold fest-v2-btn">Order Festive Gifts →</a>
+          <span class="fest-v2-subcta">Free gift card inside</span>
         </div>
-        <div class="countdown-unit">
-          <div class="countdown-number" id="countdownSeconds">--</div>
-          <div class="countdown-label">Secs</div>
-        </div>
-      </div>
-      <div class="festival-countdown-cta">
-        <a href="custom-order.html" class="btn btn-gold">Order Festive Gifts →</a>
       </div>
     </div>
-  </div>
+  </section>
+
 
   <!-- ═══════ Featured Products ═══════ -->
   <section class="section-padding" id="shop" style="background: var(--warm-beige);">
