@@ -118,6 +118,7 @@
   backdrop-filter: blur(4px);
   opacity: 0;
   pointer-events: none;
+  touch-action: none;
   transition: opacity 0.32s var(--mnav-ease);
 }
 .mnav-backdrop.is-open {
@@ -145,6 +146,8 @@
   visibility: hidden;
   transition: transform 0.35s var(--mnav-ease), visibility 0.35s linear;
   overscroll-behavior: contain;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
 }
 .mnav.is-open {
   transform: translateX(0);
@@ -160,6 +163,7 @@
   padding: 16px 18px 14px;
   border-bottom: 1px solid var(--mnav-line);
   background: var(--mnav-surface);
+  touch-action: none;
 }
 .mnav-brand {
   display: flex;
@@ -213,6 +217,9 @@
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
   padding: 16px 16px 20px;
   display: flex;
   flex-direction: column;
@@ -583,15 +590,19 @@
   font-size: 0.68rem;
   letter-spacing: 0.03em;
   text-align: center;
+  touch-action: none;
 }
 .mnav-foot span {
   font-weight: 600;
   color: var(--mnav-accent-dark);
 }
 
-/* Body lock while drawer is open */
+/* Body scroll lock while drawer is open */
+html.mnav-open,
 body.mnav-open {
   overflow: hidden !important;
+  height: 100% !important;
+  touch-action: none;
 }
 
 /* ─── Visibility Rules ─── */

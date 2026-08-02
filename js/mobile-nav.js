@@ -15,6 +15,7 @@
   var page = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
   var onHome = page === '' || page === 'index.html';
   var lastFocused = null;
+  var scrollY = 0;
 
   /* Home-page sections need in-page anchors; every other page links back. */
   function homeLink(hash) {
@@ -195,7 +196,32 @@
     el.hidden = value === 0;
   }
 
-  /* ─── Open / close ─── */
+  /* ─── Body Scroll Lock for Mobile Browsers ─── */
+  function lockBodyScroll() {
+    scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + scrollY + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('mnav-open');
+    document.documentElement.classList.add('mnav-open');
+  }
+
+  function unlockBodyScroll() {
+    document.body.classList.remove('mnav-open');
+    document.documentElement.classList.remove('mnav-open');
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, scrollY);
+  }
+
+  /* ─── Open / Close ─── */
   function toggles() {
     return Array.prototype.slice.call(document.querySelectorAll('.nav-mobile-toggle'));
   }
@@ -211,12 +237,12 @@
     if (!drawer || isOpen()) return;
     lastFocused = document.activeElement;
     refreshCounts();
+    lockBodyScroll();
     backdrop.hidden = false;
     void backdrop.offsetWidth; // Force frame calculation
     backdrop.classList.add('is-open');
     drawer.classList.add('is-open');
     drawer.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('mnav-open');
     toggles().forEach(function (t) { t.classList.add('active'); t.setAttribute('aria-expanded', 'true'); });
     document.addEventListener('keydown', onKeydown);
     window.setTimeout(function () {
@@ -232,9 +258,9 @@
     drawer.classList.remove('is-open');
     drawer.setAttribute('aria-hidden', 'true');
     backdrop.classList.remove('is-open');
-    document.body.classList.remove('mnav-open');
     toggles().forEach(function (t) { t.classList.remove('active'); t.setAttribute('aria-expanded', 'false'); });
     document.removeEventListener('keydown', onKeydown);
+    unlockBodyScroll();
     window.setTimeout(function () { if (!isOpen()) backdrop.hidden = true; }, 360);
     if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
     lastFocused = null;
@@ -295,10 +321,46 @@
     enhanceToggles();
     refreshCounts();
 
-    document.getElementById('mnavBackdrop').addEventListener('click', close);
+    var backdrop = document.getElementById('mnavBackdrop');
+    var drawer = document.getElementById('mnavDrawer');
+
+    backdrop.addEventListener('click', close);
     document.getElementById('mnavClose').addEventListener('click', close);
 
-    var drawer = document.getElementById('mnavDrawer');
+    /* Prevent touch scroll bleeding on backdrop, header, and footer */
+    backdrop.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+    }, { passive: false });
+
+    var topBar = drawer.querySelector('.mnav-top');
+    if (topBar) {
+      topBar.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+      }, { passive: false });
+    }
+
+    var footBar = drawer.querySelector('.mnav-foot');
+    if (footBar) {
+      footBar.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+      }, { passive: false });
+    }
+
+    /* Keep scroll strictly inside .mnav-scroll by preventing rubber-banding chaining */
+    var scrollEl = drawer.querySelector('.mnav-scroll');
+    if (scrollEl) {
+      scrollEl.addEventListener('touchstart', function () {
+        var top = scrollEl.scrollTop;
+        var totalScroll = scrollEl.scrollHeight;
+        var currentScroll = top + scrollEl.offsetHeight;
+        if (top <= 0) {
+          scrollEl.scrollTop = 1;
+        } else if (currentScroll >= totalScroll) {
+          scrollEl.scrollTop = top - 1;
+        }
+      }, { passive: true });
+    }
+
     drawer.addEventListener('click', function (event) {
       if (event.target.closest('[data-mnav-search]')) { focusSearch(); return; }
 
