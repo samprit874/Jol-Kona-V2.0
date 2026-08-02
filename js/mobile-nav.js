@@ -1,11 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════
-   জলকণা — Mobile Navigation Drawer
-   Builds one consistent, grouped drawer on every page so the
-   hamburger menu never looks like a random pile of links.
-
-   Groups: Account → Quick actions → Browse → Help → Contact.
-   Works with js/auth.js (shares its [data-auth-*] hooks) and with
-   js/shop.js (reads the same localStorage keys for live counts).
+   জলকণা — Mobile Navigation Drawer (Optimized)
+   Delivers a sleek, professional, high-end mobile menu experience.
+   Groups: Account → Quick actions → Browse → Your Account → Say hello.
+   Works with js/auth.js (shares [data-auth-*] hooks) and js/shop.js.
    ═══════════════════════════════════════════════════════════════ */
 
 (function () {
@@ -27,7 +24,7 @@
   var icons = {
     home: '<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/>',
     shop: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>',
-    collections: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+    collections: '<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',
     custom: '<path d="M12 3l2.09 4.53L19 8.27l-3.5 3.6.83 5.13L12 14.77 7.67 17l.83-5.13L5 8.27l4.91-.74z"/>',
     story: '<path d="M4 19.5V6a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 1.5z"/><line x1="8" y1="8" x2="15" y2="8"/><line x1="8" y1="12" x2="15" y2="12"/>',
     occasions: '<rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13"/><path d="M3 12h18"/><path d="M12 8S9.5 3 7.5 4.5 9 8 12 8z"/><path d="M12 8s2.5-5 4.5-3.5S15 8 12 8z"/>',
@@ -46,9 +43,9 @@
   };
 
   function svg(name, size) {
-    var s = size || 17;
+    var s = size || 18;
     return '<svg width="' + s + '" height="' + s + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-      'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + icons[name] + '</svg>';
+      'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (icons[name] || '') + '</svg>';
   }
 
   function row(opts) {
@@ -58,9 +55,10 @@
     var cls = 'mnav-item' + (opts.className ? ' ' + opts.className : '');
     if (opts.current) cls += ' is-current';
     return '<' + tag + ' class="' + cls + '"' + attrs + '>' +
-      '<span class="mnav-item-icon">' + svg(opts.icon) + '</span>' +
+      '<span class="mnav-item-icon">' + svg(opts.icon, 18) + '</span>' +
       '<span class="mnav-item-label">' + opts.label + '</span>' +
-      (opts.href ? '<span class="mnav-item-chevron">' + svg('chevron', 14) + '</span>' : '') +
+      (opts.current ? '<span class="mnav-item-dot" aria-hidden="true"></span>' : '') +
+      (opts.showChevron ? '<span class="mnav-item-chevron">' + svg('chevron', 14) + '</span>' : '') +
       '</' + tag + '>';
   }
 
@@ -79,21 +77,26 @@
   function markup() {
     return '' +
       '<div class="mnav-backdrop" id="mnavBackdrop" hidden></div>' +
-      '<aside class="mnav" id="mnavDrawer" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">' +
+      '<aside class="mnav" id="mnavDrawer" role="dialog" aria-modal="true" aria-label="Navigation Menu" aria-hidden="true">' +
         '<div class="mnav-top">' +
-          '<span class="mnav-brand"><img src="img/logo.png" alt="জলকণা — Jol Kona"></span>' +
+          '<div class="mnav-brand">' +
+            '<img src="img/logo.png" alt="জলকণা — Jol Kona">' +
+            '<span class="mnav-tagline">Handmade Artistry</span>' +
+          '</div>' +
           '<button class="mnav-close" type="button" id="mnavClose" aria-label="Close menu">' + svg('close', 18) + '</button>' +
         '</div>' +
 
         '<div class="mnav-scroll">' +
 
+          '<!-- Account Header -->' +
           '<section class="mnav-section mnav-account">' +
             '<button class="mnav-signin" type="button" data-auth-open data-auth-guest>' +
-              '<span class="mnav-avatar">' + svg('user', 20) + '</span>' +
+              '<span class="mnav-avatar-circle">' + svg('user', 20) + '</span>' +
               '<span class="mnav-identity-text">' +
-                '<span class="mnav-identity-title">Sign in</span>' +
+                '<span class="mnav-identity-title">Sign in or Register</span>' +
                 '<span class="mnav-identity-sub">Save favourites &amp; track orders</span>' +
               '</span>' +
+              '<span class="mnav-signin-arrow">' + svg('chevron', 14) + '</span>' +
             '</button>' +
             '<div class="mnav-identity" data-auth-user hidden>' +
               '<span class="mnav-avatar" data-auth-avatar aria-hidden="true"></span>' +
@@ -101,50 +104,65 @@
                 '<span class="mnav-identity-title" data-auth-name>Your account</span>' +
                 '<span class="mnav-identity-sub" data-auth-email></span>' +
               '</span>' +
+              '<span class="mnav-user-badge">Member</span>' +
             '</div>' +
           '</section>' +
 
+          '<!-- Quick Actions Row -->' +
           '<section class="mnav-section">' +
-            '<p class="mnav-label">Quick actions</p>' +
             '<div class="mnav-quick">' +
-              '<button class="mnav-tile" type="button" data-mnav-search>' + svg('search', 19) + '<span>Search</span></button>' +
-              '<a class="mnav-tile" href="wishlist-cart.html#wishlist">' + svg('wishlist', 19) + '<span>Wishlist</span>' +
-                '<span class="mnav-tile-badge" data-mnav-count="wishlist" hidden>0</span></a>' +
-              '<a class="mnav-tile" href="wishlist-cart.html#cart">' + svg('shop', 19) + '<span>Cart</span>' +
-                '<span class="mnav-tile-badge" data-mnav-count="cart" hidden>0</span></a>' +
+              '<button class="mnav-quick-btn" type="button" data-mnav-search aria-label="Search catalog">' +
+                svg('search', 17) + '<span>Search</span>' +
+              '</button>' +
+              '<a class="mnav-quick-btn" href="wishlist-cart.html#wishlist" aria-label="Wishlist">' +
+                svg('wishlist', 17) + '<span>Wishlist</span>' +
+                '<span class="mnav-quick-badge" data-mnav-count="wishlist" hidden>0</span>' +
+              '</a>' +
+              '<a class="mnav-quick-btn" href="wishlist-cart.html#cart" aria-label="Shopping Cart">' +
+                svg('shop', 17) + '<span>Cart</span>' +
+                '<span class="mnav-quick-badge" data-mnav-count="cart" hidden>0</span>' +
+              '</a>' +
             '</div>' +
           '</section>' +
 
+          '<!-- Main Navigation -->' +
           '<section class="mnav-section">' +
-            '<p class="mnav-label">Browse</p>' +
+            '<p class="mnav-label">Main Menu</p>' +
             '<nav class="mnav-list" aria-label="Site sections">' + browseRows() + '</nav>' +
           '</section>' +
 
+          '<!-- Signed In Account Links -->' +
           '<section class="mnav-section" data-auth-user hidden>' +
-            '<p class="mnav-label">Your account</p>' +
+            '<p class="mnav-label">My Account</p>' +
             '<div class="mnav-list">' +
               row({ icon: 'user', label: 'My Account', href: 'account.html', current: page === 'account.html' }) +
               row({ icon: 'orders', label: 'My Orders', href: 'account.html#orders' }) +
-              // Hidden by default; js/auth.js unhides it only for allowlisted
-              // admin emails (same rule the desktop dropdown uses).
               row({ icon: 'shield', label: 'Admin Panel', href: 'admin.html', attrs: 'data-auth-admin-row hidden', current: page === 'admin.html' }) +
-              row({ icon: 'add', label: 'Add another account', attrs: 'data-mnav-auth-action="add-account"' }) +
-              row({ icon: 'swap', label: 'Switch account', attrs: 'data-mnav-auth-action="switch-account"' }) +
-              row({ icon: 'logout', label: 'Log out', className: 'mnav-item--danger', attrs: 'data-mnav-auth-action="logout"' }) +
+            '</div>' +
+            '<div class="mnav-auth-subactions">' +
+              '<button class="mnav-subaction-btn" type="button" data-mnav-auth-action="switch-account">' +
+                svg('swap', 15) + '<span>Switch Account</span>' +
+              '</button>' +
+              '<button class="mnav-subaction-btn mnav-subaction-btn--danger" type="button" data-mnav-auth-action="logout">' +
+                svg('logout', 15) + '<span>Log Out</span>' +
+              '</button>' +
             '</div>' +
           '</section>' +
 
+          '<!-- Say Hello -->' +
           '<section class="mnav-section">' +
-            '<p class="mnav-label">Say hello</p>' +
+            '<p class="mnav-label">Connect</p>' +
             '<div class="mnav-contact">' +
-              '<a class="mnav-chip" href="' + INSTAGRAM + '" target="_blank" rel="noopener">' + svg('instagram', 15) + 'Instagram</a>' +
-              '<a class="mnav-chip" href="' + EMAIL + '">' + svg('mail', 15) + 'Email us</a>' +
+              '<a class="mnav-chip" href="' + INSTAGRAM + '" target="_blank" rel="noopener">' + svg('instagram', 15) + '<span>Instagram</span></a>' +
+              '<a class="mnav-chip" href="' + EMAIL + '">' + svg('mail', 15) + '<span>Email us</span></a>' +
             '</div>' +
           '</section>' +
 
         '</div>' +
 
-        '<p class="mnav-foot">জলকণা · Handmade with love in Bengal</p>' +
+        '<div class="mnav-foot">' +
+          '<span>জলকণা</span> · Handcrafted Bengal Artistry' +
+        '</div>' +
       '</aside>';
   }
 
@@ -194,15 +212,17 @@
     lastFocused = document.activeElement;
     refreshCounts();
     backdrop.hidden = false;
-    // Force a frame so the transition runs from the closed state.
-    void backdrop.offsetWidth;
+    void backdrop.offsetWidth; // Force frame calculation
     backdrop.classList.add('is-open');
     drawer.classList.add('is-open');
     drawer.setAttribute('aria-hidden', 'false');
     document.body.classList.add('mnav-open');
     toggles().forEach(function (t) { t.classList.add('active'); t.setAttribute('aria-expanded', 'true'); });
     document.addEventListener('keydown', onKeydown);
-    window.setTimeout(function () { document.getElementById('mnavClose').focus(); }, 180);
+    window.setTimeout(function () {
+      var closeBtn = document.getElementById('mnavClose');
+      if (closeBtn) closeBtn.focus();
+    }, 180);
   }
 
   function close() {
@@ -215,7 +235,7 @@
     document.body.classList.remove('mnav-open');
     toggles().forEach(function (t) { t.classList.remove('active'); t.setAttribute('aria-expanded', 'false'); });
     document.removeEventListener('keydown', onKeydown);
-    window.setTimeout(function () { if (!isOpen()) backdrop.hidden = true; }, 400);
+    window.setTimeout(function () { if (!isOpen()) backdrop.hidden = true; }, 360);
     if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
     lastFocused = null;
   }
@@ -256,7 +276,7 @@
   }
 
   function focusSearch() {
-    var input = document.querySelector('.filter-search input');
+    var input = document.querySelector('.filter-search input, .search-bar input, #searchInput');
     if (input) {
       close();
       window.setTimeout(function () {
@@ -284,16 +304,16 @@
 
       var action = event.target.closest('[data-mnav-auth-action]');
       if (action) {
-        // Reuse the account dropdown's handlers so behaviour stays in one place.
         var proxy = document.querySelector('#accountMenu [data-auth-action="' + action.dataset.mnavAuthAction + '"]');
         close();
         if (proxy) window.setTimeout(function () { proxy.click(); }, 120);
+        else if (window.JolKonaAuth && action.dataset.mnavAuthAction === 'logout') {
+          if (typeof window.JolKonaAuth.logout === 'function') window.JolKonaAuth.logout();
+        }
         return;
       }
 
       if (event.target.closest('[data-auth-open]')) {
-        // js/auth.js binds the sign-in modal to [data-auth-open]; this is a
-        // safety net for the case where the drawer is built after auth.js ran.
         close();
         window.setTimeout(function () {
           var modal = document.getElementById('authModal');
@@ -320,7 +340,6 @@
       close();
     });
 
-    // Keep counts fresh: other tabs, and this tab's cart/wishlist badges.
     window.addEventListener('storage', refreshCounts);
     ['wishlistCount', 'cartCount'].forEach(function (id) {
       var badge = document.getElementById(id);
@@ -331,15 +350,11 @@
       if (event.target.closest('.wishlist-btn, .cart-btn, [data-action]')) window.setTimeout(refreshCounts, 60);
     });
 
-    // Desktop resize should never leave a half-open drawer behind.
     window.addEventListener('resize', function () {
       if (window.innerWidth > 1024 && isOpen()) close();
     });
   }
 
-  // Build as soon as <body> is available. js/auth.js is a module (deferred) and
-  // runs before DOMContentLoaded, so the drawer must already exist for it to see
-  // the [data-auth-*] hooks inside.
   if (document.body) build();
   else document.addEventListener('DOMContentLoaded', build);
 
