@@ -629,6 +629,17 @@ p { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
   transform: translateY(0);
 }
 
+/* Dark mode: keep wishlist/cart popup toasts readable.
+   In dark mode --charcoal becomes light, so the original
+   charcoal background + white text would render as an
+   unreadable white pill. Give it a proper dark surface. */
+[data-theme="dark"] .cart-toast {
+  background: #2D2520;
+  color: var(--charcoal);
+  border: 1px solid rgba(192,98,58,0.28);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+}
+
 @media (max-width: 968px) {
   .saved-shop-grid { grid-template-columns: 1fr; }
 }
