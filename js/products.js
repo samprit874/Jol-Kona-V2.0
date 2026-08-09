@@ -176,6 +176,14 @@ const PRODUCTS = [
     description: "A cute handmade crochet bow hair clip — soft, fluffy and full of charm. A sweet accessory for your hair, and a lovely handmade gift for someone you love.",
     dmText: "Hi! I'd like to order the Crochet Bow Hair Clip 🎀"
   },
+  {
+    name: "Crochet Flower Hair Clip",
+    category: "crochet",
+    image: "https://i.ibb.co/DH7bBv6G/Crochet-accessory-crochet-love-follow-handmade-cute-2.webp",
+    badge: "New",
+    description: "A beautiful handmade crochet flower hair clip — soft, fluffy petals full of charm. A sweet accessory for your hair, and a lovely handmade gift for someone you love.",
+    dmText: "Hi! I'd like to order the Crochet Flower Hair Clip 🌸"
+  },
 
   // ═══════════════════════════════════════════
   // ADD NEW PRODUCTS BELOW THIS LINE
