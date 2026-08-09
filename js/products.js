@@ -150,15 +150,15 @@ const PRODUCTS = [
   // ═══════════════════════════════════════════
 
   // ─── Handmade Pipe Cleaner Phone Charm 🎀🩷 ─────────────
-  // Photos: pipe-cleaner-phone-charm-1.webp + -2.webp
-  // (both live in img/products/ — swipe the frame like an Instagram post)
+  // Photos hosted on ImgBB (direct links from the user's uploads).
+  // Swipe the frame like an Instagram post to see both photos.
   {
     name: "Handmade Pipe Cleaner Phone Charm",
     category: "pipe-cleaner",
-    image: "img/products/pipe-cleaner-phone-charm-1.webp",
+    image: "https://i.ibb.co/3ywLd3CN/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
     images: [
-      "img/products/pipe-cleaner-phone-charm-1.webp",
-      "img/products/pipe-cleaner-phone-charm-2.webp"
+      "https://i.ibb.co/3ywLd3CN/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
+      "https://i.ibb.co/ymZJfTSW/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona.webp"
     ],
     badge: "Handmade",
     description: "A cute handmade pipe-cleaner phone charm with a pink heart & ribbon bow — a tiny piece of handmade joy to carry everywhere. Crafted with love by জলকণা. 🎀🩷",
