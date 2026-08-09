@@ -24,6 +24,18 @@
     window.addEventListener('load', function () {
       navigator.serviceWorker.register(SW_PATH)
         .then(function (reg) {
+          // Auto-apply updates: whenever a new service worker takes control
+          // (e.g. after a cache version bump), reload the page once so it
+          // picks up the fresh assets instead of stale cached copies.
+          // This is what makes catalog/product updates appear immediately.
+          if (navigator.serviceWorker.controller) {
+            navigator.serviceWorker.addEventListener('controllerchange', function () {
+              var now = Date.now();
+              if (window.__jkLastSwReload && (now - window.__jkLastSwReload) < 5000) return;
+              window.__jkLastSwReload = now;
+              window.location.reload();
+            });
+          }
           if (window.console && console.log) {
             console.log('[Jol Kona] Service worker registered', reg.scope);
           }
