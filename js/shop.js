@@ -81,11 +81,15 @@
 
   function productSnapshot(product) {
     if (!product) return null;
+    const images = Array.isArray(product.images) && product.images.length
+      ? product.images.filter(Boolean)
+      : [];
     return {
       id: getProductId(product),
       name: product.name || 'Handmade Creation',
       category: product.category || 'handmade',
-      image: product.image || 'img/logo.png',
+      image: product.image || images[0] || 'img/logo.png',
+      images, // extra photos → rendered as an Instagram-style swipeable frame
       badge: product.badge || '',
       description: product.description || '',
       dmText: product.dmText || `Hi! I am interested in ${product.name || 'this handmade product'}`
@@ -447,10 +451,21 @@
       ? `<span class="product-card-badge${badgeVariant}">${escapeHtml(snapshot.badge)}</span>`
       : '';
 
+    const frameImages = [snapshot.image, ...(snapshot.images || [])]
+      .filter(Boolean)
+      .filter((src, i, arr) => arr.indexOf(src) === i);
+
+    const imageHtml = frameImages.length > 1
+      ? `<div class="image-frame product-card-image-frame"
+              data-image-frame
+              data-images="${escapeHtml(JSON.stringify(frameImages))}"
+              aria-label="Photos of ${escapeHtml(snapshot.name)}"></div>`
+      : `<img src="${escapeHtml(snapshot.image)}" alt="${escapeHtml(snapshot.name)}" loading="lazy">`;
+
     return `
       <div class="product-card reveal visible" data-category="${escapeHtml(snapshot.category)}" data-product-id="${escapeHtml(productId)}" style="transition-delay:${(index % 4) * 0.05}s">
         <div class="product-card-image">
-          <img src="${escapeHtml(snapshot.image)}" alt="${escapeHtml(snapshot.name)}" loading="lazy">
+          ${imageHtml}
           <div class="product-card-actions">
             <button type="button" class="product-action-btn wishlist-btn ${inWishlist ? 'is-active' : ''}" data-product-id="${escapeHtml(productId)}" aria-label="${inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}" aria-pressed="${inWishlist}">${inWishlist ? '♥' : '♡'}</button>
           </div>

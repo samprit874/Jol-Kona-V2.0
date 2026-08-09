@@ -11,11 +11,15 @@
       Example: https://i.ibb.co/xxxxx/my-product.jpg
    
    3. Add a new entry below (copy the format):
-   
+
    {
      name: "Your Product Name",
      category: "gift-hampers",        ← choose: gift-hampers, custom-chocolates, clay-jewellery, pipe-cleaner, keychains
      image: "https://i.ibb.co/xxxxx/my-product.jpg",   ← paste ImgBB URL here
+     images: [                        ← OPTIONAL extra photos → Instagram-style swipe frame
+       "https://i.ibb.co/xxxxx/my-product-1.jpg",      (image above is shown first,
+       "https://i.ibb.co/xxxxx/my-product-2.jpg"        then swipe/arrows to see these)
+     ],
      badge: "New",                    ← or "Bestseller", "Popular", "Handmade", or "" for none
      description: "Short description of the product...",
      dmText: "Hi! I'd like to order [Product Name] 🎁"
@@ -144,6 +148,23 @@ const PRODUCTS = [
   // ADD NEW PRODUCTS BELOW THIS LINE
   // Copy the format above and paste here
   // ═══════════════════════════════════════════
+
+  // ─── Handmade Pipe Cleaner Phone Charm 🎀🩷 ─────────────
+  // Photos hosted on ImgBB (direct links from the user's uploads).
+  // Swipe the frame like an Instagram post to see both photos.
+  {
+    name: "Handmade Pipe Cleaner Phone Charm",
+    category: "pipe-cleaner",
+    image: "https://i.ibb.co/3ywLd3CN/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
+    images: [
+      "https://i.ibb.co/3ywLd3CN/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
+      "https://i.ibb.co/ymZJfTSW/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona.webp"
+    ],
+    badge: "Handmade",
+    description: "A cute handmade pipe-cleaner phone charm with a pink heart & ribbon bow — a tiny piece of handmade joy to carry everywhere. Crafted with love by জলকণা. 🎀🩷",
+    dmText: "Hi! I'd like to order the Handmade Pipe Cleaner Phone Charm 🎀🩷"
+  }
+  // ─── /Handmade Pipe Cleaner Phone Charm ────────────────
 
 ];
 
