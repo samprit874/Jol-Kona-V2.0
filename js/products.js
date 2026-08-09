@@ -140,6 +140,24 @@ const PRODUCTS = [
     dmText: "Hi! I'd like to order a Hello Kitty Keychain 🎀"
   },
 
+  // ═══════ PHONE CHARMS ═══════
+  {
+    name: "Handmade Pipe Cleaner Phone Charm",
+    category: "keychains",
+    image: "https://i.ibb.co/nsT5mGLc/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
+    badge: "New",
+    description: "A fluffy, handcrafted pipe cleaner phone charm to dress up your phone — cute, lightweight and made with love. Also perfect for bags, keys & pencil cases.",
+    dmText: "Hi! I'd like to order the Handmade Pipe Cleaner Phone Charm 📱"
+  },
+  {
+    name: "Cute Handmade Phone Charm",
+    category: "keychains",
+    image: "https://i.ibb.co/DPvnVXp5/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona.webp",
+    badge: "New",
+    description: "An adorable handmade phone charm crafted from soft pipe cleaners — a tiny dangle of joy for your phone. A sweet gift for friends, sisters & everyone who loves cute things.",
+    dmText: "Hi! I'd like to order the Cute Handmade Phone Charm 📱"
+  },
+
   // ═══════════════════════════════════════════
   // ADD NEW PRODUCTS BELOW THIS LINE
   // Copy the format above and paste here
