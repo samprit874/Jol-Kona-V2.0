@@ -157,6 +157,14 @@ const PRODUCTS = [
     description: "An adorable handmade phone charm crafted from soft pipe cleaners — a tiny dangle of joy for your phone. A sweet gift for friends, sisters & everyone who loves cute things.",
     dmText: "Hi! I'd like to order the Cute Handmade Phone Charm 📱"
   },
+  {
+    name: "Adorable Pipe Cleaner Phone Charm",
+    category: "keychains",
+    image: "https://i.ibb.co/wFWJ98Fj/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-2.webp",
+    badge: "New",
+    description: "Another adorable handmade pipe cleaner phone charm from the Jol Kona charm collection — soft, fluffy and full of personality. Perfect for phones, bags, keys & pencil cases, and a sweet little gift for someone you love.",
+    dmText: "Hi! I'd like to order the Adorable Pipe Cleaner Phone Charm 📱"
+  },
 
   // ═══════════════════════════════════════════
   // ADD NEW PRODUCTS BELOW THIS LINE
