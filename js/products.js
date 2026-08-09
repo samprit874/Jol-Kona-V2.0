@@ -144,13 +144,13 @@ const PRODUCTS = [
   {
     name: "Handmade Pipe Cleaner Phone Charm",
     category: "pipe-cleaner",
-    image: "https://i.ibb.co/nsT5mGLc/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
+    image: "https://i.ibb.co/3ywLd3CN/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
     images: [
-      "https://i.ibb.co/nsT5mGLc/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
-      "https://i.ibb.co/DPvnVXp5/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona.webp"
+      "https://i.ibb.co/3ywLd3CN/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
+      "https://i.ibb.co/ymZJfTSW/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona.webp"
     ],
     badge: "New",
-    description: "A tiny handcrafted phone charm made from soft pipe cleaners — a cute handmade charm to hang on your phone, bag or keys. Every colour is made to order, just for you.",
+    description: "A cute handmade pipe-cleaner phone charm with a pink heart & ribbon bow — a tiny piece of handmade joy to hang on your phone, bag or keys. Made with love by জলকণা. 🎀",
     dmText: "Hi! I'd like to order the Handmade Pipe Cleaner Phone Charm 📱✨"
   },
 
