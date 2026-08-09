@@ -35,6 +35,7 @@ const CATEGORY_LABELS = {
   'clay-jewellery': 'Clay Jewellery',
   'pipe-cleaner': 'Pipe Cleaner',
   'keychains': 'Keychains',
+  'crochet': 'Crochet',
 };
 
 /* The 5 reviews currently hard-coded on the homepage (used by the

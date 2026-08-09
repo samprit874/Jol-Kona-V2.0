@@ -22,7 +22,8 @@
     'custom-chocolates': 'Custom Chocolate',
     'clay-jewellery': 'Clay Jewellery',
     'pipe-cleaner': 'Pipe Cleaner',
-    'keychains': 'Keychain'
+    'keychains': 'Keychain',
+    'crochet': 'Crochet'
   };
 
   const htmlEntities = {

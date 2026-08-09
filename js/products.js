@@ -14,7 +14,7 @@
    
    {
      name: "Your Product Name",
-     category: "gift-hampers",        ← choose: gift-hampers, custom-chocolates, clay-jewellery, pipe-cleaner, keychains
+     category: "gift-hampers",        ← choose: gift-hampers, custom-chocolates, clay-jewellery, pipe-cleaner, keychains, crochet
      image: "https://i.ibb.co/xxxxx/my-product.jpg",   ← paste ImgBB URL here
      badge: "New",                    ← or "Bestseller", "Popular", "Handmade", or "" for none
      description: "Short description of the product...",
@@ -29,6 +29,7 @@
    - clay-jewellery     → Clay jewellery & hair accessories
    - pipe-cleaner       → Pipe cleaner flowers & crafts
    - keychains          → Keychains
+   - crochet            → Crochet accessories & hair clips
    
    ═══════════════════════════════════════════════════════════════ */
 
@@ -164,6 +165,16 @@ const PRODUCTS = [
     badge: "New",
     description: "Another adorable handmade pipe cleaner phone charm from the Jol Kona charm collection — soft, fluffy and full of personality. Perfect for phones, bags, keys & pencil cases, and a sweet little gift for someone you love.",
     dmText: "Hi! I'd like to order the Adorable Pipe Cleaner Phone Charm 📱"
+  },
+
+  // ═══════ CROCHET ═══════
+  {
+    name: "Crochet Bow Hair Clip",
+    category: "crochet",
+    image: "https://i.ibb.co/35gh5tKC/Crochet-accessory-crochet-love-follow-handmade-cute.webp",
+    badge: "New",
+    description: "A cute handmade crochet bow hair clip — soft, fluffy and full of charm. A sweet accessory for your hair, and a lovely handmade gift for someone you love.",
+    dmText: "Hi! I'd like to order the Crochet Bow Hair Clip 🎀"
   },
 
   // ═══════════════════════════════════════════
