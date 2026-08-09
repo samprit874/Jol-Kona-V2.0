@@ -122,6 +122,14 @@ const PRODUCTS = [
     description: "Stunning red & pink pipe cleaner flowers with curly green stems — a forever bouquet wrapped in elegant black paper with a satin ribbon.",
     dmText: "Hi! I'd like to order a Red Velvet Pipe Cleaner Bouquet 🌸"
   },
+  {
+    name: "Handmade Pipe Cleaner Flower",
+    category: "pipe-cleaner",
+    image: "https://i.ibb.co/60k86Dt2/Handmade-Pipe-Cleaner-Flower-Perfect-for-Someone-Special-DM-to-Order-love-instagram.webp",
+    badge: "For Someone Special 🩷",
+    description: "A single handcrafted pipe cleaner flower made with love — soft, fluffy and it never wilts, just like your feelings. Perfect for someone special. DM to order.",
+    dmText: "Hi! I'd like to order the Handmade Pipe Cleaner Flower 🌸"
+  },
 
   // ═══════ KEYCHAINS ═══════
   {
