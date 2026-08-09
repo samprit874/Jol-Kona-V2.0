@@ -11,11 +11,15 @@
       Example: https://i.ibb.co/xxxxx/my-product.jpg
    
    3. Add a new entry below (copy the format):
-   
+
    {
      name: "Your Product Name",
      category: "gift-hampers",        ← choose: gift-hampers, custom-chocolates, clay-jewellery, pipe-cleaner, keychains
      image: "https://i.ibb.co/xxxxx/my-product.jpg",   ← paste ImgBB URL here
+     images: [                        ← OPTIONAL extra photos → Instagram-style swipe frame
+       "https://i.ibb.co/xxxxx/my-product-1.jpg",      (image above is shown first,
+       "https://i.ibb.co/xxxxx/my-product-2.jpg"        then swipe/arrows to see these)
+     ],
      badge: "New",                    ← or "Bestseller", "Popular", "Handmade", or "" for none
      description: "Short description of the product...",
      dmText: "Hi! I'd like to order [Product Name] 🎁"
@@ -145,23 +149,22 @@ const PRODUCTS = [
   // Copy the format above and paste here
   // ═══════════════════════════════════════════
 
-  // ─── TEMPORARY PREVIEW CARD ─────────────────────────────
-  // Shows the new Instagram-style swipeable photo frame on the
-  // homepage. Will be replaced by your 2 real photos as soon as
-  // they are attached — delete this block after that.
+  // ─── Handmade Pipe Cleaner Phone Charm 🎀🩷 ─────────────
+  // Photos: pipe-cleaner-phone-charm-1.webp + -2.webp
+  // (both live in img/products/ — swipe the frame like an Instagram post)
   {
-    name: "Swipe Preview — 2 Photos in One Frame",
-    category: "gift-hampers",
-    image: "img/products/gift-hamper-bouquet-1.webp",
+    name: "Handmade Pipe Cleaner Phone Charm",
+    category: "pipe-cleaner",
+    image: "img/products/pipe-cleaner-phone-charm-1.webp",
     images: [
-      "img/products/gift-hamper-bouquet-1.webp",
-      "img/products/gift-hamper-bouquet-2.webp"
+      "img/products/pipe-cleaner-phone-charm-1.webp",
+      "img/products/pipe-cleaner-phone-charm-2.webp"
     ],
-    badge: "Preview",
-    description: "👈 Swipe this photo or tap the arrows — just like an Instagram post! This card will be replaced by your real product & photos.",
-    dmText: "Hi! I'd like to order this product 🎁"
+    badge: "Handmade",
+    description: "A cute handmade pipe-cleaner phone charm with a pink heart & ribbon bow — a tiny piece of handmade joy to carry everywhere. Crafted with love by জলকণা. 🎀🩷",
+    dmText: "Hi! I'd like to order the Handmade Pipe Cleaner Phone Charm 🎀🩷"
   }
-  // ─── /TEMPORARY PREVIEW CARD ────────────────────────────
+  // ─── /Handmade Pipe Cleaner Phone Charm ────────────────
 
 ];
 

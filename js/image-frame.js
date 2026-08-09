@@ -114,6 +114,13 @@
       this.counter = root.querySelector('.image-frame__counter');
       this.arrows = [root.querySelector('.image-frame__arrow--prev'), root.querySelector('.image-frame__arrow--next')];
       this.dots = Array.from(root.querySelectorAll('.image-frame__dot'));
+
+      // If a photo fails to load (missing file / slow network), swap the
+      // slide to a pretty branded placeholder instead of a broken image.
+      root.querySelectorAll('.image-frame__slide').forEach((slide) => {
+        const img = slide.querySelector('img');
+        img.addEventListener('error', () => slide.classList.add('is-missing'));
+      });
     }
 
     bind() {
