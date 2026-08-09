@@ -33,7 +33,7 @@ const sortByOrder = (a, b) => {
 /* ── Products ─────────────────────────────────────────────── */
 
 function applyProducts(docs) {
-  const products = docs.map((doc) => {
+  const live = docs.map((doc) => {
     const d = doc.data();
     return {
       id: doc.id, // stable Firestore id keeps wishlist/cart consistent
@@ -43,11 +43,26 @@ function applyProducts(docs) {
       badge: d.badge || '',
       description: d.description || '',
       dmText: d.dmText || '',
+      order: d.order,
+      createdAt: d.createdAt,
     };
   }).sort(sortByOrder);
 
-  if (!products.length) return;
-  window.PRODUCTS = products;
+  if (!live.length) return;
+
+  // MERGE (not replace): keep the live Firestore catalog as the primary
+  // source, but append any built-in products from js/products.js that are
+  // not already in it. This way, products added to js/products.js (the
+  // documented quick-add workflow) still show up even when the admin has
+  // populated the Firestore catalog — e.g. new launches like the phone
+  // charms before they are added via the Admin Panel.
+  const builtIn = Array.isArray(window.PRODUCTS) ? window.PRODUCTS : [];
+  const dedupeKey = (p) =>
+    `${String(p.name || '').trim().toLowerCase()}|${String(p.image || '').trim().toLowerCase()}`;
+  const seen = new Set(live.map(dedupeKey));
+  const extras = builtIn.filter((p) => !seen.has(dedupeKey(p)));
+
+  window.PRODUCTS = [...live, ...extras];
 
   // Ask shop.js (if present on this page) to re-render with live data.
   if (typeof window.renderProducts === 'function') {
