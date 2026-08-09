@@ -148,6 +148,22 @@ const PRODUCTS = [
     description: "Adorable handcrafted Hello Kitty pipe cleaner keychain — fluffy, cute, and perfect for your bag or keys.",
     dmText: "Hi! I'd like to order a Hello Kitty Keychain 🎀"
   },
+  {
+    name: "Lucky Fox Clay Keychain",
+    category: "keychains",
+    image: "https://i.ibb.co/yLsMjNy/Clay-cute-keychain-follow-love-handmade-love-insta-1.webp",
+    badge: "New",
+    description: "A tiny handmade clay fox charm that carries a little wish for prosperity and happiness — an adorable companion for your keys, bag or pouch.",
+    dmText: "Hi! I'd like to order the Lucky Fox Clay Keychain 🦊"
+  },
+  {
+    name: "Ginger Chicken Clay Keychain",
+    category: "keychains",
+    image: "https://i.ibb.co/gZRJWvwG/Clay-cute-keychain-follow-love-handmade-love-insta.webp",
+    badge: "New",
+    description: "A cheerful little ginger chicken sculpted from clay — a tiny burst of handmade charm for your keys, bag or pencil case.",
+    dmText: "Hi! I'd like to order the Ginger Chicken Clay Keychain 🐔"
+  },
 
   // ═══════ PHONE CHARMS ═══════
   {
