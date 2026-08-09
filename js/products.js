@@ -192,6 +192,14 @@ const PRODUCTS = [
     description: "An adorable handmade crochet cherry hair clip — cute little cherries full of charm. A sweet accessory for your hair, and a lovely handmade gift for someone you love.",
     dmText: "Hi! I'd like to order the Crochet Cherry Hair Clip 🍒"
   },
+  {
+    name: "Sunflower Crochet Earring",
+    category: "crochet",
+    image: "https://i.ibb.co/Swvc6zYj/Crochet-accessory-crochet-love-follow-handmade-cute-6.webp",
+    badge: "New",
+    description: "Beautiful handmade sunflower crochet earrings — bright yellow petals with a cozy brown center, lightweight and full of sunshine. A cheerful handmade accessory and a lovely gift for someone you love.",
+    dmText: "Hi! I'd like to order the Sunflower Crochet Earring 🌻"
+  },
 
   // ═══════════════════════════════════════════
   // ADD NEW PRODUCTS BELOW THIS LINE
