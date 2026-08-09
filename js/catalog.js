@@ -40,6 +40,7 @@ function applyProducts(docs) {
       name: d.name || 'Handmade Creation',
       category: d.category || 'gift-hampers',
       image: d.image || 'img/logo.png',
+      images: Array.isArray(d.images) ? d.images.filter(Boolean) : [],
       badge: d.badge || '',
       description: d.description || '',
       dmText: d.dmText || '',

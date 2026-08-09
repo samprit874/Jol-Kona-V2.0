@@ -145,6 +145,24 @@ const PRODUCTS = [
   // Copy the format above and paste here
   // ═══════════════════════════════════════════
 
+  // ─── TEMPORARY PREVIEW CARD ─────────────────────────────
+  // Shows the new Instagram-style swipeable photo frame on the
+  // homepage. Will be replaced by your 2 real photos as soon as
+  // they are attached — delete this block after that.
+  {
+    name: "Swipe Preview — 2 Photos in One Frame",
+    category: "gift-hampers",
+    image: "img/products/gift-hamper-bouquet-1.webp",
+    images: [
+      "img/products/gift-hamper-bouquet-1.webp",
+      "img/products/gift-hamper-bouquet-2.webp"
+    ],
+    badge: "Preview",
+    description: "👈 Swipe this photo or tap the arrows — just like an Instagram post! This card will be replaced by your real product & photos.",
+    dmText: "Hi! I'd like to order this product 🎁"
+  }
+  // ─── /TEMPORARY PREVIEW CARD ────────────────────────────
+
 ];
 
 // Expose to shop.js (js/shop.js reads window.PRODUCTS — a top-level `const`
