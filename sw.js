@@ -2,7 +2,7 @@
    Jol Kona — Service Worker (PWA offline cache)
    Cache-first for static assets, network-first for pages.
    ───────────────────────────────────────────── */
-const CACHE_VERSION = 'jolkona-v2-3';
+const CACHE_VERSION = 'jolkona-v2-4';
 const CORE_CACHE = `core-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 
