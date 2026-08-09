@@ -2104,6 +2104,91 @@ body {
   opacity: 1;
 }
 
+/* ─── 5b. Instagram-style Swipe Gallery on Product Cards ─── */
+.product-card-image.is-gallery { cursor: grab; }
+.product-card-image.is-gallery .card-gallery { position: absolute; inset: 0; }
+.card-gallery-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  touch-action: pan-x;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+}
+.card-gallery-track::-webkit-scrollbar { display: none; }
+.card-gallery-track.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+.card-gallery-slide { flex: 0 0 100%; height: 100%; scroll-snap-align: start; }
+.card-gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  transition: none;
+}
+/* No hover-zoom on gallery cards — the gallery is the interaction */
+.product-card:hover .product-card-image.is-gallery img { transform: none; }
+
+/* IG-style progress segments (top of the photo) */
+.card-gallery-progress {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  gap: 4px;
+  z-index: 3;
+  pointer-events: none;
+}
+.card-gallery-progress-seg {
+  flex: 1;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background var(--duration-fast) var(--ease-smooth);
+}
+.card-gallery-progress-seg.active { background: #fff; }
+
+/* Side arrows (desktop hover) */
+.card-gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  padding: 0 0 2px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-smooth), background var(--duration-fast) var(--ease-smooth);
+}
+.card-gallery-arrow.prev { left: 10px; }
+.card-gallery-arrow.next { right: 10px; }
+.card-gallery:hover .card-gallery-arrow { opacity: 1; }
+.card-gallery-arrow:hover { background: rgba(0, 0, 0, 0.6); }
+.card-gallery-arrow.disabled { opacity: 0.35; pointer-events: none; }
+
+/* Wishlist button stays above the gallery controls */
+.product-card-image.is-gallery .product-card-actions { z-index: 4; }
+
+@media (hover: none) {
+  .card-gallery-arrow { display: none; }
+}
+
 /* ─── 6. Staggered Grid Reveal ─── */
 .products-grid .product-card.reveal {
   opacity: 0;
