@@ -4238,3 +4238,22 @@ body,
 [data-theme="dark"] .fest-v2-subcta {
   color: rgba(255,255,255,0.42);
 }
+
+/* Instagram-style multi-photo product frame */
+.product-card-carousel { touch-action: pan-y; }
+.product-carousel-track { position: relative; width: 100%; height: 100%; }
+.product-carousel-slide { position: absolute; inset: 0; opacity: 0; transform: scale(1.015); pointer-events: none; transition: opacity 260ms ease, transform 360ms ease; }
+.product-carousel-slide.is-active { opacity: 1; transform: scale(1); pointer-events: auto; }
+.product-card-carousel:hover .product-carousel-slide.is-active { transform: scale(1.05); }
+.product-carousel-arrow { position: absolute; top: 50%; z-index: 3; width: 34px; height: 34px; border: 0; border-radius: 50%; transform: translateY(-50%); background: rgba(255,255,255,.88); color: var(--charcoal); box-shadow: 0 2px 10px rgba(45,41,38,.18); font: 400 1.65rem/1 Arial, sans-serif; cursor: pointer; opacity: 0; transition: opacity .2s ease, transform .2s ease; }
+.product-carousel-prev { left: 10px; }
+.product-carousel-next { right: 10px; }
+.product-card-carousel:hover .product-carousel-arrow, .product-card-carousel:focus-within .product-carousel-arrow { opacity: 1; }
+.product-carousel-arrow:hover { background: white; transform: translateY(-50%) scale(1.08); }
+.product-carousel-dots { position: absolute; z-index: 3; bottom: 11px; left: 50%; display: flex; gap: 5px; transform: translateX(-50%); }
+.product-carousel-dot { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.7); box-shadow: 0 1px 3px rgba(0,0,0,.25); cursor: pointer; transition: width .2s ease, background .2s ease; }
+.product-carousel-dot.is-active { width: 18px; border-radius: 10px; background: white; }
+.product-carousel-swipe-hint { position: absolute; z-index: 3; top: 11px; left: 11px; padding: 4px 8px; border-radius: 999px; background: rgba(45,41,38,.72); color: white; font-size: .63rem; font-weight: 700; letter-spacing: .02em; pointer-events: none; }
+.product-carousel-swipe-hint span { display: inline-block; margin-left: 2px; animation: carousel-nudge 1.3s ease-in-out infinite; }
+@keyframes carousel-nudge { 50% { transform: translateX(4px); } }
+@media (max-width: 768px) { .product-carousel-arrow { display: none; } .product-carousel-swipe-hint { font-size: .58rem; } }

@@ -121,6 +121,18 @@ const PRODUCTS = [
     description: "Stunning red & pink pipe cleaner flowers with curly green stems — a forever bouquet wrapped in elegant black paper with a satin ribbon.",
     dmText: "Hi! I'd like to order a Red Velvet Pipe Cleaner Bouquet 🌸"
   },
+  {
+    name: "Burgundy Bow Phone Charm",
+    category: "pipe-cleaner",
+    image: "img/products/pipe-cleaner-bow-phone-charm-1.png",
+    images: [
+      "img/products/pipe-cleaner-bow-phone-charm-1.png",
+      "img/products/pipe-cleaner-bow-phone-charm-2.png"
+    ],
+    badge: "New",
+    description: "A soft burgundy pipe cleaner bow phone charm, finished with a pearl bead, satin ribbon and a sparkling centre. Swipe to see the full charm.",
+    dmText: "Hi! I'd like to order a Burgundy Bow Phone Charm 🎀"
+  },
 
   // ═══════ KEYCHAINS ═══════
   {

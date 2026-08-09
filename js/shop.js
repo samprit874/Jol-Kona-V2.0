@@ -86,6 +86,7 @@
       name: product.name || 'Handmade Creation',
       category: product.category || 'handmade',
       image: product.image || 'img/logo.png',
+      images: Array.isArray(product.images) && product.images.length ? product.images : [product.image || 'img/logo.png'],
       badge: product.badge || '',
       description: product.description || '',
       dmText: product.dmText || `Hi! I am interested in ${product.name || 'this handmade product'}`
@@ -449,8 +450,17 @@
 
     return `
       <div class="product-card reveal visible" data-category="${escapeHtml(snapshot.category)}" data-product-id="${escapeHtml(productId)}" style="transition-delay:${(index % 4) * 0.05}s">
-        <div class="product-card-image">
-          <img src="${escapeHtml(snapshot.image)}" alt="${escapeHtml(snapshot.name)}" loading="lazy">
+        <div class="product-card-image${snapshot.images.length > 1 ? ' product-card-carousel' : ''}"${snapshot.images.length > 1 ? ' data-carousel data-carousel-index="0"' : ''}>
+          <div class="product-carousel-track">
+            ${snapshot.images.map((image, imageIndex) => `<img src="${escapeHtml(image)}" alt="${escapeHtml(snapshot.name)} — photo ${imageIndex + 1}" loading="${imageIndex ? 'lazy' : 'eager'}" class="product-carousel-slide${imageIndex === 0 ? ' is-active' : ''}">`).join('')}
+          </div>
+          ${snapshot.images.length > 1 ? `
+            <button type="button" class="product-carousel-arrow product-carousel-prev" data-carousel-direction="prev" aria-label="Previous photo">‹</button>
+            <button type="button" class="product-carousel-arrow product-carousel-next" data-carousel-direction="next" aria-label="Next photo">›</button>
+            <span class="product-carousel-swipe-hint" aria-hidden="true">Swipe for more <span>→</span></span>
+            <div class="product-carousel-dots" role="tablist" aria-label="Product photos">
+              ${snapshot.images.map((_, imageIndex) => `<button type="button" class="product-carousel-dot${imageIndex === 0 ? ' is-active' : ''}" data-carousel-index="${imageIndex}" aria-label="Show photo ${imageIndex + 1}" aria-selected="${imageIndex === 0}"></button>`).join('')}
+            </div>` : ''}
           <div class="product-card-actions">
             <button type="button" class="product-action-btn wishlist-btn ${inWishlist ? 'is-active' : ''}" data-product-id="${escapeHtml(productId)}" aria-label="${inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}" aria-pressed="${inWishlist}">${inWishlist ? '♥' : '♡'}</button>
           </div>
@@ -579,7 +589,33 @@
     window.open(`${INSTAGRAM_DM_URL}${encodeURIComponent(message)}`, '_blank', 'noopener');
   }
 
+  function setCarouselSlide(carousel, requestedIndex) {
+    const slides = [...carousel.querySelectorAll('.product-carousel-slide')];
+    if (!slides.length) return;
+    const index = (requestedIndex + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => slide.classList.toggle('is-active', slideIndex === index));
+    carousel.querySelectorAll('.product-carousel-dot').forEach((dot, dotIndex) => {
+      const active = dotIndex === index;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', active);
+    });
+    carousel.dataset.carouselIndex = index;
+  }
+
   function handleProductGridClick(event) {
+    const carouselControl = event.target.closest('[data-carousel-direction], [data-carousel-index]');
+    if (carouselControl) {
+      event.preventDefault();
+      event.stopPropagation();
+      const carousel = carouselControl.closest('[data-carousel]');
+      const current = Number(carousel?.dataset.carouselIndex || 0);
+      const requested = carouselControl.dataset.carouselIndex !== undefined
+        ? Number(carouselControl.dataset.carouselIndex)
+        : current + (carouselControl.dataset.carouselDirection === 'next' ? 1 : -1);
+      if (carousel) setCarouselSlide(carousel, requested);
+      return;
+    }
+
     const wishlistButton = event.target.closest('.wishlist-btn[data-product-id]');
     if (wishlistButton) {
       event.preventDefault();
@@ -678,7 +714,23 @@
 
   function initShop() {
     const productsGrid = document.getElementById('productsGrid');
-    productsGrid?.addEventListener('click', handleProductGridClick);
+    if (productsGrid) {
+      productsGrid.addEventListener('click', handleProductGridClick);
+      let touchStart = null;
+      productsGrid.addEventListener('touchstart', (event) => {
+        const carousel = event.target.closest('[data-carousel]');
+        if (carousel && event.touches.length === 1) touchStart = { carousel, x: event.touches[0].clientX };
+      }, { passive: true });
+      productsGrid.addEventListener('touchend', (event) => {
+        if (!touchStart) return;
+        const distance = event.changedTouches[0].clientX - touchStart.x;
+        if (Math.abs(distance) > 35) {
+          const current = Number(touchStart.carousel.dataset.carouselIndex || 0);
+          setCarouselSlide(touchStart.carousel, current + (distance < 0 ? 1 : -1));
+        }
+        touchStart = null;
+      }, { passive: true });
+    }
 
     document.getElementById('wishlist')?.addEventListener('click', handleSavedShopClick);
 
