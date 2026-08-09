@@ -200,6 +200,14 @@ const PRODUCTS = [
     description: "Beautiful handmade sunflower crochet earrings — bright yellow petals with a cozy brown center, lightweight and full of sunshine. A cheerful handmade accessory and a lovely gift for someone you love.",
     dmText: "Hi! I'd like to order the Sunflower Crochet Earring 🌻"
   },
+  {
+    name: "Rose Crochet Earring",
+    category: "crochet",
+    image: "https://i.ibb.co/HpRkFtmy/Crochet-accessory-crochet-love-follow-handmade-cute-8.webp",
+    badge: "New",
+    description: "Beautiful handmade rose crochet earrings — delicate blooming petals, soft, lightweight and full of charm. A romantic handmade accessory and a lovely gift for someone you love.",
+    dmText: "Hi! I'd like to order the Rose Crochet Earring 🌹"
+  },
 
   // ═══════════════════════════════════════════
   // ADD NEW PRODUCTS BELOW THIS LINE
