@@ -62,13 +62,21 @@
 
   /* ─── Swipeable carousel attached to a provided viewport ─── */
   function attachSwipes(viewport, onChange, opts) {
-    var track = viewport.querySelector('.sl-track') || viewport;
-    var count = track.children.length;
+    var track = viewport.querySelector('.sl-track')
+      || viewport.querySelector('.sl-lb-track')
+      || viewport;
     var index = 0;
     var startX = 0, startY = 0, startScrollX = 0;
     var dragging = false;
     var suppressed = false;
     var startTarget = null;
+
+    // Number of slides is read live from the DOM so the same carousel can be
+    // reused across image sets (e.g. the lightbox is built once with an empty
+    // track, then filled on each open).
+    function getCount() {
+      return track.children.length;
+    }
 
     function update() {
       track.style.transform = 'translateX(' + (-index * 100) + '%)';
@@ -100,6 +108,7 @@
     });
 
     function settle(dx) {
+      var count = getCount();
       track.style.transition = '';
       if (Math.abs(dx) > 45) {
         index = dx < 0
@@ -126,6 +135,7 @@
           return;
         }
         // A tap (no real drag): advance to the next photo.
+        var count = getCount();
         index = index + 1;
         if (index >= count) index = 0; // loop back to start
         update();
@@ -140,6 +150,8 @@
 
     return {
       goTo: function (i) {
+        var count = getCount();
+        if (!count) return;
         if (i < 0) i = count - 1;
         if (i >= count) i = 0;
         index = i;
