@@ -14,7 +14,7 @@
    
    {
      name: "Your Product Name",
-     category: "gift-hampers",        ← choose: gift-hampers, custom-chocolates, clay-jewellery, pipe-cleaner, keychains, crochet
+     category: "gift-hampers",        ← choose: gift-hampers, custom-chocolates, clay-jewellery, hair-accessories, pipe-cleaner, keychains, crochet
      image: "https://i.ibb.co/xxxxx/my-product.jpg",   ← paste ImgBB URL here
      badge: "New",                    ← or "Bestseller", "Popular", "Handmade", or "" for none
      description: "Short description of the product...",
@@ -26,7 +26,8 @@
    CATEGORIES:
    - gift-hampers       → Gift hamper bouquets
    - custom-chocolates  → Custom chocolate wrappers
-   - clay-jewellery     → Clay jewellery & hair accessories
+   - clay-jewellery     → Clay jewellery
+   - hair-accessories   → Hair accessories
    - pipe-cleaner       → Pipe cleaner flowers & crafts
    - keychains          → Keychains
    - crochet            → Crochet accessories & hair clips
@@ -90,7 +91,7 @@ const PRODUCTS = [
   },
   {
     name: "Braided Tassel Hair Accessory",
-    category: "clay-jewellery",
+    category: "hair-accessories",
     image: "img/products/braided-hair-accessory.jpg",
     badge: "চুলের গহনা",
     description: "Colorful hand-braided hair tie with cowrie shells, pearl beads & vibrant tassels — a touch of boho elegance for every occasion.",
