@@ -130,6 +130,22 @@ const PRODUCTS = [
     description: "A single handcrafted pipe cleaner flower made with love — soft, fluffy and it never wilts, just like your feelings. Perfect for someone special. DM to order.",
     dmText: "Hi! I'd like to order the Handmade Pipe Cleaner Flower 🌸"
   },
+  {
+    name: "Burgundy Pearl Fairy Light Bouquet",
+    category: "pipe-cleaner",
+    image: "img/products/burgundy-pearl-fairy-light-bouquet.webp",
+    badge: "New ✨",
+    description: "This bouquet just touches the heart. 🌸🤍 Handmade with pipe cleaners, with love in every little detail — deep burgundy blooms with pearl centers, wrapped in kraft paper with glowing fairy lights. It never wilts, just like your feelings.",
+    dmText: "Hi! I'm interested in the Burgundy Pearl Fairy Light Bouquet 🌸✨"
+  },
+  {
+    name: "Burgundy Pearl Bouquet - Held With Love",
+    category: "pipe-cleaner",
+    image: "img/products/burgundy-pearl-fairy-light-bouquet-model.webp",
+    badge: "Made With Love 🤍",
+    description: "A dreamy burgundy pipe cleaner bouquet with delicate pearls and twinkling fairy lights, held close to the heart. Handmade with love in every little bloom — perfect for birthdays, anniversaries, or just because. Forever flowers, forever glow.",
+    dmText: "Hi! I'd love to order the Burgundy Pearl Bouquet (model edition) 🌹"
+  },
 
   // ═══════ KEYCHAINS ═══════
   {
