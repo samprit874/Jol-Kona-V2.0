@@ -89,7 +89,8 @@
       image: product.image || 'img/logo.png',
       badge: product.badge || '',
       description: product.description || '',
-      dmText: product.dmText || `Hi! I am interested in ${product.name || 'this handmade product'}`
+      dmText: product.dmText || `Hi! I am interested in ${product.name || 'this handmade product'}`,
+      gallery: Array.isArray(product.gallery) && product.gallery.length ? product.gallery : null
     };
   }
 
@@ -448,9 +449,18 @@
       ? `<span class="product-card-badge${badgeVariant}">${escapeHtml(snapshot.badge)}</span>`
       : '';
 
+    const galleryCount = snapshot.gallery ? snapshot.gallery.length : 0;
+    const galleryChipHtml = galleryCount > 1
+      ? `<span class="sl-card-view">🖼️ ${galleryCount} photos · tap</span>`
+      : '';
+    const viewGalleryBtn = snapshot.gallery && snapshot.gallery.length > 1
+      ? `<a class="product-customize-toggle" href="spidey-lovers.html" style="text-decoration:none;">🖼️ View Gallery</a>`
+      : '';
+
     return `
       <div class="product-card reveal visible" data-category="${escapeHtml(snapshot.category)}" data-product-id="${escapeHtml(productId)}" style="transition-delay:${(index % 4) * 0.05}s">
-        <div class="product-card-image">
+        <div class="product-card-image${galleryCount > 1 ? ' has-gallery' : ''}" data-gallery-open="${galleryCount > 1 ? '1' : ''}">
+          ${galleryChipHtml}
           <img src="${escapeHtml(snapshot.image)}" alt="${escapeHtml(snapshot.name)}" loading="lazy">
           <div class="product-card-actions">
             <button type="button" class="product-action-btn wishlist-btn ${inWishlist ? 'is-active' : ''}" data-product-id="${escapeHtml(productId)}" aria-label="${inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}" aria-pressed="${inWishlist}">${inWishlist ? '♥' : '♡'}</button>
@@ -472,6 +482,7 @@
               DM
             </a>
             <button type="button" class="product-customize-toggle" data-action="toggle-customize">✏️ Customize</button>
+            ${viewGalleryBtn}
           </div>
           <div class="product-customize-form">
             <textarea class="customize-textarea" placeholder="Describe how you'd like this customized..."></textarea>
@@ -581,6 +592,20 @@
   }
 
   function handleProductGridClick(event) {
+    // Tapping the product photo opens the fullscreen gallery (if it has photos).
+    const galleryTrigger = event.target.closest('.product-card-image[data-gallery-open="1"]');
+    if (galleryTrigger) {
+      event.preventDefault();
+      event.stopPropagation();
+      const card = galleryTrigger.closest('.product-card');
+      const productId = card?.dataset.productId;
+      const product = findProduct(productId);
+      if (product?.gallery && window.SpideyGallery) {
+        window.SpideyGallery.openLightbox(product.gallery, 0);
+      }
+      return;
+    }
+
     const wishlistButton = event.target.closest('.wishlist-btn[data-product-id]');
     if (wishlistButton) {
       event.preventDefault();

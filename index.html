@@ -86,6 +86,7 @@
 
   <link rel="stylesheet" href="css/auth.css">
   <link rel="stylesheet" href="css/mobile-nav.css">
+  <link rel="stylesheet" href="css/spidey-gallery.css">
   
   <script>
     // Prevent Flash of Unstyled Text (FOUT) on the loading screen brand font
@@ -458,6 +459,16 @@
           <input type="text" placeholder="Search creations..." aria-label="Search products">
         </div>
       </div>
+
+      <!-- Spidey Lovers promo banner -->
+      <a href="spidey-lovers.html" class="spidey-banner reveal" style="display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap;text-decoration:none;background:linear-gradient(120deg,#1a1a2e,#16213e 60%,#0f3460);color:#fff;border-radius:20px;padding:16px 22px;margin:0 auto 28px;max-width:760px;box-shadow:0 14px 40px -18px rgba(15,52,96,.55);">
+        <span style="font-size:1.6rem;">🕷️</span>
+        <span style="flex:1;min-width:200px;">
+          <strong style="display:block;font-family:var(--font-heading);font-size:1.05rem;">Spidey Lovers! Couple Keychains</strong>
+          <span style="font-size:.85rem;opacity:.85;">5 photos in one place — tap to swipe through every angle →</span>
+        </span>
+        <span class="btn btn-primary" style="padding:10px 20px;font-size:.8rem;margin:0;">View Gallery</span>
+      </a>
 
       <!-- Products Grid (loaded from products.js) -->
       <div class="products-grid" id="productsGrid">
@@ -1235,6 +1246,9 @@
 
   <!-- Product Card Renderer + Wishlist/Cart -->
   <script src="js/shop.js?v=7"></script>
+
+  <!-- Swipeable Spidey Lovers gallery & lightbox -->
+  <script src="js/spidey-gallery.js?v=1"></script>
 
   <!-- ═══════ Scripts ═══════ -->
   <script src="js/reviews-marquee.js?v=3"></script>
