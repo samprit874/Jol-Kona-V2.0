@@ -21,6 +21,7 @@
     'gift-hampers': 'Gift Hamper Bouquet',
     'custom-chocolates': 'Custom Chocolate',
     'clay-jewellery': 'Clay Jewellery',
+    'hair-accessories': 'Hair Accessories',
     'pipe-cleaner': 'Pipe Cleaner',
     'keychains': 'Keychain',
     'crochet': 'Crochet'

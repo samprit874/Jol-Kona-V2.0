@@ -33,6 +33,7 @@ const CATEGORY_LABELS = {
   'gift-hampers': 'Gift Hampers',
   'custom-chocolates': 'Custom Chocolates',
   'clay-jewellery': 'Clay Jewellery',
+  'hair-accessories': 'Hair Accessories',
   'pipe-cleaner': 'Pipe Cleaner',
   'keychains': 'Keychains',
   'crochet': 'Crochet',
