@@ -233,6 +233,20 @@ const PRODUCTS = [
     dmText: "Hi! I'd like to order the Rose Crochet Earring 🌹"
   },
 
+  // ═══════ PHONE CHARMS ═══════
+  {
+    name: "Handmade Pipe Cleaner Phone Charm",
+    category: "pipe-cleaner",
+    image: "https://i.ibb.co/3ywLd3CN/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
+    images: [
+      "https://i.ibb.co/3ywLd3CN/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
+      "https://i.ibb.co/ymZJfTSW/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona.webp"
+    ],
+    badge: "New",
+    description: "A cute handmade pipe-cleaner phone charm with a pink heart & ribbon bow — a tiny piece of handmade joy to hang on your phone, bag or keys. Made with love by জলকণা. 🎀",
+    dmText: "Hi! I'd like to order the Handmade Pipe Cleaner Phone Charm 📱✨"
+  },
+
   // ═══════════════════════════════════════════
   // ADD NEW PRODUCTS BELOW THIS LINE
   // Copy the format above and paste here

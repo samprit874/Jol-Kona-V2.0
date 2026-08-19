@@ -82,11 +82,15 @@
 
   function productSnapshot(product) {
     if (!product) return null;
+    const images = Array.isArray(product.images) && product.images.length
+      ? product.images.filter(Boolean)
+      : [];
     return {
       id: getProductId(product),
       name: product.name || 'Handmade Creation',
       category: product.category || 'handmade',
-      image: product.image || 'img/logo.png',
+      image: product.image || images[0] || 'img/logo.png',
+      images,
       badge: product.badge || '',
       description: product.description || '',
       dmText: product.dmText || `Hi! I am interested in ${product.name || 'this handmade product'}`
@@ -448,14 +452,39 @@
       ? `<span class="product-card-badge${badgeVariant}">${escapeHtml(snapshot.badge)}</span>`
       : '';
 
-    return `
-      <div class="product-card reveal visible" data-category="${escapeHtml(snapshot.category)}" data-product-id="${escapeHtml(productId)}" style="transition-delay:${(index % 4) * 0.05}s">
+    // A product with multiple photos gets an Instagram-style swipe gallery
+    const galleryImages = snapshot.images && snapshot.images.length > 1 ? snapshot.images : null;
+    const wishlistActions = `
+      <div class="product-card-actions">
+        <button type="button" class="product-action-btn wishlist-btn ${inWishlist ? 'is-active' : ''}" data-product-id="${escapeHtml(productId)}" aria-label="${inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}" aria-pressed="${inWishlist}">${inWishlist ? '♥' : '♡'}</button>
+      </div>`;
+    const imageArea = galleryImages
+      ? `
+        <div class="product-card-image is-gallery">
+          <div class="card-gallery" data-gallery-wrap>
+            <div class="card-gallery-track" data-gallery-track role="group" aria-label="Product photos — swipe to browse">
+              ${galleryImages.map((src, i) => `
+                <div class="card-gallery-slide" data-gallery-slide>
+                  <img src="${escapeHtml(src)}" alt="${escapeHtml(snapshot.name)} — photo ${i + 1}" loading="lazy" draggable="false">
+                </div>`).join('')}
+            </div>
+            <div class="card-gallery-progress" data-gallery-progress aria-hidden="true">
+              ${galleryImages.map(() => '<span class="card-gallery-progress-seg"></span>').join('')}
+            </div>
+            <button type="button" class="card-gallery-arrow prev" data-gallery-prev aria-label="Previous photo">‹</button>
+            <button type="button" class="card-gallery-arrow next" data-gallery-next aria-label="Next photo">›</button>
+          </div>
+          ${wishlistActions}
+        </div>`
+      : `
         <div class="product-card-image">
           <img src="${escapeHtml(snapshot.image)}" alt="${escapeHtml(snapshot.name)}" loading="lazy">
-          <div class="product-card-actions">
-            <button type="button" class="product-action-btn wishlist-btn ${inWishlist ? 'is-active' : ''}" data-product-id="${escapeHtml(productId)}" aria-label="${inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}" aria-pressed="${inWishlist}">${inWishlist ? '♥' : '♡'}</button>
-          </div>
-        </div>
+          ${wishlistActions}
+        </div>`;
+
+    return `
+      <div class="product-card reveal visible" data-category="${escapeHtml(snapshot.category)}" data-product-id="${escapeHtml(productId)}" style="transition-delay:${(index % 4) * 0.05}s">
+        ${imageArea}
         <div class="product-card-info">
           <div class="product-card-meta">
             <span class="product-card-category">${escapeHtml(getCategoryLabel(snapshot.category))}</span>
@@ -494,6 +523,96 @@
     });
   }
 
+  /* ── Instagram-style swipe gallery on product cards ── */
+  function initCardGalleries(container) {
+    if (!container) return;
+    container.querySelectorAll('.card-gallery[data-gallery-wrap]').forEach((wrap) => {
+      if (wrap.dataset.galleryReady) return;
+      wrap.dataset.galleryReady = '1';
+
+      const track = wrap.querySelector('[data-gallery-track]');
+      const slides = [...wrap.querySelectorAll('[data-gallery-slide]')];
+      const progressSegs = [...wrap.querySelectorAll('.card-gallery-progress-seg')];
+      const prevBtn = wrap.querySelector('[data-gallery-prev]');
+      const nextBtn = wrap.querySelector('[data-gallery-next]');
+      const count = slides.length;
+      if (!track || count < 2) return;
+
+      let index = 0;
+      let isDown = false;
+      let startX = 0;
+      let startScroll = 0;
+      let moved = false;
+
+      const sync = () => {
+        const width = track.clientWidth || 1;
+        index = Math.max(0, Math.min(count - 1, Math.round(track.scrollLeft / width)));
+        progressSegs.forEach((seg, i) => seg.classList.toggle('active', i === index));
+        if (prevBtn) prevBtn.classList.toggle('disabled', index === 0);
+        if (nextBtn) nextBtn.classList.toggle('disabled', index === count - 1);
+      };
+
+      const goTo = (targetIndex) => {
+        const width = track.clientWidth || 1;
+        track.scrollTo({ left: targetIndex * width, behavior: 'smooth' });
+      };
+
+      track.addEventListener('scroll', sync, { passive: true });
+      track.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') { goTo(index + 1); event.preventDefault(); }
+        if (event.key === 'ArrowLeft') { goTo(index - 1); event.preventDefault(); }
+      });
+      track.setAttribute('tabindex', '0');
+
+      prevBtn?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        goTo(index - 1);
+      });
+      nextBtn?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        goTo(index + 1);
+      });
+
+      // Mouse drag-to-swipe (touch uses native scroll + snap — no double handling)
+      const endDrag = () => {
+        if (!isDown) return;
+        isDown = false;
+        track.classList.remove('is-dragging');
+        goTo(Math.round(track.scrollLeft / (track.clientWidth || 1)));
+      };
+      track.addEventListener('pointerdown', (event) => {
+        if (event.pointerType !== 'mouse') return;
+        isDown = true;
+        moved = false;
+        startX = event.clientX;
+        startScroll = track.scrollLeft;
+        track.classList.add('is-dragging');
+        try { track.setPointerCapture(event.pointerId); } catch (e) { /* ignore */ }
+      });
+      track.addEventListener('pointermove', (event) => {
+        if (!isDown) return;
+        const deltaX = event.clientX - startX;
+        if (Math.abs(deltaX) > 4) moved = true;
+        track.scrollLeft = startScroll - deltaX;
+      });
+      track.addEventListener('pointerup', endDrag);
+      track.addEventListener('pointercancel', endDrag);
+      track.addEventListener('pointerleave', endDrag);
+
+      // Don't trigger card handlers (wishlist/customize) after a drag gesture
+      track.addEventListener('click', (event) => {
+        if (moved) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, true);
+
+      sync();
+    });
+  }
+
   function renderProductGrid(items) {
     const grid = document.getElementById('productsGrid');
     if (!grid) return;
@@ -512,6 +631,7 @@
 
     grid.innerHTML = items.map(productCardTemplate).join('');
     updateProductButtons();
+    initCardGalleries(grid);
   }
 
   function setActiveFilter(filter) {
