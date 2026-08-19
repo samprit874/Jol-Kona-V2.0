@@ -149,12 +149,19 @@ const PRODUCTS = [
 
   // ═══════ KEYCHAINS ═══════
   {
-    name: "Couple Heart Keychain",
+    name: "Spidey Lovers Couple Keychain",
     category: "keychains",
-    image: "img/products/spiderman-couple-keychain.webp",
-    badge: "Couple Gift",
-    description: "Two halves of one heart — hand-painted couple keychain. A little keychain with a lot of love, perfect for you and your person.",
-    dmText: "Hi! I'd like to order a Couple Heart Keychain ❤️"
+    image: "img/products/spidey-lovers-keychain-1.png",
+    badge: "Couple Gift 🕷️",
+    gallery: [
+      "img/products/spidey-lovers-keychain-1.png",
+      "img/products/spidey-lovers-keychain-2.png",
+      "img/products/spidey-lovers-keychain-3.png",
+      "img/products/spidey-lovers-keychain-4.png",
+      "img/products/spidey-lovers-keychain-5.png"
+    ],
+    description: "🕷️❤️ Spidey Lovers! DIY custom couple keychains made just for you — hand-painted with love, perfect for you and your person. Carry your own little web of love everywhere.",
+    dmText: "Hi! I'd like to order the Spidey Lovers Couple Keychain 🕷️❤️"
   },
   {
     name: "Hello Kitty Keychain",
