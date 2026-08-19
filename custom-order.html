@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.cdnfonts.com https://fonts.maateen.me; font-src 'self' data: https://fonts.gstatic.com https://fonts.cdnfonts.com https://fonts.maateen.me; img-src 'self' data: blob: https:; connect-src 'self' https://*.googleapis.com https://*.gstatic.com; worker-src 'self' blob:; frame-src 'self' https://accounts.google.com https://*.firebaseapp.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Apply saved dark mode before first paint (same key as js/main.js) -->
@@ -465,10 +468,18 @@
       if (fileInput.files[0]) handleFile(fileInput.files[0]);
     });
     
+    // Escape untrusted text before inserting into HTML (prevents self-XSS
+    // via a malicious filename like `<img src=x onerror=...>.png`).
+    function escapeHtml(value) {
+      return String(value == null ? '' : value).replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+
     function handleFile(file) {
       uploadArea.innerHTML = `
         <div class="form-upload-icon">✅</div>
-        <p class="form-upload-text">${file.name}</p>
+        <p class="form-upload-text">${escapeHtml(file.name)}</p>
         <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">${(file.size / 1024 / 1024).toFixed(2)} MB</p>
       `;
     }

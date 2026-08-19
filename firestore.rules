@@ -39,7 +39,7 @@ service cloud.firestore {
     function validProduct(d) {
       return d.name is string && d.name.size() > 0 && d.name.size() <= 120
         && d.category is string
-        && d.category in ['gift-hampers', 'custom-chocolates', 'clay-jewellery', 'pipe-cleaner', 'keychains']
+        && d.category in ['gift-hampers', 'custom-chocolates', 'clay-jewellery', 'pipe-cleaner', 'keychains', 'crochet']
         && d.image is string && d.image.size() > 0 && d.image.size() <= 1024
         && (!d.keys().hasAny(['badge']) || d.badge is string)
         && (!d.keys().hasAny(['description']) || (d.description is string && d.description.size() <= 600))
