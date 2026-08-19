@@ -90,7 +90,7 @@ const PRODUCTS = [
   },
   {
     name: "Braided Tassel Hair Accessory",
-    category: "clay-jewellery",
+    category: "hair-accessories",
     image: "img/products/braided-hair-accessory.jpg",
     badge: "চুলের গহনা",
     description: "Colorful hand-braided hair tie with cowrie shells, pearl beads & vibrant tassels — a touch of boho elegance for every occasion.",
