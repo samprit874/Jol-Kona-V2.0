@@ -385,6 +385,9 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-lg);
+  /* Equal-height rows: every card is the same height so the
+     footer/rating rows line up across the whole grid */
+  grid-auto-rows: 1fr;
 }
 
 .product-card {
@@ -394,6 +397,8 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   box-shadow: var(--shadow-soft);
   transition: all var(--duration-normal) var(--ease-smooth);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
@@ -406,6 +411,7 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   position: relative;
   overflow: hidden;
   background: var(--cream);
+  flex-shrink: 0;
 }
 
 .product-card-image img {
@@ -471,6 +477,9 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
 
 .product-card-info {
   padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .product-card-category {
@@ -516,6 +525,7 @@ p { color: var(--text-light); font-size: 1rem; line-height: 1.7; }
   gap: var(--space-xs);
   font-size: 0.8rem;
   color: var(--text-light);
+  margin-top: auto;
 }
 
 .stars { color: var(--rose-gold); letter-spacing: 1px; }
