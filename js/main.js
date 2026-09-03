@@ -14,7 +14,7 @@
 
   // Minimum splash duration (ms): keeps the first loading screen visible
   // long enough for the rest of the page to finish loading in the background.
-  const MIN_LOADER_MS = 4000;
+  const MIN_LOADER_MS = 2500;
 
   function hideLoader() {
     if (loader && !loader.classList.contains('hidden')) {
@@ -26,7 +26,7 @@
 
   // Hide the loader only once BOTH the window has finished loading (so the
   // page content is ready in the background) AND the minimum splash time
-  // (4s) has elapsed — guaranteeing a stable 4 second first loading screen.
+  // (2.5s) has elapsed — guaranteeing a stable 2.5 second first loading screen.
   let windowLoaded = document.readyState === 'complete';
   const loadTime = Date.now();
 
@@ -45,11 +45,11 @@
     });
   }
 
-  // Minimum splash timer: fire once the 4s is up (in case load already done).
+  // Minimum splash timer: fire once the 2.5s is up (in case load already done).
   setTimeout(tryHideLoader, MIN_LOADER_MS);
 
   // Safety net: never leave the page stuck behind the loader
-  setTimeout(hideLoader, MIN_LOADER_MS + 4000);
+  setTimeout(hideLoader, MIN_LOADER_MS + 3500);
 
   // Initially prevent scroll
   document.body.style.overflow = 'hidden';
