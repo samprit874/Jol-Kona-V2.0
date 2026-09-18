@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "npx serve .",
     "build": "echo 'Static site — no build step required.'",
+    "test": "node scripts/test-products.mjs",
     "start": "npx serve ."
   },
   "engines": {
