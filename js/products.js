@@ -61,6 +61,15 @@ const PRODUCTS = [
     description: "A beautiful bouquet of memories — photos, KitKat, scrunchie, pipe cleaner flowers & a handwritten love note wrapped in elegant black paper.",
     dmText: "Hi! I'm interested in the Personalized Photo & Treats Hamper 🎁"
   },
+  {
+    name: "Chocolate Bouquet",
+    category: "gift-hampers",
+    image: "img/products/Chocolate bouquet.png",
+    badge: "For Someone Special 🍫",
+    description: "A delightful chocolate bouquet loaded with Dark Fantasy cookies and crisp chocolate treats wrapped in crisp white paper with an elegant red bow — small happiness in a big way.",
+    dmText: "Hi! I'm interested in the Chocolate Bouquet 🍫💐"
+  },
+
 
   // ══════ CUSTOM CHOCOLATES ══════
   {
