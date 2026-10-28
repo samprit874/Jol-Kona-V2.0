@@ -351,7 +351,7 @@
   function wishlistItemTemplate(product) {
     return `
       <article class="saved-item" data-product-id="${escapeHtml(product.id)}">
-        <img class="saved-item-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy">
+        <img class="saved-item-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='img/logo.png'">
         <div class="saved-item-info">
           <span class="saved-item-category">${escapeHtml(getCategoryLabel(product.category))}</span>
           <h4>${escapeHtml(product.name)}</h4>
@@ -370,7 +370,7 @@
     const { product, quantity } = item;
     return `
       <article class="saved-item cart-item" data-product-id="${escapeHtml(product.id)}">
-        <img class="saved-item-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy">
+        <img class="saved-item-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='img/logo.png'">
         <div class="saved-item-info">
           <span class="saved-item-category">${escapeHtml(getCategoryLabel(product.category))}</span>
           <h4>${escapeHtml(product.name)}</h4>
@@ -462,7 +462,7 @@
       <div class="product-card reveal visible" data-category="${escapeHtml(snapshot.category)}" data-product-id="${escapeHtml(productId)}" style="transition-delay:${(index % 4) * 0.05}s">
         <div class="product-card-image${galleryCount > 1 ? ' has-gallery' : ''}" data-gallery-open="${galleryCount > 1 ? '1' : ''}">
           ${galleryChipHtml}
-          <img src="${escapeHtml(snapshot.image)}" alt="${escapeHtml(snapshot.name)}" loading="lazy">
+          <img src="${escapeHtml(snapshot.image)}" alt="${escapeHtml(snapshot.name)}" loading="lazy" onerror="this.onerror=null;this.src='img/logo.png'">
           <div class="product-card-actions">
             <button type="button" class="product-action-btn wishlist-btn ${inWishlist ? 'is-active' : ''}" data-product-id="${escapeHtml(productId)}" aria-label="${inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}" aria-pressed="${inWishlist}">${inWishlist ? '♥' : '♡'}</button>
           </div>
