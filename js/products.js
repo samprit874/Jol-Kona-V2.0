@@ -4,8 +4,8 @@
    
    HOW TO ADD A NEW PRODUCT:
    
-   1. Upload your image to https://imgbb.com (free, no signup needed for quick upload)
-      OR save image in img/products/ folder
+   1. Save your product image in the `img/products/` folder (recommended, never breaks)
+      Example: img/products/my-product.webp
    
    2. Copy the direct image URL from ImgBB
       Example: https://i.ibb.co/xxxxx/my-product.jpg
@@ -15,7 +15,7 @@
    {
      name: "Your Product Name",
      category: "gift-hampers",        ← choose: gift-hampers, custom-chocolates, clay-jewellery, hair-accessories, pipe-cleaner, keychains, crochet
-     image: "https://i.ibb.co/xxxxx/my-product.jpg",   ← paste ImgBB URL here
+     image: "img/products/my-product.webp",   ← local image path
      badge: "New",                    ← or "Bestseller", "Popular", "Handmade", or "" for none
      description: "Short description of the product...",
      dmText: "Hi! I'd like to order [Product Name] 🎁"
@@ -135,7 +135,7 @@ const PRODUCTS = [
   {
     name: "Handmade Pipe Cleaner Flower",
     category: "pipe-cleaner",
-    image: "https://i.ibb.co/60k86Dt2/Handmade-Pipe-Cleaner-Flower-Perfect-for-Someone-Special-DM-to-Order-love-instagram.webp",
+    image: "img/products/handmade-pipe-cleaner-flower.webp",
     badge: "For Someone Special 🩷",
     description: "A single handcrafted pipe cleaner flower made with love — soft, fluffy and it never wilts, just like your feelings. Perfect for someone special. DM to order.",
     dmText: "Hi! I'd like to order the Handmade Pipe Cleaner Flower 🌸"
@@ -184,7 +184,7 @@ const PRODUCTS = [
   {
     name: "Lucky Fox Clay Keychain",
     category: "keychains",
-    image: "https://i.ibb.co/yLsMjNy/Clay-cute-keychain-follow-love-handmade-love-insta-1.webp",
+    image: "img/products/lucky-fox-clay-keychain.webp",
     badge: "New",
     description: "A tiny handmade clay fox charm that carries a little wish for prosperity and happiness — an adorable companion for your keys, bag or pouch.",
     dmText: "Hi! I'd like to order the Lucky Fox Clay Keychain 🦊"
@@ -192,7 +192,7 @@ const PRODUCTS = [
   {
     name: "Ginger Chicken Clay Keychain",
     category: "keychains",
-    image: "https://i.ibb.co/gZRJWvwG/Clay-cute-keychain-follow-love-handmade-love-insta.webp",
+    image: "img/products/ginger-chicken-clay-keychain.webp",
     badge: "New",
     description: "A cheerful little ginger chicken sculpted from clay — a tiny burst of handmade charm for your keys, bag or pencil case.",
     dmText: "Hi! I'd like to order the Ginger Chicken Clay Keychain 🐔"
@@ -202,7 +202,7 @@ const PRODUCTS = [
   {
     name: "Handmade Pipe Cleaner Phone Charm",
     category: "keychains",
-    image: "https://i.ibb.co/nsT5mGLc/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-1.webp",
+    image: "img/products/handmade-pipe-cleaner-phone-charm-1.webp",
     badge: "New",
     description: "A fluffy, handcrafted pipe cleaner phone charm to dress up your phone — cute, lightweight and made with love. Also perfect for bags, keys & pencil cases.",
     dmText: "Hi! I'd like to order the Handmade Pipe Cleaner Phone Charm 📱"
@@ -210,7 +210,7 @@ const PRODUCTS = [
   {
     name: "Cute Handmade Phone Charm",
     category: "keychains",
-    image: "https://i.ibb.co/DPvnVXp5/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona.webp",
+    image: "img/products/cute-handmade-phone-charm.webp",
     badge: "New",
     description: "An adorable handmade phone charm crafted from soft pipe cleaners — a tiny dangle of joy for your phone. A sweet gift for friends, sisters & everyone who loves cute things.",
     dmText: "Hi! I'd like to order the Cute Handmade Phone Charm 📱"
@@ -218,7 +218,7 @@ const PRODUCTS = [
   {
     name: "Adorable Pipe Cleaner Phone Charm",
     category: "keychains",
-    image: "https://i.ibb.co/wFWJ98Fj/Handmade-cleaner-phone-charm-love-gifts-india-handmade-Jolkona-2.webp",
+    image: "img/products/adorable-pipe-cleaner-phone-charm.webp",
     badge: "New",
     description: "Another adorable handmade pipe cleaner phone charm from the Jol Kona charm collection — soft, fluffy and full of personality. Perfect for phones, bags, keys & pencil cases, and a sweet little gift for someone you love.",
     dmText: "Hi! I'd like to order the Adorable Pipe Cleaner Phone Charm 📱"
@@ -228,7 +228,7 @@ const PRODUCTS = [
   {
     name: "Crochet Bow Hair Clip",
     category: "crochet",
-    image: "https://i.ibb.co/35gh5tKC/Crochet-accessory-crochet-love-follow-handmade-cute.webp",
+    image: "img/products/crochet-bow-hair-clip.webp",
     badge: "New",
     description: "A cute handmade crochet bow hair clip — soft, fluffy and full of charm. A sweet accessory for your hair, and a lovely handmade gift for someone you love.",
     dmText: "Hi! I'd like to order the Crochet Bow Hair Clip 🎀"
@@ -236,7 +236,7 @@ const PRODUCTS = [
   {
     name: "Crochet Flower Hair Clip",
     category: "crochet",
-    image: "https://i.ibb.co/DH7bBv6G/Crochet-accessory-crochet-love-follow-handmade-cute-2.webp",
+    image: "img/products/crochet-flower-hair-clip.webp",
     badge: "New",
     description: "A beautiful handmade crochet flower hair clip — soft, fluffy petals full of charm. A sweet accessory for your hair, and a lovely handmade gift for someone you love.",
     dmText: "Hi! I'd like to order the Crochet Flower Hair Clip 🌸"
@@ -244,7 +244,7 @@ const PRODUCTS = [
   {
     name: "Crochet Cherry Hair Clip",
     category: "crochet",
-    image: "https://i.ibb.co/gbnXMJ51/Crochet-accessory-crochet-love-follow-handmade-cute-4.webp",
+    image: "img/products/crochet-cherry-hair-clip.webp",
     badge: "New",
     description: "An adorable handmade crochet cherry hair clip — cute little cherries full of charm. A sweet accessory for your hair, and a lovely handmade gift for someone you love.",
     dmText: "Hi! I'd like to order the Crochet Cherry Hair Clip 🍒"
@@ -252,7 +252,7 @@ const PRODUCTS = [
   {
     name: "Sunflower Crochet Earring",
     category: "crochet",
-    image: "https://i.ibb.co/Swvc6zYj/Crochet-accessory-crochet-love-follow-handmade-cute-6.webp",
+    image: "img/products/sunflower-crochet-earring.webp",
     badge: "New",
     description: "Beautiful handmade sunflower crochet earrings — bright yellow petals with a cozy brown center, lightweight and full of sunshine. A cheerful handmade accessory and a lovely gift for someone you love.",
     dmText: "Hi! I'd like to order the Sunflower Crochet Earring 🌻"
@@ -260,7 +260,7 @@ const PRODUCTS = [
   {
     name: "Rose Crochet Earring",
     category: "crochet",
-    image: "https://i.ibb.co/HpRkFtmy/Crochet-accessory-crochet-love-follow-handmade-cute-8.webp",
+    image: "img/products/rose-crochet-earring.webp",
     badge: "New",
     description: "Beautiful handmade rose crochet earrings — delicate blooming petals, soft, lightweight and full of charm. A romantic handmade accessory and a lovely gift for someone you love.",
     dmText: "Hi! I'd like to order the Rose Crochet Earring 🌹"
